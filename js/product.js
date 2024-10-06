@@ -1,9 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const toggleButton = document.getElementById('toggleDescription');
-    const productDescription = document.getElementById('productDescription');
+    const favoriteBtn = document.getElementById('favoriteBtn');
+    const favoritesCount = document.querySelector('.nav-right .fa-heart');
+    let count = 0;
 
-    toggleButton.addEventListener('click', function() {
-        productDescription.classList.toggle('hidden');
-        toggleButton.textContent = productDescription.classList.contains('hidden') ? 'Prikaži opis' : 'Sakrij opis';
+    favoriteBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        if (this.classList.contains('active')) {
+            count++;
+        } else {
+            count = Math.max(0, count - 1);
+        }
+        if (count > 0) {
+            favoritesCount.setAttribute('data-count', count);
+        } else {
+            favoritesCount.removeAttribute('data-count');
+        }
     });
 });
