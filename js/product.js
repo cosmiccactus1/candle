@@ -1,12 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const mainImage = document.querySelector('.main-image');
-    const thumbnails = document.querySelectorAll('.thumbnail');
+    const toggleButton = document.getElementById('toggleDescription');
+    const productDescription = document.getElementById('productDescription');
 
-    thumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', function() {
-            mainImage.src = this.src;
-            thumbnails.forEach(thumb => thumb.classList.remove('active'));
-            this.classList.add('active');
-        });
+    toggleButton.addEventListener('click', function() {
+        productDescription.classList.toggle('hidden');
+        toggleButton.textContent = productDescription.classList.contains('hidden') ? 'Prikaži opis' : 'Sakrij opis';
     });
 });
