@@ -29,20 +29,23 @@
     </header>
 
     <main class="product-page">
-        <h1>Naziv Svijeće</h1>
-        <p class="price">40 BAM</p>
-        <div class="product-images">
-            <img src="images/svijeća1.jpg" alt="Svijeća 1 - Slika 1" class="product-image">
-            <img src="images/svijeca1-2.jpg" alt="Svijeća 1 - Slika 2" class="product-image">
+        <div class="product-container">
+            <div class="product-images">
+                <img src="images/svijeca1-1.jpg" alt="Svijeća 1 - Slika 1" class="product-image">
+                <img src="images/svijeca1-2.jpg" alt="Svijeća 1 - Slika 2" class="product-image">
+            </div>
+            <div class="product-details">
+                <h1>Naziv Svijeće</h1>
+                <p class="price">40 BAM</p>
+                <div class="product-description">
+                    <p>Ovdje ide detaljan opis svijeće, uključujući miris, sastojke i atmosferu koju stvara.</p>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart">Dodaj u košaricu</button>
+                    <button class="add-to-favorites"><i class="fas fa-heart"></i></button>
+                </div>
+            </div>
         </div>
-        <button id="toggleDescription" class="toggle-button">Prikaži opis</button>
-        <div id="productDescription" class="product-description hidden">
-            <h2>Opis proizvoda</h2>
-            <p>Ovdje ide detaljan opis svijeće, uključujući miris, sastojke i atmosferu koju stvara.</p>
-            <h2>Kako koristiti</h2>
-            <p>Upute za pravilno korištenje svijeće za najbolje rezultate i sigurnost.</p>
-        </div>
-        <button class="add-to-cart">Dodaj u košaricu</button>
     </main>
 
     <footer>
@@ -83,7 +86,5 @@
             <p>&copy; 2024 Svijeće Craft-shop. Sva prava pridržana.</p>
         </div>
     </footer>
-
-    <script src="js/product.js"></script>
 </body>
 </html>
