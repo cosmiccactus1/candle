@@ -76,35 +76,38 @@ main {
 }
 
 #kolekcija-baner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-#kolekcija-baner h2,
-#kolekcija-baner .cta-button {
+#kolekcija-baner {
+    background-color: #fff;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #333;
+    border: 1px solid #ddd;
     position: relative;
-    z-index: 1;
 }
 
 #kolekcija-baner h2 {
     font-size: 48px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-weight: 300;
 }
 
 .cta-button {
-    background-color: #fff;
-    color: #333;
+    background-color: #333;
+    color: #fff;
     padding: 12px 24px;
+    text-decoration: none;
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #555;
 }
 
 .cta-button:hover {
