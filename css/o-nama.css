@@ -1,1 +1,49 @@
+.o-nama-content {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 0 20px;
+}
 
+.o-nama-content h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #333;
+}
+
+.text-image-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.text-content, .image-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.image-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.full-width-text {
+    margin-bottom: 40px;
+}
+
+.full-width-text p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .text-image-container {
+        flex-direction: column;
+    }
+    
+    .text-content, .image-content {
+        width: 100%;
+    }
+}
