@@ -70,42 +70,75 @@ main {
 
 /* Kolekcija baner */
 #kolekcija-baner {
-    background-image: url('../images/kolekcija-baner.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #fff; /* fallback ako slika ne učita */
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-color: #fff;
+    padding: 60px 0;
     text-align: center;
-    color: #000; /* možda ćete trebati promijeniti u #fff ako je pozadinska slika tamna */
-    border: 1px solid #00008B;
-    position: relative;
 }
 
 #kolekcija-baner h2 {
     font-size: 48px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     font-weight: 300;
 }
 
-.cta-button {
-    background-color: #fff;
-    color: #000;
-    padding: 12px 24px;
-    text-decoration: none;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease;
-    border: 1px solid #000;
+.kolekcija-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.cta-button:hover {
-    background-color: #f0f0f0;
+.kolekcija-item {
+    text-align: center;
+}
+
+.kolekcija-item a {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.kolekcija-item a:hover {
+    transform: translateY(-5px);
+}
+
+.kolekcija-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.svijeca-naziv {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.svijeca-cijena {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+}
+
+.vidi-sve-container {
+    text-align: right;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding: 0 20px;
+}
+
+.vidi-sve-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.vidi-sve-button:hover {
+    background-color: #555;
 }
 
 /* Footer */
@@ -113,6 +146,7 @@ footer {
     background-color: #fff;
     color: #333;
     padding: 40px 0 20px;
+    border-top: 1px solid #eee;
 }
 
 .footer-content {
@@ -148,48 +182,40 @@ footer {
 
 .footer-section ul li a,
 .footer-section p {
-    color: #333;
+    color: #666;
     transition: color 0.3s ease;
 }
 
 .footer-section ul li a:hover {
-    color: #666;
-}
-
-.payment-icons i {
-    font-size: 24px;
-    margin-right: 10px;
     color: #333;
 }
 
-.footer-right {
-    display: flex;
-    align-items: flex-end;
-}
-
-.social-icons {
-    display: flex;
-}
-
+.payment-icons i,
 .social-icons a {
     font-size: 24px;
-    margin-left: 15px;
-    color: #333;
+    margin-right: 10px;
+    color: #666;
     transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-    color: #666;
+    color: #333;
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
     margin-top: 20px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #eee;
 }
 
 /* Responzivni dizajn */
+@media (max-width: 1024px) {
+    .kolekcija-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
@@ -206,8 +232,8 @@ footer {
         transform: none;
     }
 
-    #kolekcija-baner h2 {
-        font-size: 36px;
+    .kolekcija-grid {
+        grid-template-columns: 1fr;
     }
 
     .footer-content {
@@ -224,9 +250,5 @@ footer {
 
     .social-icons {
         margin-top: 20px;
-    }
-
-    .social-icons a {
-        margin: 0 10px;
     }
 }
