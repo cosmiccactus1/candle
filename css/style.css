@@ -70,14 +70,18 @@ main {
 
 /* Kolekcija baner */
 #kolekcija-baner {
-    background-color: #fff;
+    background-image: url('../images/kolekcija-baner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #fff; /* fallback ako slika ne učita */
     height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #000;
+    color: #000; /* možda ćete trebati promijeniti u #fff ako je pozadinska slika tamna */
     border: 1px solid #00008B;
     position: relative;
 }
