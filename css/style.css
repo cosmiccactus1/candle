@@ -63,20 +63,6 @@ main {
 
 /* Kolekcija baner */
 #kolekcija-baner {
-    background: url('images/kolekcija-2025.jpg') no-repeat center center;
-    background-size: cover;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    position: relative;
-}
-
-#kolekcija-baner::before {
-#kolekcija-baner {
     background-color: #fff;
     height: 60vh;
     display: flex;
@@ -108,10 +94,6 @@ main {
 
 .cta-button:hover {
     background-color: #555;
-}
-
-.cta-button:hover {
-    background-color: #f0f0f0;
 }
 
 /* Istaknuti proizvodi */
