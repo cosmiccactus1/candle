@@ -23,6 +23,8 @@
 
 .product-details {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -38,15 +40,16 @@ h1 {
 
 .product-description {
     margin-bottom: 20px;
+    flex-grow: 1;
 }
 
 .product-actions {
     display: flex;
+    justify-content: flex-end;
     gap: 10px;
 }
 
 .add-to-cart {
-    flex-grow: 1;
     padding: 12px 24px;
     background-color: #fff;
     color: #000;
@@ -74,6 +77,10 @@ h1 {
 
 .add-to-favorites:hover {
     background-color: #f0f0f0;
+}
+
+.add-to-favorites.active {
+    color: red;
 }
 
 @media (max-width: 768px) {
