@@ -50,6 +50,12 @@ nav ul li a:hover {
     color: #888;
 }
 
+nav ul li.logo {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
 nav ul li a i {
     font-size: 18px;
 }
@@ -96,15 +102,83 @@ main {
 
 /* Footer */
 footer {
-    background-color: #f9f9f9;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0 20px;
 }
 
-footer p {
-    font-size: 14px;
-    color: #777;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-left {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a,
+.footer-section p {
+    color: #ddd;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+.payment-icons i {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #ddd;
+}
+
+.footer-right {
+    display: flex;
+    align-items: flex-end;
+}
+
+.social-icons {
+    display: flex;
+}
+
+.social-icons a {
+    font-size: 24px;
+    margin-left: 15px;
+    color: #ddd;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #555;
 }
 
 /* Responzivni dizajn */
@@ -119,5 +193,25 @@ footer p {
 
     #kolekcija-baner h2 {
         font-size: 36px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-left {
+        margin-bottom: 20px;
+    }
+
+    .footer-right {
+        justify-content: center;
+    }
+
+    .social-icons {
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        margin: 0 10px;
     }
 }
