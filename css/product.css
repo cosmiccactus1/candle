@@ -43,12 +43,6 @@ h1 {
     flex-grow: 1;
 }
 
-.product-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
 .add-to-cart {
     padding: 12px 24px;
     background-color: #fff;
@@ -59,28 +53,11 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
     border: 3px solid #00008B;
+    align-self: stretch;
 }
 
 .add-to-cart:hover {
     background-color: #f0f0f0;
-}
-
-.add-to-favorites {
-    padding: 12px;
-    background-color: #fff;
-    color: #000;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 3px solid #00008B;
-}
-
-.add-to-favorites:hover {
-    background-color: #f0f0f0;
-}
-
-.add-to-favorites.active {
-    color: red;
 }
 
 @media (max-width: 768px) {
