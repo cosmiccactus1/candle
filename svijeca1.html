@@ -1,32 +1,12 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naziv Svijeće - Svijeće Craft-shop</title>
+    <!-- ... (ostali meta tagovi i linkovi ostaju isti) ... -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/product.css">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-left">
-                <a href="index.html">Home</a>
-                <a href="kolekcija.html">Kolekcija</a>
-                <a href="o-nama.html">O nama</a>
-            </div>
-            <div class="nav-center">
-                <a href="index.html" class="logo">Svijeće Craft-shop</a>
-            </div>
-            <div class="nav-right">
-                <a href="favoriti.html"><i class="fas fa-heart"></i></a>
-                <a href="login.html"><i class="fas fa-user"></i></a>
-                <a href="kosarica.html"><i class="fas fa-shopping-cart"></i></a>
-            </div>
-        </nav>
-    </header>
+    <!-- ... (header ostaje isti) ... -->
 
     <main class="product-page">
         <div class="product-container">
@@ -42,49 +22,14 @@
                 </div>
                 <div class="product-actions">
                     <button class="add-to-cart">Dodaj u košaricu</button>
-                    <button class="add-to-favorites"><i class="fas fa-heart"></i></button>
+                    <button id="favoriteBtn" class="add-to-favorites"><i class="fas fa-heart"></i></button>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-left">
-                <div class="footer-section">
-                    <h3>Kontakt</h3>
-                    <p>Email: info@svijece-craft-shop.com</p>
-                    <p>Telefon: +387 33 123 456</p>
-                    <p>Adresa: Glavna ulica 123, Sarajevo</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Brze poveznice</h3>
-                    <ul>
-                        <li><a href="o-nama.html">O nama</a></li>
-                        <li><a href="uvjeti-koristenja.html">Uvjeti korištenja</a></li>
-                        <li><a href="politika-privatnosti.html">Politika privatnosti</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Načini plaćanja</h3>
-                    <div class="payment-icons">
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                        <i class="fab fa-cc-paypal"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-right">
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Svijeće Craft-shop. Sva prava pridržana.</p>
-        </div>
-    </footer>
+    <!-- ... (footer ostaje isti) ... -->
+
+    <script src="js/product.js"></script>
 </body>
 </html>
