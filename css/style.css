@@ -335,8 +335,74 @@ footer {
     color: #666;
 }
 
+.kolekcija-page {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 0 20px;
+}
+
+.kolekcija-page h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    font-weight: 300;
+}
+
+.kolekcija-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.product-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+}
+
+.product-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.product-item:hover img {
+    transform: scale(1.05);
+}
+
+.product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.product-info h3 {
+    margin: 0 0 5px;
+    font-size: 18px;
+    color: #333;
+}
+
+.product-info .price {
+    font-weight: bold;
+    color: #666;
+}
+
 @media (max-width: 768px) {
     .kolekcija-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 }
+
