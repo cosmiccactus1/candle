@@ -1,86 +1,28 @@
-/* Osnovni stilovi */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Raleway', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fff;
-}
-
-/* Header i navigacija */
-header {
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.nav-left, .nav-right {
-    display: flex;
-    align-items: center;
-}
-
-nav a {
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0 15px;
-}
-
-.nav-center .logo {
-    font-size: 24px;
-    font-weight: 300;
-    letter-spacing: 3px;
-}
-
-/* Main content */
-main {
-    padding-top: 80px; /* Adjust based on your header height */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-}
+/* Osnovni stilovi ostaju isti */
 
 /* Kolekcija */
-#kolekcija-baner {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-#kolekcija-baner h2 {
-    font-size: 36px;
-    font-weight: 300;
-    margin-bottom: 20px;
-}
-
 .kolekcija-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .product-item {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .product-item img {
@@ -90,20 +32,10 @@ main {
     margin-bottom: 10px;
 }
 
-.product-item h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-.product-item .price {
-    font-weight: bold;
-    color: #666;
-}
-
 /* Footer */
 footer {
     background-color: #f9f9f9;
-    padding: 20px 0;
+    padding: 40px 0;
     margin-top: 40px;
 }
 
@@ -117,10 +49,12 @@ footer {
 
 .footer-left {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .footer-section {
     margin-right: 40px;
+    margin-bottom: 20px;
 }
 
 .footer-section h3 {
@@ -136,9 +70,21 @@ footer {
     margin-bottom: 5px;
 }
 
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.social-icons,
+.payment-icons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
 .social-icons a,
 .payment-icons i {
-    margin-right: 10px;
     font-size: 20px;
     color: #333;
 }
@@ -152,18 +98,8 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-    }
-
-    .nav-left, .nav-right, .nav-center {
-        width: 100%;
-        text-align: center;
-        margin: 10px 0;
-    }
-
     .kolekcija-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .footer-content {
@@ -171,12 +107,10 @@ footer {
     }
 
     .footer-left {
-        flex-direction: column;
         margin-bottom: 20px;
     }
 
-    .footer-section {
-        margin-right: 0;
-        margin-bottom: 20px;
+    .footer-right {
+        align-items: flex-start;
     }
 }
