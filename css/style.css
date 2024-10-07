@@ -136,3 +136,23 @@ main {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
+
+.promo-banner {
+    background-color: #f4a261; /* Jesenji ton boje */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.promo-banner a {
+    color: white;
+    text-decoration: none;
+}
+
+.promo-banner a:hover {
+    text-decoration: underline; /* Efekt na hover */
+}
+
+
+
