@@ -140,19 +140,19 @@ main {
 .promo-banner {
     background-color: #f4a261; /* Jesenji ton boje */
     text-align: center;
-    padding: 10px 0;
-    font-size: 1.2em;
+    padding: 15px 0; /* Povećaj padding za bolju vidljivost */
+    font-size: 1.5em; /* Povećaj veličinu fonta */
     font-weight: bold;
+    margin-top: 60px; /* Osiguraj da bude ispod headera */
+    z-index: 999; /* Osiguraj da je baner iznad ostalog sadržaja */
+    position: relative; /* Promijeni na relative da se ne preklapa s fixed elementima */
 }
 
 .promo-banner a {
-    color: white;
+    color: white; /* Održavanje kontrasta */
     text-decoration: none;
 }
 
 .promo-banner a:hover {
     text-decoration: underline; /* Efekt na hover */
 }
-
-
-
