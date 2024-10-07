@@ -1,48 +1,19 @@
-/* Reset i osnovni stilovi */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Postojeći reset i osnovni stilovi ostaju */
 
-body {
-    font-family: 'Raleway', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fff;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Header i navigacija */
-header {
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-.promo-banner {
-    margin-top: 60px; /* Ovisno o visini navigacije */
-    background-color: #f4a261; /* Jesenji ton boje */
+.discount-bar {
+    background-color: #ff6b6b;
+    color: white;
     text-align: center;
     padding: 10px 0;
-    font-size: 1.2em;
     font-weight: bold;
 }
 
-.promo-banner a {
-    color: white;
-    text-decoration: none;
-}
-
-.promo-banner a:hover {
-    text-decoration: underline; /* Efekt na hover */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav {
@@ -54,100 +25,69 @@ nav {
     margin: 0 auto;
 }
 
-.nav-left {
+.nav-left, .nav-right {
     display: flex;
     align-items: center;
-    position: relative;
 }
 
-.menu-toggle {
-    display: none; /* Sakrij dugme na desktopu */
+.nav-center .logo {
     font-size: 24px;
-    margin-right: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
-nav a {
-    margin: 0 15px;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-/* Main content */
-main {
-    padding-top: 80px; /* Visina navigacije */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
+.dropbtn {
+    background-color: transparent;
+    color: #333;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
 }
 
-/* Kolekcija */
-#kolekcija-baner {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-#kolekcija-baner h2 {
-    font-size: 36px;
-    font-weight: 300;
-    margin-bottom: 20px;
-}
-
-.kolekcija-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    justify-content: center;
-}
-
-.product-item {
-    text-align: center;
+.dropdown-content {
+    display: none;
+    position: absolute;
     background-color: #f9f9f9;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
-.product-item:hover {
-    transform: translateY(-5px);
-}
-
-.product-item a {
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
     display: block;
 }
 
-.product-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
 }
 
-.product-info {
-    padding: 10px;
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
-.product-info h3 {
-    font-size: 16px;
-    margin-bottom: 5px;
+.nav-right a {
+    margin-left: 20px;
+    font-size: 18px;
 }
 
-.product-info .price {
-    font-weight: bold;
-    color: #666;
-}
+/* Ostatak stilova ostaje isti */
 
-/* Footer stilovi */
-footer {
-    background-color: #f4f4f4;
-    padding: 20px 0;
+@media (max-width: 768px) {
+    .nav-center .logo {
+        font-size: 18px;
+    }
+    
+    .nav-right a {
+        margin-left: 10px;
+        font-size: 16px;
+    }
 }
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-}
-
-.footer
