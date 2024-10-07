@@ -70,3 +70,79 @@
         grid-template-columns: 1fr;
     }
 }
+/* Postojeći CSS ostaje nepromijenjen */
+
+/* Dodani stilovi za banner s popustima i navigaciju */
+.discount-banner {
+    background-color: #FFA500; /* Narančasta boja za jesenji ugođaj */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.discount-banner a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Ažurirani stilovi za header i navigaciju */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    margin: 0 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+    text-decoration: none;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+/* Prilagodba glavnog sadržaja da ne bude prekriven */
+main {
+    padding-top: 120px; /* Prilagodite ovu vrijednost prema visini bannera i navigacije */
+}
+
+/* Responzivni dizajn */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+    
+    .nav-left, .nav-right, .nav-center {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+    
+    main {
+        padding-top: 160px; /* Povećajte ovu vrijednost za mobilne uređaje */
+    }
+}
