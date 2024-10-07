@@ -80,7 +80,6 @@ main {
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
-    overflow: auto; /* Omogućava skrolovanje sadržaja */
 }
 
 /* Kolekcija */
@@ -152,26 +151,4 @@ footer {
     }
 
     .nav-left {
-        display: none; /* Sakrij glavni meni */
-    }
-
-    .menu-toggle {
-        display: block; /* Prikaži dugme za mobilni meni */
-        cursor: pointer; /* Prikazuje da je dugme klikabilno */
-    }
-
-    .nav-left.active {
-        display: flex; /* Prikaži meni kada je aktivan */
-        flex-direction: column; /* Stavke ispod jedna druge */
-        width: 100%; /* Širina 100% da bude vidljivo */
-        position: absolute; /* Da se prikazuje iznad sadržaja */
-        top: 60px; /* Udaljenost od vrha ispod navigacije */
-        background-color: #fff; /* Pozadina menija */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sjenka */
-        z-index: 999; /* Iznad ostalih sadržaja */
-    }
-
-    .kolekcija-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-}
+        display: none; /* Sakrij gl
