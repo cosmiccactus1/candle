@@ -31,7 +31,9 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
+    padding: 10px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .nav-left, .nav-right {
@@ -39,18 +41,11 @@ nav {
     align-items: center;
 }
 
-.nav-left a, .nav-right a {
+nav a {
     margin: 0 15px;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: color 0.3s ease;
-}
-
-.nav-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .logo {
@@ -59,163 +54,73 @@ nav {
     letter-spacing: 3px;
 }
 
-.nav-right a i {
-    font-size: 18px;
-}
-
 /* Main content */
 main {
-    padding-top: 80px; /* Za fiksni header */
+    padding-top: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-/* Kolekcija baner */
+/* Kolekcija */
 #kolekcija-baner {
-    background-color: #fff;
-    padding: 60px 0;
     text-align: center;
+    margin-bottom: 40px;
 }
 
 #kolekcija-baner h2 {
-    font-size: 48px;
-    margin-bottom: 40px;
+    font-size: 36px;
     font-weight: 300;
+    margin-bottom: 20px;
 }
 
 .kolekcija-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    justify-content: center;
 }
 
-.kolekcija-item {
+.product-item {
     text-align: center;
-}
-
-.kolekcija-item a {
-    display: block;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
     transition: transform 0.3s ease;
 }
 
-.kolekcija-item a:hover {
+.product-item:hover {
     transform: translateY(-5px);
 }
 
-.kolekcija-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    margin-bottom: 10px;
+.product-item a {
+    display: block;
 }
 
-.svijeca-naziv {
+.product-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 10px;
+}
+
+.product-info h3 {
     font-size: 16px;
     margin-bottom: 5px;
 }
 
-.svijeca-cijena {
-    font-size: 14px;
+.product-info .price {
     font-weight: bold;
     color: #666;
 }
 
-.vidi-sve-container {
-    text-align: right;
-    max-width: 1200px;
-    margin: 20px auto 0;
-    padding: 0 20px;
-}
+/* Footer stilovi ostaju isti */
 
-.vidi-sve-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.vidi-sve-button:hover {
-    background-color: #555;
-}
-
-/* Footer */
-footer {
-    background-color: #fff;
-    color: #333;
-    padding: 40px 0 20px;
-    border-top: 1px solid #eee;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-left {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.footer-section {
-    margin-right: 40px;
-    margin-bottom: 20px;
-}
-
-.footer-section h3 {
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 8px;
-}
-
-.footer-section ul li a,
-.footer-section p {
-    color: #666;
-    transition: color 0.3s ease;
-}
-
-.footer-section ul li a:hover {
-    color: #333;
-}
-
-.payment-icons i,
-.social-icons a {
-    font-size: 24px;
-    margin-right: 10px;
-    color: #666;
-    transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: #333;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    margin-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-/* Responzivni dizajn */
-@media (max-width: 1024px) {
-    .kolekcija-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
+/* Responsive design */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
@@ -227,28 +132,7 @@ footer {
         margin: 10px 0;
     }
 
-    .nav-center {
-        position: static;
-        transform: none;
-    }
-
     .kolekcija-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        flex-direction: column;
-    }
-
-    .footer-left {
-        margin-bottom: 20px;
-    }
-
-    .footer-right {
-        justify-content: center;
-    }
-
-    .social-icons {
-        margin-top: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
