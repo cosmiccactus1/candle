@@ -17,12 +17,50 @@ a {
     color: inherit;
 }
 
+/* Discount banner */
+.discount-banner {
+    background-color: #FFA500;
+    color: white;
+    padding: 8px 0;
+    font-weight: bold;
+}
+
+.banner-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.social-icons a {
+    color: white;
+    margin-right: 8px;
+    font-size: 12px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #f0f0f0;
+}
+
+.discount-text {
+    flex-grow: 1;
+    text-align: center;
+}
+
 /* Header i navigacija */
 header {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
+    position: sticky;
     top: 0;
     z-index: 1000;
 }
@@ -31,7 +69,9 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
+    padding: 15px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .nav-left, .nav-right {
@@ -39,8 +79,8 @@ nav {
     align-items: center;
 }
 
-.nav-left a, .nav-right a {
-    margin: 0 15px;
+.nav-links a {
+    margin: 0 12px;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -48,9 +88,7 @@ nav {
 }
 
 .nav-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align: center;
 }
 
 .logo {
@@ -59,18 +97,24 @@ nav {
     letter-spacing: 3px;
 }
 
-.nav-right a i {
-    font-size: 18px;
+.nav-right a {
+    margin-left: 15px;
+    font-size: 16px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 /* Main content */
 main {
-    padding-top: 80px; /* Za fiksni header */
+    padding-top: 20px;
 }
 
 /* Kolekcija baner */
 #kolekcija-baner {
-    background-color: #fff;
     padding: 60px 0;
     text-align: center;
 }
@@ -83,7 +127,7 @@ main {
 
 .kolekcija-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -203,14 +247,14 @@ footer {
 }
 
 .payment-icons i,
-.social-icons a {
+.footer-right .social-icons a {
     font-size: 24px;
     margin-right: 10px;
     color: #666;
     transition: color 0.3s ease;
 }
 
-.social-icons a:hover {
+.footer-right .social-icons a:hover {
     color: #333;
 }
 
@@ -222,30 +266,42 @@ footer {
 }
 
 /* Responzivni dizajn */
-@media (max-width: 1024px) {
-    .kolekcija-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 768px) {
-    nav {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
         flex-direction: column;
     }
 
-    .nav-left, .nav-right, .nav-center {
-        width: 100%;
-        text-align: center;
-        margin: 10px 0;
+    .nav-links a {
+        padding: 10px 20px;
+        text-align: left;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-left {
+        order: -1;
     }
 
     .nav-center {
-        position: static;
-        transform: none;
+        flex-grow: 1;
+        text-align: center;
     }
 
-    .kolekcija-grid {
-        grid-template-columns: 1fr;
+    .nav-right {
+        order: 1;
     }
 
     .footer-content {
@@ -260,10 +316,11 @@ footer {
         justify-content: center;
     }
 
-    .social-icons {
+    .footer-right .social-icons {
         margin-top: 20px;
     }
 }
+
 .nav-right .fa-heart {
     position: relative;
 }
@@ -277,29 +334,4 @@ footer {
     background: red;
     color: white;
     width: 18px;
-    height: 18px;
-    text-align: center;
-    line-height: 18px;
-    border-radius: 50%;
-    box-shadow: 0 0 1px #333;
-}
-.discount-banner {
-    background-color: #FFA500; /* Narančasta boja za jesenji ugođaj */
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    font-weight: bold;
-}
-
-.discount-banner a {
-    color: white;
-    text-decoration: none;
-}
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+    height: 18</antArtifact>
