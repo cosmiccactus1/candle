@@ -1,4 +1,4 @@
-/* styles.css */
+/* Reset i osnovni stilovi */
 * {
     margin: 0;
     padding: 0;
@@ -8,45 +8,68 @@
 body {
     font-family: 'Raleway', sans-serif;
     line-height: 1.6;
+    color: #333;
+    background-color: #fff;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Discount banner */
 .discount-banner {
-    background-color: #f8e1a3;
-    padding: 10px 0;
-    text-align: center;
+    background-color: #FFA500;
+    color: white;
+    padding: 8px 0;
+    font-weight: bold;
 }
 
 .banner-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
+.social-icons {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
 .social-icons a {
-    color: #333;
-    margin-right: 10px;
-    font-size: 18px;
+    color: white;
+    margin-right: 8px;
+    font-size: 12px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #f0f0f0;
 }
 
 .discount-text {
-    color: #333;
-    text-decoration: none;
-    font-weight: 600;
+    flex-grow: 1;
+    text-align: center;
 }
 
+/* Header i navigacija */
 header {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 15px 5%;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -56,90 +79,130 @@ nav {
     align-items: center;
 }
 
-.nav-links {
-    display: flex;
+.nav-links a {
+    margin: 0 12px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
 }
 
-.nav-links a, .nav-right a {
-    color: #333;
-    text-decoration: none;
-    margin: 0 15px;
+.nav-center {
+    text-align: center;
 }
 
 .logo {
     font-size: 24px;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.nav-right a {
+    margin-left: 15px;
+    font-size: 16px;
 }
 
 .menu-toggle {
     display: none;
-    font-size: 24px;
-    color: #333;
+    font-size: 20px;
     cursor: pointer;
 }
 
+/* Main content */
 main {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+    padding-top: 20px;
+}
+
+/* Kolekcija baner */
+#kolekcija-baner {
+    padding: 60px 0;
+    text-align: center;
 }
 
 #kolekcija-baner h2 {
-    text-align: center;
-    margin-bottom: 30px;
+    font-size: 48px;
+    margin-bottom: 40px;
+    font-weight: 300;
 }
 
 .kolekcija-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .kolekcija-item {
     text-align: center;
 }
 
+.kolekcija-item a {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.kolekcija-item a:hover {
+    transform: translateY(-5px);
+}
+
 .kolekcija-item img {
     width: 100%;
-    height: auto;
+    height: 250px;
     object-fit: cover;
-    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .svijeca-naziv {
-    margin-top: 10px;
-    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
 .svijeca-cijena {
+    font-size: 14px;
+    font-weight: bold;
     color: #666;
 }
 
 .vidi-sve-container {
-    text-align: center;
-    margin-top: 40px;
+    text-align: right;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
 }
 
 .pogledaj-sve-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #f8e1a3;
+    font-size: 16px;
     color: #333;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-.pogledaj-sve-link:hover {
-    background-color: #f0d080;
-}
-
-footer {
+.pogledaj-sve-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
     background-color: #333;
-    color: #fff;
-    padding: 40px 20px;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.pogledaj-sve-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* Footer */
+footer {
+    background-color: #fff;
+    color: #333;
+    padding: 40px 0 20px;
+    border-top: 1px solid #eee;
 }
 
 .footer-content {
@@ -147,6 +210,7 @@ footer {
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .footer-left {
@@ -160,43 +224,51 @@ footer {
 }
 
 .footer-section h3 {
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 15px;
 }
 
 .footer-section ul {
-    list-style-type: none;
+    list-style: none;
 }
 
-.footer-section a {
-    color: #fff;
-    text-decoration: none;
+.footer-section ul li {
+    margin-bottom: 8px;
 }
 
-.payment-icons i {
+.footer-section ul li a,
+.footer-section p {
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #333;
+}
+
+.payment-icons i,
+.footer-right .social-icons a {
     font-size: 24px;
     margin-right: 10px;
+    color: #666;
+    transition: color 0.3s ease;
 }
 
-.footer-right .social-icons {
-    font-size: 24px;
-}
-
-.footer-right .social-icons a {
-    color: #fff;
-    margin-left: 15px;
+.footer-right .social-icons a:hover {
+    color: #333;
 }
 
 .footer-bottom {
     text-align: center;
-    margin-top: 20px;
     padding-top: 20px;
-    border-top: 1px solid #555;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
 }
 
+/* Responzivni dizajn */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
-        flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
@@ -207,31 +279,83 @@ footer {
 
     .nav-links.active {
         display: flex;
+        flex-direction: column;
     }
 
     .nav-links a {
         padding: 10px 20px;
+        text-align: left;
     }
 
     .menu-toggle {
         display: block;
     }
 
-    .banner-content, nav, .footer-content {
-        flex-direction: column;
-        align-items: center;
+    .nav-left {
+        order: -1;
     }
 
-    .banner-content > * {
-        margin-bottom: 10px;
-    }
-
-    .footer-left, .footer-right {
-        width: 100%;
+    .nav-center {
+        flex-grow: 1;
         text-align: center;
     }
 
-    .footer-section {
-        margin-right: 0;
+    .nav-right {
+        order: 1;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-left {
+        margin-bottom: 20px;
+    }
+
+    .footer-right {
+        justify-content: center;
+    }
+
+    .footer-right .social-icons {
+        margin-top: 20px;
     }
 }
+
+.nav-right .fa-heart {
+    position: relative;
+}
+
+.nav-right .fa-heart[data-count]:after {
+    content: attr(data-count);
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 0.75em;
+    #kolekcija-baner {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.kolekcija-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.kolekcija-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kolekcija-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+    background: red;
+    color: white;
+    width: 18px;
+    height: 18</antArtifact>
