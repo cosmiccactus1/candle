@@ -12,9 +12,9 @@
     <div class="discount-banner">
         <div class="banner-content">
             <div class="social-icons">
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
             <a href="popusti.html" class="discount-text">Kasni jesenji popusti na svijeće - Uštedite do 30%!</a>
         </div>
@@ -22,9 +22,9 @@
     <header>
         <nav>
             <div class="nav-left">
-                <a href="#" class="menu-toggle" id="menuToggle">
+                <button class="menu-toggle" id="menuToggle" aria-label="Otvori menu">
                     <i class="fas fa-ellipsis-h"></i>
-                </a>
+                </button>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="kolekcija.html">Kolekcija</a>
@@ -35,9 +35,9 @@
                 <a href="index.html" class="logo">Svijeće Craft-shop</a>
             </div>
             <div class="nav-right">
-                <a href="favoriti.html"><i class="fas fa-heart"></i></a>
-                <a href="login.html"><i class="fas fa-user"></i></a>
-                <a href="kosarica.html"><i class="fas fa-shopping-cart"></i></a>
+                <a href="favoriti.html" aria-label="Favoriti"><i class="fas fa-heart"></i></a>
+                <a href="login.html" aria-label="Prijava"><i class="fas fa-user"></i></a>
+                <a href="kosarica.html" aria-label="Košarica"><i class="fas fa-shopping-cart"></i></a>
             </div>
         </nav>
     </header>
@@ -45,30 +45,31 @@
     <main>
         <section id="kolekcija-baner">
             <h2>KOLEKCIJA</h2>
-            <div class="kolekcija-item">
-    <a href="products/product1.html">
-        <img src="images/svijeća1.jpg" alt="Lavanda svijeća">
-        <p class="svijeca-naziv">Lavanda svijeća</p>
-        <p class="svijeca-cijena">35 BAM</p>
-    </a>
-</div>
+            <div class="kolekcija-grid">
+                <div class="kolekcija-item">
+                    <a href="products/product1.html">
+                        <img src="images/svijeća1.jpg" alt="Lavanda svijeća" loading="lazy">
+                        <p class="svijeca-naziv">Lavanda svijeća</p>
+                        <p class="svijeca-cijena">35 BAM</p>
+                    </a>
+                </div>
                 <div class="kolekcija-item">
                     <a href="svijeca2.html">
-                        <img src="images/svijeca2.jpg" alt="Svijeća 2">
+                        <img src="images/svijeca2.jpg" alt="Svijeća 2" loading="lazy">
                         <p class="svijeca-naziv">Naziv svijeće 2</p>
                         <p class="svijeca-cijena">45 BAM</p>
                     </a>
                 </div>
                 <div class="kolekcija-item">
                     <a href="svijeca3.html">
-                        <img src="images/svijeca3.jpg" alt="Svijeća 3">
+                        <img src="images/svijeca3.jpg" alt="Svijeća 3" loading="lazy">
                         <p class="svijeca-naziv">Naziv svijeće 3</p>
                         <p class="svijeca-cijena">50 BAM</p>
                     </a>
                 </div>
                 <div class="kolekcija-item">
                     <a href="svijeca4.html">
-                        <img src="images/svijeca4.jpg" alt="Svijeća 4">
+                        <img src="images/svijeca4.jpg" alt="Svijeća 4" loading="lazy">
                         <p class="svijeca-naziv">Naziv svijeće 4</p>
                         <p class="svijeca-cijena">55 BAM</p>
                     </a>
@@ -100,17 +101,17 @@
                 <div class="footer-section">
                     <h3>Načini plaćanja</h3>
                     <div class="payment-icons">
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                        <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
                     </div>
                 </div>
             </div>
             <div class="footer-right">
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </div>
@@ -126,6 +127,7 @@
 
         menuToggle.addEventListener('click', function() {
             navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
         });
     });
     </script>
