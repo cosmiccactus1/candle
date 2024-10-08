@@ -10,14 +10,26 @@
 </head>
 <body>
     <div class="discount-banner">
-    <a href="popusti.html">Kasni jesenji popusti na svijeće - Uštedite do 30%!</a>
-</div>
+        <div class="banner-content">
+            <div class="social-icons">
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <a href="popusti.html" class="discount-text">Kasni jesenji popusti na svijeće - Uštedite do 30%!</a>
+        </div>
+    </div>
     <header>
         <nav>
             <div class="nav-left">
-                <a href="index.html">Home</a>
-                <a href="kolekcija.html">Kolekcija</a>
-                <a href="o-nama.html">O nama</a>
+                <a href="#" class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="kolekcija.html">Kolekcija</a>
+                    <a href="o-nama.html">O nama</a>
+                </div>
             </div>
             <div class="nav-center">
                 <a href="index.html" class="logo">Svijeće Craft-shop</a>
@@ -107,5 +119,16 @@
             <p>&copy; 2024 Svijeće Craft-shop. Sva prava pridržana.</p>
         </div>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+    });
+    </script>
 </body>
 </html>
