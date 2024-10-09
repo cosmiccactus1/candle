@@ -33,7 +33,7 @@ img {
 
 .banner-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -43,12 +43,13 @@ img {
 .social-icons {
     display: flex;
     align-items: center;
+    margin-right: 15px;
 }
 
 .social-icons a {
     color: white;
-    margin-right: 10px;
-    font-size: 14px;
+    margin-right: 8px;
+    font-size: 12px;
     transition: color 0.3s ease;
 }
 
@@ -57,8 +58,8 @@ img {
 }
 
 .discount-text {
-    text-align: center;
     flex-grow: 1;
+    text-align: center;
 }
 
 /* Header and navigation */
