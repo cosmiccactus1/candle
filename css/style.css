@@ -51,6 +51,12 @@ img {
     font-size: 12px;
     transition: color 0.3s ease;
 }
+.social-icons a {
+    color: white;
+    margin-right: 8px;
+    font-size: 12px;
+    transition: color 0.3s ease;
+}
 
 .social-icons a:hover {
     color: #f0f0f0;
