@@ -1,12 +1,3 @@
-// script.js
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    menuToggle.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-    });
-});
 document.addEventListener('DOMContentLoaded', function() {
     const sliderContainer = document.querySelector('.slider-container');
     const prevButton = document.querySelector('.prev');
@@ -16,23 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     const totalImages = images.length;
 
-    // Dodajemo indikatore
-    const indicatorsContainer = document.createElement('div');
-    indicatorsContainer.className = 'image-indicators';
-    for (let i = 0; i < totalImages; i++) {
-        const indicator = document.createElement('div');
-        indicator.className = 'indicator';
-        indicator.addEventListener('click', () => showImage(i));
-        indicatorsContainer.appendChild(indicator);
-    }
-    document.querySelector('.product-images').appendChild(indicatorsContainer);
-
-    const indicators = document.querySelectorAll('.indicator');
-
     function showImage(index) {
-        sliderContainer.style.transform = `translateX(-${index * 100}%)`;
+        if (window.innerWidth < 768) {
+            sliderContainer.style.transform = `translateX(-${index * 100}%)`;
+        } else {
+            sliderContainer.style.transform = `translateY(-${index * 100}%)`;
+        }
         currentIndex = index;
-        updateIndicators();
     }
 
     function showNextImage() {
@@ -45,18 +26,52 @@ document.addEventListener('DOMContentLoaded', function() {
         showImage(currentIndex);
     }
 
-    function updateIndicators() {
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === currentIndex);
-        });
+    // Touch events za swipe na mobilnim uređajima
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    sliderContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    });
+
+    sliderContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        if (window.innerWidth < 768) {
+            if (touchStartX - touchEndX > 50) {
+                showNextImage();
+            }
+            if (touchEndX - touchStartX > 50) {
+                showPrevImage();
+            }
+        } else {
+            if (touchStartY - touchEndY > 50) {
+                showNextImage();
+            }
+            if (touchEndY - touchStartY > 50) {
+                showPrevImage();
+            }
+        }
     }
 
-    nextButton.addEventListener('click', showNextImage);
     prevButton.addEventListener('click', showPrevImage);
+    nextButton.addEventListener('click', showNextImage);
 
-    // Automatsko listanje svakih 5 sekundi
+    // Automatska rotacija svakih 5 sekundi
     setInterval(showNextImage, 5000);
 
-    // Inicijalno postavljanje indikatora
-    updateIndicators();
+    // Inicijalno postavljanje
+    showImage(currentIndex);
+
+    // Resetiranje prikaza pri promjeni veličine prozora
+    window.addEventListener('resize', () => {
+        showImage(currentIndex);
+    });
 });
