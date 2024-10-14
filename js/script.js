@@ -75,3 +75,20 @@ document.addEventListener('DOMContentLoaded', function() {
         showImage(currentIndex);
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const likeButton = document.querySelector('.like-button');
+    
+    if (likeButton) {
+        likeButton.addEventListener('click', function() {
+            this.classList.toggle('liked');
+            const icon = this.querySelector('i');
+            if (this.classList.contains('liked')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
+        });
+    }
+});
