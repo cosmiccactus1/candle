@@ -439,3 +439,39 @@ footer {
         font-size: 18px;
     }
 }
+.add-to-cart {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #45a049;
+}
+
+.like-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.like-button:hover,
+.like-button.liked {
+    color: #ff6b6b;
+}
+
+.like-button.liked i {
+    font-weight: 900;
+}
+
