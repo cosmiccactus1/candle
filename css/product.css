@@ -474,4 +474,5 @@ footer {
 .like-button.liked i {
     font-weight: 900;
 }
-
+.menu-toggle i {
+    font-weight: 300;
