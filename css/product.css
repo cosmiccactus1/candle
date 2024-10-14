@@ -98,3 +98,26 @@
         margin-top: 0;
     }
 }
+.product-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.add-to-cart {
+    margin-right: 10px;
+}
+
+.like-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.like-button:hover,
+.like-button.liked {
+    color: #ff4136;
+}
