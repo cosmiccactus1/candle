@@ -68,6 +68,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
 }
 
 nav {
@@ -79,9 +80,13 @@ nav {
     margin: 0 auto;
 }
 
-.nav-left, .nav-right {
+.nav-left, .nav-center, .nav-right {
     display: flex;
     align-items: center;
+}
+
+.nav-links {
+    display: flex;
 }
 
 .nav-links a {
@@ -91,10 +96,6 @@ nav {
     letter-spacing: 1px;
     transition: color 0.3s ease;
     font-weight: 300;
-}
-
-.nav-center {
-    text-align: center;
 }
 
 .logo {
@@ -112,10 +113,8 @@ nav {
     display: none;
     font-size: 20px;
     cursor: pointer;
-}
-
-.menu-toggle i {
-    font-weight: 300;
+    background: none;
+    border: none;
 }
 
 /* Product page */
