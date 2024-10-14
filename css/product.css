@@ -477,3 +477,105 @@ footer {
 }
 .menu-toggle i {
     font-weight: 300;
+/* Dodajte ovaj CSS na kraj vaše postojeće CSS datoteke */
+
+.product-page {
+    padding: 40px 0;
+    overflow-x: hidden;
+}
+
+.product-display {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 1200px; /* ili koja god širina odgovara vašem dizajnu */
+    margin: 0 auto;
+}
+
+.product-images {
+    width: 50%;
+    max-width: 100%;
+    margin: 0;
+    padding-right: 20px;
+}
+
+.image-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s ease;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.slider-button {
+    display: none;
+}
+
+.product-info {
+    width: 50%;
+    padding-left: 20px;
+}
+
+@media (max-width: 767px) {
+    .product-page {
+        padding: 40px 20px;
+    }
+
+    .product-display {
+        flex-direction: column;
+    }
+
+    .product-images {
+        width: 100vw;
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-right: 0;
+    }
+
+    .slider-container {
+        flex-direction: row;
+    }
+
+    .product-image {
+        flex: 0 0 100%;
+        margin-bottom: 0;
+    }
+
+    .slider-button {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .product-info {
+        width: 100%;
+        padding-left: 0;
+        margin-top: 20px;
+    }
+}
