@@ -91,7 +91,8 @@ nav {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: color 0.3s ease;
-}
+font-weight: 300;}
+
 
 .nav-center {
     text-align: center;
