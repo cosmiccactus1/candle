@@ -38,7 +38,10 @@
             <div class="nav-right">
                 <a href="../favoriti.html"><i class="fas fa-heart"></i></a>
                 <a href="../login.html"><i class="fas fa-user"></i></a>
-                <a href="../kosarica.html"><i class="fas fa-shopping-cart"></i></a>
+                <a href="../kosarica.html" class="cart-icon-wrapper">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">0</span>
+</a>
             </div>
         </nav>
     </header>
@@ -67,6 +70,22 @@
             </div>
         </div>
     </div>
+  <div class="cart-modal" id="cartModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-modal" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h2>Vaš artikal je dodan u ceger</h2>
+            <div class="modal-buttons">
+                <button class="modal-btn continue-shopping">Nastavi kupovinu</button>
+                <button class="modal-btn view-cart">Pogledaj korpu</button>
+                <button class="modal-btn checkout">Idi na naplatu</button>
+            </div>
+        </div>
+    </div>
+</div>
 </main>
     <footer>
         <div class="footer-content">
