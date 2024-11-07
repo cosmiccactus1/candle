@@ -46,21 +46,20 @@ img {
 }
 
 .social-icons a {
-    color: white;
-    margin-right: 8px;
-    font-size: 12px;
+    color: #666;
+    margin-right: 10px;
+    font-size: 24px;
     transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-    color: #f0f0f0;
+    color: white;
 }
 
 .discount-text {
     flex-grow: 1;
     text-align: center;
 }
-
 /* Header and navigation */
 header {
     background-color: #fff;
