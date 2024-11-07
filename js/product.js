@@ -144,29 +144,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 // Cart counter functionality
-    const cartCount = document.querySelector('.cart-count');
-    let currentCount = parseInt(localStorage.getItem('cartCount')) || 0;
-    
-    function updateCartCount() {
+const cartCount = document.querySelector('.cart-count');
+let currentCount = 0; // počinje od 0
+
+function updateCartCount() {
+    if (currentCount === 0) {
+        cartCount.style.display = 'none'; // sakrij ako je 0
+    } else {
         cartCount.textContent = currentCount;
-        localStorage.setItem('cartCount', currentCount);
-        
-        // Sakrij brojač ako je 0
-        if (currentCount === 0) {
-            cartCount.style.display = 'none';
-        } else {
-            cartCount.style.display = 'flex';
-        }
+        cartCount.style.display = 'flex';  // prikaži ako nije 0
     }
-    
-    // Postavi inicijalni broj
+}
+
+// Sakrij brojač odmah na početku
+updateCartCount();
+
+// Dodaj event listener na "Dodaj u košaricu" dugme
+addToCartButton.addEventListener('click', () => {
+    currentCount++;
     updateCartCount();
-    
-    // Dodaj event listener na "Dodaj u košaricu" dugme
-    addToCartButton.addEventListener('click', () => {
-        currentCount++;
-        updateCartCount();
-    });
+});
 // Funkcionalnost za like dugme
 if (likeButton) {
     likeButton.addEventListener('click', function() {
