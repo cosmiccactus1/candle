@@ -176,3 +176,5 @@ if (likeButton) {
         icon.classList.toggle('fas');
     });
 }
+// Na početku product.js
+localStorage.setItem('cartCount', 0); // resetira brojač na 0
