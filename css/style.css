@@ -380,3 +380,27 @@ footer {
         margin-left: 0;
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    // Postojeći kod za menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+        });
+    }
+
+    // Kod za prikaz broja u košarici na svim stranicama
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount) {
+        const currentCount = localStorage.getItem('cartCount') || 0;
+        if (currentCount > 0) {
+            cartCount.textContent = currentCount;
+            cartCount.style.display = 'flex';
+        } else {
+            cartCount.style.display = 'none';
+        }
+    }
+});
