@@ -167,3 +167,12 @@ document.addEventListener('DOMContentLoaded', function() {
         currentCount++;
         updateCartCount();
     });
+// Funkcionalnost za like dugme
+if (likeButton) {
+    likeButton.addEventListener('click', function() {
+        this.classList.toggle('liked');
+        const icon = this.querySelector('i');
+        icon.classList.toggle('far');
+        icon.classList.toggle('fas');
+    });
+}
