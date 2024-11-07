@@ -145,21 +145,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 // Cart counter functionality
 const cartCount = document.querySelector('.cart-count');
-let currentCount = 0; // počinje od 0
+let currentCount = parseInt(localStorage.getItem('cartCount')) || 0;
 
 function updateCartCount() {
     if (currentCount === 0) {
-        cartCount.style.display = 'none'; // sakrij ako je 0
+        cartCount.style.display = 'none';
     } else {
         cartCount.textContent = currentCount;
-        cartCount.style.display = 'flex';  // prikaži ako nije 0
+        cartCount.style.display = 'flex';
     }
+    localStorage.setItem('cartCount', currentCount);
 }
 
-// Sakrij brojač odmah na početku
+// Inicijalni prikaz
 updateCartCount();
 
-// Dodaj event listener na "Dodaj u košaricu" dugme
+// Kada se doda u košaricu
 addToCartButton.addEventListener('click', () => {
     currentCount++;
     updateCartCount();
