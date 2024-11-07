@@ -541,18 +541,49 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .modal-content {
-        width: 95%;
-        margin: 0 10px;
-        padding: 30px 20px;
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    
-    .modal-body h2 {
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-links a {
+        padding: 10px 20px;
+        text-align: left;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 18px;
+    }
+
+    .nav-left {
+        order: -1;
+        min-width: auto;
+    }
+
+    .nav-center {
+        flex: 1;
+        text-align: center;
+    }
+
+    .nav-right {
+        order: 1;
+        min-width: auto;
+        gap: 15px;
+    }
+
+    .nav-right a {
         font-size: 16px;
-    }
-    
-    .modal-btn {
-        padding: 10px 15px;
-        font-size: 12px;
+        margin-left: 0;
     }
 }
