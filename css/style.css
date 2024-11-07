@@ -308,23 +308,27 @@ footer {
 
     .menu-toggle {
         display: block;
+        font-size: 18px;
     }
 
     .nav-left {
         order: -1;
+        min-width: auto;
     }
 
     .nav-center {
-        flex-grow: 1;
+        flex: 1;
         text-align: center;
     }
 
     .nav-right {
         order: 1;
+        min-width: auto;
+        gap: 15px;
     }
 
-    .footer-content {
-        flex-direction: column;
+    .nav-right a {
+        font-size: 16px;
+        margin-left: 0;
     }
-
-    .footer-left {
+}
