@@ -175,4 +175,4 @@ if (likeButton) {
     });
 }
 // Na početku product.js
-localStorage.setItem('cartCount', 0); // resetira brojač na 0
+
