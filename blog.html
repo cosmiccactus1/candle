@@ -1,106 +1,195 @@
-<!DOCTYPE html>
-<html lang="hr">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Svijeće Craft-shop</title>
-   <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/blog.css"> 
-   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
-<body>
-   <div class="discount-banner">
-       <div class="banner-content">
-           <div class="social-icons">
-               <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-               <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-               <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-           </div>
-           <a href="popusti.html" class="discount-text">Kasni jesenji popusti na svijeće - Uštedite do 30%!</a>
-       </div>
-   </div>
-   <header>
-       <nav>
-           <div class="nav-left">
-               <button class="menu-toggle" id="menuToggle" aria-label="Otvori menu">
-                  <i class="fas fa-bars"></i>
-               </button>
-               <div class="nav-links">
-                   <a href="index.html">Home</a>
-                   <a href="kolekcija.html">Kolekcija</a>
-                   <a href="o-nama.html">O nama</a>
-                   <a href="blog.html">Blog</a>
-               </div>
-           </div>
-           <div class="nav-center">
-               <a href="index.html" class="logo">Svijeće Craft-shop</a>
-           </div>
-           <div class="nav-right">
-               <a href="favoriti.html" aria-label="Favoriti"><i class="fas fa-heart"></i></a>
-               <a href="login.html" aria-label="Prijava"><i class="fas fa-user"></i></a>
-               <a href="kosarica.html" class="cart-icon-wrapper" aria-label="Košarica">
-                   <i class="fas fa-shopping-bag"></i>
-                   <span class="cart-count"></span>
-               </a>
-           </div>
-       </nav>
-   </header>
+/* blog.css */
+.blog-main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+}
 
-   <main class="blog-main">
-       <section class="featured-post">
-         <div class="video-background">
-  <iframe src="https://player.vimeo.com/video/1028187614?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Nature"></iframe>
-</div>
-           <div class="featured-content">
-               <div class="content-wrapper">
-                   <h2>Kako je nastala naša svijeća P L A N I N S K A  K U Ć A?</h2>
-                   <p>Osjećaj udisanja čistog vazduha planinskog, pucketanje vatrice i toplota</p>
-                   <a href="blog-planinska-kuca.html" class="read-more">Pročitaj više</a>
-               </div>
-           </div>
-       </section>
-   </main>
+.page-title {
+    text-align: center;
+    margin: 40px 0;
+}
 
-   <footer>
-       <div class="footer-content">
-           <div class="footer-left">
-               <div class="footer-section">
-                   <h3>Kontakt</h3>
-                   <p>Email: info@svijece-craft-shop.com</p>
-                   <p>Telefon: +387 33 123 456</p>
-                   <p>Adresa: Glavna ulica 123, Sarajevo</p>
-               </div>
-               <div class="footer-section">
-                   <h3>Brze poveznice</h3>
-                   <ul>
-                       <li><a href="o-nama.html">O nama</a></li>
-                       <li><a href="blog.html">Blog</a></li>
-                       <li><a href="uvjeti-koristenja.html">Uvjeti korištenja</a></li>
-                       <li><a href="politika-privatnosti.html">Politika privatnosti</a></li>
-                   </ul>
-               </div>
-               <div class="footer-section">
-                   <h3>Načini plaćanja</h3>
-                   <div class="payment-icons">
-                       <i class="fab fa-cc-visa" aria-label="Visa"></i>
-                       <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
-                       <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
-                   </div>
-               </div>
-           </div>
-           <div class="footer-right">
-               <div class="social-icons">
-                   <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                   <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                   <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-               </div>
-           </div>
-       </div>
-       <div class="footer-bottom">
-           <p>&copy; 2024 Svijeće Craft-shop. Sva prava pridržana.</p>
-       </div>
-   </footer>
-   <script src="js/script.js"></script>
-</body>
-</html>
+.page-title h1 {
+    font-size: 36px;
+    font-weight: 200;
+    letter-spacing: 4px;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.page-title .subtitle {
+    font-size: 18px;
+    font-weight: 200;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 20px 0;
+}
+
+.video-banner {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 9/16;
+    background: #fff;
+}
+
+.video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 105%; /* Malo širi da prekrije rubove */
+    height: 105%; /* Malo viši da prekrije rubove */
+    transform: translate(-50%, -50%) scale(1.02); /* Malo uvećan da prekrije crne rubove */
+    border: none;
+    pointer-events: none;
+}
+
+.content-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 255, 255, 0.8) 70%,
+        rgba(255, 255, 255, 0.95) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-banner:hover .content-overlay {
+    opacity: 1;
+}
+
+.content-wrapper {
+    width: 100%;
+}
+
+.post-date {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 100;
+    color: #333;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.video-banner h2 {
+    font-size: 24px;
+    font-weight: 100;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    color: #333;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+.video-banner p {
+    font-size: 16px;
+    font-weight: 100;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 25px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 13px;
+    font-weight: 100;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    backdrop-filter: blur(5px);
+}
+
+.read-more i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.read-more:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+.read-more:hover i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .blog-main {
+        padding: 10px;
+    }
+    
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .page-title h1 {
+        font-size: 28px;
+    }
+
+    .content-overlay {
+        opacity: 1;
+        padding: 1rem;
+    }
+
+    .video-banner h2 {
+        font-size: 20px;
+    }
+
+    .video-banner p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .read-more {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-date {
+        font-size: 12px;
+    }
+    
+    .content-wrapper {
+        padding: 10px;
+    }
+
+    .read-more {
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+}
