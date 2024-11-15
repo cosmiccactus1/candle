@@ -49,46 +49,62 @@
     </header>
     <!-- Zamijenite postojeći <main> element s ovim: -->
 <main class="product-page">
+    <!-- Dodajte breadcrumb -->
+    <div class="product-breadcrumb">
+        <a href="../index.html">Početna</a>
+        <span>/</span>
+        <a href="../kolekcija.html">Kolekcija</a>
+        <span>/</span>
+        <span>Brijuni</span>
+    </div>
+</main>
+    <!-- Nova product display sekcija -->
     <div class="product-display">
+        <!-- Lijeva strana - slike -->
         <div class="product-images">
             <div class="image-slider">
                 <div class="slider-container">
-                    <img src="../images/svijeća1.jpg" alt="Lavanda Svijeća - Slika 1" class="product-image">
-                    <img src="../images/svijeća1.jpg" alt="Lavanda Svijeća - Slika 2" class="product-image">
-                    <img src="../images/svijeća1.jpg" alt="Lavanda Svijeća - Slika 3" class="product-image">
+                    <img src="../images/svijeća1.jpg" alt="Brijuni Svijeća - Pogled sprijeda" class="product-image">
+                    <img src="../images/svijeća1.jpg" alt="Brijuni Svijeća - Ambijentalni prikaz" class="product-image">
+                    <img src="../images/svijeća1.jpg" alt="Brijuni Svijeća - Detalji" class="product-image">
                 </div>
             </div>
-            <button class="slider-button prev">&lt;</button>
-            <button class="slider-button next">&gt;</button>
+            <button class="slider-button prev" aria-label="Prethodna slika">&lt;</button>
+            <button class="slider-button next" aria-label="Sljedeća slika">&gt;</button>
+            <div class="image-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
         </div>
+
+        <!-- Desna strana - informacije -->
         <div class="product-info">
-            <h1>B R I J U N I</h1>
-            <p class="price">35 BAM</p>
-            <div class="product-actions">
-                <button class="add-to-cart">Dodaj u ceger</button>
-                <button class="like-button" aria-label="Dodaj u favorite">
-                    <i class="far fa-heart"></i>
-                </button>
+            <div class="product-header">
+                <h1>B R I J U N I</h1>
+                <p class="subtitle">Luksuzna aromatična svijeća</p>
+                <p class="price">35 BAM</p>
             </div>
-        </div>
-    </div>
-  <div class="cart-modal" id="cartModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button class="close-modal" id="closeModal">&times;</button>
-        </div>
-        <div class="modal-body">
-            <i class="fas fa-check-circle success-icon"></i>
-            <h2>Vaš artikal je dodan u ceger</h2>
-            <div class="modal-buttons">
-                <button class="modal-btn continue-shopping">Nastavi kupovinu</button>
-                <button class="modal-btn view-cart">Pogledaj ceger</button>
-                <button class="modal-btn checkout">Idi na naplatu</button>
+
+            <!-- Essence bar -->
+            <div class="product-essence">
+                <div class="essence-bar">
+                    <div class="essence-item">
+                        <span class="dot"></span>
+                        <span>Ylang Ylang</span>
+                    </div>
+                    <div class="essence-item">
+                        <span class="dot"></span>
+                        <span>Sandalwood</span>
+                    </div>
+                    <div class="essence-item">
+                        <span class="dot"></span>
+                        <span>Bergamot</span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
 </main>
+            <!-- nastavak koda... -->
     <footer>
         <div class="footer-content">
             <div class="footer-left">
