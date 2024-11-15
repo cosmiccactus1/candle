@@ -175,4 +175,21 @@ if (likeButton) {
     });
 }
 // Na početku product.js
+// Animate intensity bars when they come into view
+document.addEventListener('DOMContentLoaded', function() {
+    const intensityBars = document.querySelectorAll('.intensity-bar');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
 
+    intensityBars.forEach(bar => {
+        observer.observe(bar);
+    });
+});
