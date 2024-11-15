@@ -1036,3 +1036,290 @@ nav {
         text-align: center;
     }
 }
+/* Luxury Scent Profile Styles */
+.scent-profile {
+    padding: 60px 40px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    margin: 60px 0;
+}
+
+/* Header Styles */
+.scent-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.scent-header h2 {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+}
+
+.scent-subtitle {
+    font-size: 14px;
+    color: #666;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Journey Styles */
+.scent-journey {
+    position: relative;
+    padding: 40px 0;
+    margin-bottom: 80px;
+}
+
+.journey-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ddd, transparent);
+}
+
+.journey-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.journey-step {
+    text-align: center;
+    position: relative;
+    flex: 1;
+}
+
+.step-time {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.step-dot {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    background: #f8f8f8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    transition: transform 0.3s ease;
+}
+
+.step-icon i {
+    font-size: 24px;
+    color: #1a1a1a;
+}
+
+.step-content h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.step-content p {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Scent Cards */
+.scent-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.scent-card {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scent-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background: #f8f8f8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+
+.card-icon i {
+    font-size: 28px;
+    color: #1a1a1a;
+}
+
+.note-type {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #f8f8f8;
+    border-radius: 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.note-characteristics {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+}
+
+.characteristic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.characteristic .label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.intensity-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #eee;
+}
+
+.dot.active {
+    background: #1a1a1a;
+}
+
+/* Experience Timeline */
+.scent-experience {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.experience-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.experience-header h3 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.experience-header p {
+    font-size: 14px;
+    color: #666;
+}
+
+.experience-timeline {
+    padding: 40px 0;
+}
+
+.timeline-track {
+    margin-bottom: 30px;
+}
+
+.track-line {
+    height: 2px;
+    background: #eee;
+    position: relative;
+}
+
+.track-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.track-markers span {
+    font-size: 12px;
+    color: #666;
+}
+
+.scent-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.layer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.layer-label {
+    width: 100px;
+    font-size: 13px;
+    text-align: right;
+}
+
+.layer-intensity {
+    flex: 1;
+    height: 6px;
+    background: #f8f8f8;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.layer-intensity::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #1a1a1a;
+    opacity: 0.1;
+}
+
+.bergamot .layer-intensity::after {
+    width: 90%;
+    animation: fadeWidth 1s ease-out;
+}
+
+.ylang .layer-intensity::after {
+    width: 75%;
+    animation: fadeWidth
