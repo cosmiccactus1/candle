@@ -49,7 +49,6 @@
     </header>
     <!-- Zamijenite postojeći <main> element s ovim: -->
 <main class="product-page">
-    <!-- Dodajte breadcrumb -->
     <div class="product-breadcrumb">
         <a href="../index.html">Početna</a>
         <span>/</span>
@@ -57,10 +56,8 @@
         <span>/</span>
         <span>Brijuni</span>
     </div>
-</main>
-    <!-- Nova product display sekcija -->
+
     <div class="product-display">
-        <!-- Lijeva strana - slike -->
         <div class="product-images">
             <div class="image-slider">
                 <div class="slider-container">
@@ -78,7 +75,6 @@
             </div>
         </div>
 
-        <!-- Desna strana - informacije -->
         <div class="product-info">
             <div class="product-header">
                 <h1>B R I J U N I</h1>
@@ -86,7 +82,6 @@
                 <p class="price">35 BAM</p>
             </div>
 
-            <!-- Essence bar -->
             <div class="product-essence">
                 <div class="essence-bar">
                     <div class="essence-item">
@@ -103,8 +98,177 @@
                     </div>
                 </div>
             </div>
+
+            <div class="product-description">
+                <p class="main-desc">Ručno izrađena luksuzna svijeća koja kombinira egzotični Ylang Ylang, plemenitu Sandalovinu i osvježavajući Bergamot. Sa drvenim fitiljem koji nježno pucketa, stvarajući jedinstvenu atmosferu mira i luksuza.</p>
+            </div>
+
+            <div class="product-attributes">
+                <div class="attribute">
+                    <i class="fas fa-leaf"></i>
+                    <div class="attribute-text">
+                        <h3>Prirodni sastojci</h3>
+                        <p>100% čisti sojin vosak</p>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <i class="fas fa-clock"></i>
+                    <div class="attribute-text">
+                        <h3>Vrijeme gorenja</h3>
+                        <p>40+ sati</p>
+                    </div>
+                </div>
+                <div class="attribute">
+                    <i class="fas fa-fire"></i>
+                    <div class="attribute-text">
+                        <h3>Poseban doživljaj</h3>
+                        <p>Drveni fitilj koji pucketa</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scent-profile">
+                <h2>Profil mirisa</h2>
+                <div class="scent-notes">
+                    <div class="scent-column">
+                        <h3>Gornje note</h3>
+                        <p>Bergamot</p>
+                        <span class="note-description">Svježa citrusna nota koja prvi put dotakne vaša čula</span>
+                    </div>
+                    <div class="scent-column">
+                        <h3>Srednje note</h3>
+                        <p>Ylang Ylang</p>
+                        <span class="note-description">Egzotični cvjetni miris koji stvara balansirano srce</span>
+                    </div>
+                    <div class="scent-column">
+                        <h3>Bazne note</h3>
+                        <p>Sandalwood</p>
+                        <span class="note-description">Topla drvena nota koja pruža dugotrajnu postojanost</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-actions">
+                <button class="add-to-cart">Dodaj u ceger</button>
+                <button class="like-button" aria-label="Dodaj u favorite">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-details-tabs">
+        <div class="tabs">
+            <button class="tab active" data-tab="ingredients">Sastojci</button>
+            <button class="tab" data-tab="instructions">Uputstvo</button>
+            <button class="tab" data-tab="story">Priča</button>
+        </div>
+        
+        <div class="tab-content active" id="ingredients">
+            <div class="content-wrapper">
+                <h3>Pažljivo odabrani sastojci</h3>
+                <p>Naša Brijuni svijeća izrađena je isključivo od prirodnih sastojaka najviše kvalitete:</p>
+                <ul>
+                    <li>100% prirodni sojin vosak</li>
+                    <li>Drveni fitilj</li>
+                    <li>Prirodna eterična ulja:
+                        <ul>
+                            <li>Ylang Ylang iz Madagaskara</li>
+                            <li>Indijska Sandalovina</li>
+                            <li>Bergamot iz Kalabrije</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="instructions">
+            <div class="content-wrapper">
+                <h3>Kako najbolje iskoristiti svoju svijeću</h3>
+                <div class="instruction-grid">
+                    <div class="instruction-item">
+                        <i class="fas fa-cut"></i>
+                        <h4>Prvo paljenje</h4>
+                        <p>Skratite fitilj na 5mm prije prvog paljenja</p>
+                    </div>
+                    <div class="instruction-item">
+                        <i class="fas fa-clock"></i>
+                        <h4>Vrijeme gorenja</h4>
+                        <p>Ostavite svijeću da gori 2-3 sata pri prvom paljenju</p>
+                    </div>
+                    <div class="instruction-item">
+                        <i class="fas fa-wind"></i>
+                        <h4>Održavanje</h4>
+                        <p>Držite dalje od propuha</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="story">
+            <div class="content-wrapper">
+                <h3>Inspiracija</h3>
+                <p>Brijuni svijeća inspirirana je ljepotom i luksuzom Brijunskog arhipelaga. Kombinacija mirisa evocira šetnju mediteranskim vrtovima, gdje se miris mora miješa s egzotičnim biljem i drvećem.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="related-content">
+        <h2>Otkrijte više</h2>
+        <div class="content-grid">
+            <div class="video-feature">
+                <div class="video-container">
+                    <img src="/api/placeholder/800/450" alt="Video thumbnail" class="video-thumbnail">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <span class="content-tag">Video</span>
+                    <h3>Proces izrade Brijuni svijeće</h3>
+                    <p>Pogledajte umjetnost izrade naših ručno rađenih svijeća</p>
+                    <a href="../blog/brijuni-proces.html" class="watch-link">
+                        Pogledaj video
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="complementary-products">
+                <h3>Upotpunite doživljaj</h3>
+                <div class="product-suggestions">
+                    <div class="suggestion-card">
+                        <img src="/api/placeholder/200/200" alt="Drveno postolje" />
+                        <h4>Drveno postolje</h4>
+                        <p>25 BAM</p>
+                    </div>
+                    <div class="suggestion-card">
+                        <img src="/api/placeholder/200/200" alt="Mermerno postolje" />
+                        <h4>Mermerno postolje</h4>
+                        <p>35 BAM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h2>Vaš artikal je dodan u ceger</h2>
+                <div class="modal-buttons">
+                    <button class="modal-btn continue-shopping">Nastavi kupovinu</button>
+                    <button class="modal-btn view-cart">Pogledaj ceger</button>
+                    <button class="modal-btn checkout">Idi na naplatu</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
-            <!-- nastavak koda... -->
     <footer>
         <div class="footer-content">
             <div class="footer-left">
