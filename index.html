@@ -19,6 +19,7 @@
             <a href="popusti.html" class="discount-text">Kasni jesenji popusti na svijeće - Uštedite do 30%!</a>
         </div>
     </div>
+
     <header>
         <nav>
             <div class="nav-left">
@@ -39,15 +40,112 @@
                 <a href="favoriti.html" aria-label="Favoriti"><i class="fas fa-heart"></i></a>
                 <a href="login.html" aria-label="Prijava"><i class="fas fa-user"></i></a>
                 <a href="kosarica.html" class="cart-icon-wrapper" aria-label="Košarica">
-    <i class="fas fa-shopping-bag"></i>
-    <span class="cart-count"></span>
-</a>
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count"></span>
+                </a>
             </div>
         </nav>
     </header>
 
     <main>
-        ovdje dodati kolekciju slika
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Otkrijte magiju ručno izrađenih svijeća</h1>
+                <p>Jedinstveni mirisi koji prenose priče i stvaraju atmosferu</p>
+                <div class="hero-buttons">
+                    <a href="kolekcija.html" class="btn btn-primary">Pogledaj kolekciju</a>
+                    <a href="o-nama.html" class="btn btn-secondary">Saznaj više</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-svijeca.jpg" alt="Ručno izrađena svijeća">
+            </div>
+        </section>
+
+        <section id="featured-collection">
+            <div class="section-header">
+                <h2>Naše preporučene svijeće</h2>
+                <p>Izdvojili smo najprodavanije i najtraženije kolekcije</p>
+            </div>
+            
+            <div class="kolekcija-grid">
+                <div class="kolekcija-item">
+                    <a href="products/product1.html">
+                        <img src="images/svijeća1.jpg" alt="B R I J U N I" loading="lazy">
+                        <p class="svijeca-naziv">B R I J U N I</p>
+                        <p class="svijeca-cijena">35 BAM</p>
+                    </a>
+                </div>
+                <div class="kolekcija-item">
+                    <a href="svijeca2.html">
+                        <img src="images/svijeca2.jpg" alt="NEDJELJNI SABAH" loading="lazy">
+                        <p class="svijeca-naziv">NEDJELJNI SABAH</p>
+                        <p class="svijeca-cijena">45 BAM</p>
+                    </a>
+                </div>
+                <div class="kolekcija-item">
+                    <a href="svijeca3.html">
+                        <img src="images/svijeca3.jpg" alt="PLANINSKA KUĆA" loading="lazy">
+                        <p class="svijeca-naziv">PLANINSKA KUĆA</p>
+                        <p class="svijeca-cijena">50 BAM</p>
+                    </a>
+                </div>
+                <div class="kolekcija-item">
+                    <a href="svijeca4.html">
+                        <img src="images/svijeca4.jpg" alt="Z U M B U L" loading="lazy">
+                        <p class="svijeca-naziv">Z U M B U </p>
+                        <p class="svijeca-cijena">55 BAM</p>
+                    </a>
+                </div>
+            </div>
+            <div class="vidi-sve-container">
+                <a href="kolekcija.html" class="pogledaj-sve-link">Pogledaj cijelu ponudu</a>
+            </div>
+        </section>
+
+        <section id="blog-preview">
+            <div class="section-header">
+                <h2>Posljednje priče</h2>
+                <p>Otkrijte inspirativne priče iza naših mirisa</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-item">
+                    <img src="images/blog-planinska-kuca.jpg" alt="Planinska kuća priča">
+                    <h3>Planinska kuća: Priča o toplini</h3>
+                    <p>Otkrijte kako smo stvorili miris koji vraća uspomene...</p>
+                    <a href="blog-planinska-kuca.html" class="read-more">Pročitaj više</a>
+                </article>
+                <article class="blog-item">
+                    <img src="images/blog-brijuni.jpg" alt="Brijuni priča">
+                    <h3>B R I J U N I: Miris mora</h3>
+                    <p>Putovanje kroz mediteranske note...</p>
+                    <a href="blog-brijuni.html" class="read-more">Pročitaj više</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="prednosti">
+            <div class="section-header">
+                <h2>Zašto odabrati naše svijeće?</h2>
+            </div>
+            <div class="prednosti-grid">
+                <div class="prednost-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Prirodni sastojci</h3>
+                    <p>100% organski i ekološki materijali</p>
+                </div>
+                <div class="prednost-item">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Ručni rad</h3>
+                    <p>Svaka svijeća je jedinstvena</p>
+                </div>
+                <div class="prednost-item">
+                    <i class="fas fa-globe"></i>
+                    <h3>Lokalna proizvodnja</h3>
+                    <p>Podržavamo domaće umjetnike</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -89,6 +187,7 @@
             <p>&copy; 2024 Svijeće Craft-shop. Sva prava pridržana.</p>
         </div>
     </footer>
-  <script src="js/script.js"></script>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
