@@ -153,86 +153,30 @@
    background-color: #1a3c1a;
 }
 
-/* Blog Section */
-.blog-section {
-   padding: 80px 0;
-   background-color: #fff;
-}
+<!-- Blog Sekcija -->
+<section class="blog-section">
+    <div class="section-container">
+        <h2 class="section-title">Naša Priča</h2>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="video-wrapper">
+                    <!-- Vimeo Video -->
+                    <iframe 
+                        src="https://player.vimeo.com/video/1028884779?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1&controls=0&dnt=1" 
+                        allowfullscreen
+                        title="Planinska Kuća">
+                    </iframe>
+                </div>
+                <div class="blog-content">
+                    <h3>Planinska kuća: Priča o toplini</h3>
+                    <p>Otkrijte kako smo stvorili miris koji vraća uspomene na tople trenutke provedene u planinskoj kući...</p>
+                    <a href="blog-post-1.html" class="read-more">Pročitaj više</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
 
-.blog-grid {
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   gap: 30px;
-}
-
-.blog-card {
-   border-radius: 10px;
-   overflow: hidden;
-   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-   transition: all 0.3s ease;
-   background: #fff;
-}
-
-.blog-card:hover {
-   transform: translateY(-10px);
-}
-
-.blog-card img {
-   width: 100%;
-   height: 250px;
-   object-fit: cover;
-   transition: all 0.3s ease;
-}
-
-.blog-card:hover img {
-   transform: scale(1.05);
-}
-
-.blog-content {
-   padding: 20px;
-}
-
-.blog-content h3 {
-   color: #333;
-   margin-bottom: 15px;
-   font-weight: 400;
-   font-size: 1.2rem;
-   line-height: 1.4;
-}
-
-.blog-content p {
-   color: #666;
-   font-size: 0.9rem;
-   line-height: 1.6;
-   margin-bottom: 20px;
-}
-
-.read-more {
-   color: #2D4F2D;
-   text-decoration: none;
-   font-weight: 500;
-   text-transform: uppercase;
-   font-size: 0.8rem;
-   letter-spacing: 1px;
-   position: relative;
-   display: inline-block;
-}
-
-.read-more::after {
-   content: '';
-   position: absolute;
-   bottom: -2px;
-   left: 0;
-   width: 100%;
-   height: 1px;
-   background-color: #2D4F2D;
-   transform: scaleX(0);
-   transition: transform 0.3s ease;
-}
-
-.read-more:hover::after {
-   transform: scaleX(1);
-}
 
 /* Responsive Design */
 @media (max-width: 1024px) {
