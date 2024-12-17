@@ -50,6 +50,45 @@ document.addEventListener('DOMContentLoaded', function() {
     function stopAutoRotate() {
         clearInterval(autoRotateInterval);
     }
+    document.addEventListener('DOMContentLoaded', function () {
+    const favoriteButton = document.querySelector('.like-button');
+    const favoriteCountElement = document.querySelector('.favorite-count'); // Brojač u footeru
+
+    function updateFavoriteCount() {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        if (favorites.length > 0) {
+            favoriteCountElement.textContent = favorites.length;
+            favoriteCountElement.style.display = 'inline-block'; // Prikaži broj
+        } else {
+            favoriteCountElement.style.display = 'none'; // Sakrij broj ako nema favorita
+        }
+    }
+
+    // Funkcija za dodavanje/uklanjanje favorita
+    favoriteButton.addEventListener('click', function () {
+        const product = {
+            id: this.dataset.id,
+            name: this.dataset.name,
+            image: this.dataset.image
+        };
+
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const alreadyFavorite = favorites.find(item => item.id === product.id);
+
+        if (!alreadyFavorite) {
+            favorites.push(product); // Dodaj artikal
+        } else {
+            favorites = favorites.filter(item => item.id !== product.id); // Ukloni artikal
+        }
+
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        updateFavoriteCount(); // Ažuriraj brojač
+    });
+
+    // Inicijalno ažuriranje brojača
+    updateFavoriteCount();
+});
+
     
     // Touch events za swipe na mobilnim uređajima
     let touchStartX = 0;
