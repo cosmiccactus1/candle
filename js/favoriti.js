@@ -3,13 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
     if (favorites.length > 0) {
-        favorites.forEach(id => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `Omiljeni ID: ${id}`;
-            favoriteList.appendChild(listItem);
+        favoriteList.innerHTML = ''; // Očisti sadržaj
+
+        favorites.forEach(item => {
+            const favoriteItem = document.createElement('div');
+            favoriteItem.classList.add('favorite-item');
+            favoriteItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" width="100">
+                <p>${item.name}</p>
+            `;
+            favoriteList.appendChild(favoriteItem);
         });
     } else {
-        favoriteList.textContent = "Nema omiljenih stavki.";
+        favoriteList.innerHTML = `<p>Još nemate omiljenih stavki.</p>`;
     }
 });
-
