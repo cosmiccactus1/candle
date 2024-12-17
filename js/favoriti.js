@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
     if (favorites.length > 0) {
-        favoriteList.innerHTML = ''; // Očisti sadržaj
-
+        favoriteList.innerHTML = '';
         favorites.forEach(item => {
             const favoriteItem = document.createElement('div');
             favoriteItem.classList.add('favorite-item');
