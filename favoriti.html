@@ -52,6 +52,17 @@
             </div>
         </nav>
     </header>
+// Na stranici favoriti.html, učitaj sve proizvode koji su u favoritima
+document.addEventListener('DOMContentLoaded', function() {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const favoritesContainer = document.getElementById('favorites-list');
+
+    favorites.forEach(productId => {
+        const productElement = document.createElement('div');
+        productElement.textContent = `Proizvod ID: ${productId}`; // Ovdje možeš dodati detalje proizvoda
+        favoritesContainer.appendChild(productElement);
+    });
+});
 
 
    <footer>
