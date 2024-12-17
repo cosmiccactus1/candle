@@ -50,58 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function stopAutoRotate() {
         clearInterval(autoRotateInterval);
     }
-    document.addEventListener('DOMContentLoaded', function () {
-    const favoriteButton = document.querySelector('.like-button');
-    const favoriteCountElement = document.querySelector('.favorite-count'); // Brojač u footeru
-
-    function updateFavoriteCount() {
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        if (favorites.length > 0) {
-            favoriteCountElement.textContent = favorites.length;
-            favoriteCountElement.style.display = 'inline-block'; // Prikaži broj
-        } else {
-            favoriteCountElement.style.display = 'none'; // Sakrij broj ako nema favorita
-        }
-    }
-
-   document.getElementById('heart').addEventListener('click', (event) => {
-    const heartIcon = event.target;
-    const productId = 'product1'; // Ovo bi trebalo biti dinamično na osnovu proizvoda
-    const productName = 'Product 1'; // Takođe, dinamičko na osnovu proizvoda
-    const productImage = 'path/to/image.jpg'; // Putanja do slike proizvoda
-
-    // Kreiraj objekat proizvoda
-    const product = {
-        id: productId,
-        name: productName,
-        image: productImage
-    };
-
-    // Učitaj postojeće favorite
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-    // Dodaj proizvod u listu favorita, ako nije već prisutan
-    if (!favorites.some(item => item.id === productId)) {
-        favorites.push(product);
-    }
-
-    // Spremi ažuriranu listu u localStorage
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-
-    // Ažuriraj broj favorita u headeru
-    updateFavoriteCount();
-    
-    // Pocrveni srce (dodavanje klase 'liked')
-    heartIcon.classList.toggle('liked');
-});
-
-// Funkcija za ažuriranje broja favorita u headeru
-function updateFavoriteCount() {
-    const favoriteCount = document.getElementById('favorite-count');
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    favoriteCount.textContent = favorites.length; // Ažuriraj broj
-}
-
     
     // Touch events za swipe na mobilnim uređajima
     let touchStartX = 0;
