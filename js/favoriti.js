@@ -7,16 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.querySelector('.nav-links');
     const likeButton = document.querySelector('.like-button');
-    const heartIcon = likeButton ? likeButton.querySelector('i') : null;  // Pronalazimo ikonu unutar likeButton
-    const favoriteCountElement = document.getElementById('favorite-count');
     
     let currentIndex = 0;
     const totalImages = images.length;
     let autoRotateInterval;
-    
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-    // Funkcija za prikaz slike
     function showImage(index) {
         if (window.innerWidth < 768) {
             sliderContainer.style.transform = `translateX(-${index * 100}%)`;
@@ -26,19 +21,16 @@ document.addEventListener('DOMContentLoaded', function() {
         currentIndex = index;
     }
 
-    // Funkcija za prelazak na sljedeću sliku
     function showNextImage() {
         currentIndex = (currentIndex + 1) % totalImages;
         showImage(currentIndex);
     }
 
-    // Funkcija za prelazak na prethodnu sliku
     function showPrevImage() {
         currentIndex = (currentIndex - 1 + totalImages) % totalImages;
         showImage(currentIndex);
     }
 
-    // Funkcija za swipe event
     function handleSwipe(startX, endX) {
         if (window.innerWidth < 768) {
             if (startX - endX > 50) {
@@ -50,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Funkcija za automatsko rotiranje slika
     function startAutoRotate() {
         if (window.innerWidth < 768) {
             autoRotateInterval = setInterval(showNextImage, 5000);
@@ -61,30 +52,40 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(autoRotateInterval);
     }
 
-    // Funkcija za ažuriranje statusa "favorite"
+    // Postavite funkcionalnost za like button
+    if (likeButton) {
+        likeButton.addEventListener('click', function() {
+            this.classList.toggle('liked');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('far');
+            icon.classList.toggle('fas');
+        });
+    }
+
+    // Ovdje se koristi kod za favorite
+    const heartIcon = likeButton.querySelector('i');
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const favoriteCountElement = document.getElementById('favorite-count');
+
     function updateFavoriteStatus() {
-        if (heartIcon && favorites.includes('product-id')) {
+        if (favorites.includes('product-id')) {
             heartIcon.classList.remove('far');
             heartIcon.classList.add('fas');
-        } else if (heartIcon) {
+        } else {
             heartIcon.classList.remove('fas');
             heartIcon.classList.add('far');
         }
     }
 
-    // Funkcija za ažuriranje broja favorita
     function updateFavoriteCount() {
-        if (favoriteCountElement) {
-            favoriteCountElement.textContent = favorites.length;
-            if (favorites.length > 0) {
-                favoriteCountElement.style.display = 'inline';
-            } else {
-                favoriteCountElement.style.display = 'none';
-            }
+        favoriteCountElement.textContent = favorites.length;
+        if (favorites.length > 0) {
+            favoriteCountElement.style.display = 'inline';
+        } else {
+            favoriteCountElement.style.display = 'none';
         }
     }
 
-    // Funkcija za toggle favorite status
     function toggleFavorite() {
         const productId = 'product-id'; // Zamijenite s pravim ID-jem proizvoda
         if (favorites.includes(productId)) {
@@ -98,17 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
         updateFavoriteCount();
     }
 
-    // Postavljanje event listenera na likeButton
-    if (likeButton) {
-        likeButton.addEventListener('click', function() {
-            this.classList.toggle('liked');
-            if (heartIcon) {
-                heartIcon.classList.toggle('far');
-                heartIcon.classList.toggle('fas');
-            }
-            toggleFavorite(); // Pozivamo funkciju za promjenu statusa favorita
-        });
-    }
+    likeButton.addEventListener('click', toggleFavorite);
+    updateFavoriteStatus();
+    updateFavoriteCount();
+
+    // Ovdje završava kod za favorite
 
     // Funkcionalnost za mobilni meni
     if (menuToggle && navLinks) {
@@ -118,13 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Inicijalizacija slika
     showImage(currentIndex);
     startAutoRotate();
-
-    // Poziv funkcija za inicijalizaciju stanja
-    updateFavoriteStatus();
-    updateFavoriteCount();
 
     window.addEventListener('resize', () => {
         showImage(currentIndex);
@@ -132,4 +122,3 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoRotate();
     });
 });
-
