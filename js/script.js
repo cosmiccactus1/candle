@@ -7,49 +7,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.querySelector('.nav-links');
     const likeButton = document.querySelector('.like-button');
-    const cartCount = document.querySelector('header .cart-count');
+    const cartCount = document.querySelector('.cart-count');
     const addToCartButton = document.querySelector('.add-to-cart');
     const cartModal = document.querySelector('.cart-modal');
+    const closeModal = document.querySelector('.close-modal');
     const continueShopping = document.querySelector('.continue-shopping');
     const viewCart = document.querySelector('.view-cart');
-    const resetCartButton = document.querySelector('.reset-cart');
+    const checkout = document.querySelector('.checkout');
+    const favoriteCountElement = document.getElementById('favorite-count');
+    const dots = document.querySelectorAll('.dot');
     
+    // Resetuj brojače pri učitavanju
+    localStorage.setItem('cartItems', JSON.stringify([]));
+    localStorage.setItem('favorites', JSON.stringify([]));
+    
+    // Trenutni proizvod
+    const currentProduct = {
+        id: 'brijuni-svijeca',
+        name: 'Brijuni svijeća',
+        price: '35'
+    };
+
     // Slider varijable
     let currentIndex = 0;
     const totalImages = images?.length || 0;
-    let autoRotateInterval;
 
-    // Košarica funkcije
-    function updateCartCount() {
-        const currentCount = parseInt(localStorage.getItem('cartCount')) || 0;
-        if (cartCount) {
-            cartCount.textContent = currentCount;
-            cartCount.style.display = currentCount > 0 ? 'flex' : 'none';
-        }
+    // Funkcije za slider
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
     }
 
-    function showCartModal() {
-        if (cartModal) {
-            cartModal.style.display = 'flex';
-            setTimeout(() => {
-                cartModal.style.display = 'none';
-            }, 5000);
-        }
-    }
-
-    function resetCart() {
-        localStorage.setItem('cartCount', '0');
-        updateCartCount();
-    }
-
-    // Slider funkcije
     function showImage(index) {
         if (sliderContainer && window.innerWidth < 768) {
             sliderContainer.style.transform = `translateX(-${index * 100}%)`;
-        } else if (sliderContainer) {
-            sliderContainer.style.transform = 'none';
+            currentIndex = index;
+            updateDots();
         }
-        currentIndex = index;
     }
 
     function showNextImage() {
@@ -62,128 +57,158 @@ document.addEventListener('DOMContentLoaded', function() {
         showImage(currentIndex);
     }
 
-    function handleSwipe(startX, endX) {
-        if (window.innerWidth < 768) {
-            if (startX - endX > 50) showNextImage();
-            if (endX - startX > 50) showPrevImage();
+    // Funkcije za košaricu
+    function updateCartCount() {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        if (cartCount) {
+            cartCount.textContent = cartItems.length;
+            cartCount.style.display = cartItems.length > 0 ? 'flex' : 'none';
         }
     }
 
-    function startAutoRotate() {
-        if (window.innerWidth < 768) {
-            autoRotateInterval = setInterval(showNextImage, 5000);
+    function addToCart() {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartItems.push(currentProduct);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartCount();
+        showCartModal();
+    }
+
+    function showCartModal() {
+        if (cartModal) {
+            cartModal.style.display = 'flex';
         }
     }
 
-    function stopAutoRotate() {
-        clearInterval(autoRotateInterval);
+    function hideCartModal() {
+        if (cartModal) {
+            cartModal.style.display = 'none';
+        }
     }
 
-    // Favoriti funkcionalnost
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const heartIcon = likeButton?.querySelector('i');
-    const favoriteCountElement = document.getElementById('favorite-count');
-
+    // Funkcije za favorite
     function updateFavoriteStatus() {
-        if (!heartIcon) return;
+        if (!likeButton) return;
         
-        if (favorites.includes('product-id')) {
+        const heartIcon = likeButton.querySelector('i');
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        
+        if (favorites.includes(currentProduct.id)) {
             heartIcon.classList.remove('far');
             heartIcon.classList.add('fas');
+            likeButton.classList.add('liked');
         } else {
             heartIcon.classList.remove('fas');
             heartIcon.classList.add('far');
+            likeButton.classList.remove('liked');
         }
     }
 
     function updateFavoriteCount() {
         if (!favoriteCountElement) return;
         
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         favoriteCountElement.textContent = favorites.length;
-        favoriteCountElement.style.display = favorites.length > 0 ? 'inline' : 'none';
+        favoriteCountElement.style.display = favorites.length > 0 ? 'flex' : 'none';
     }
 
     function toggleFavorite() {
-        const productId = 'product-id'; // Zamijenite s pravim ID-jem proizvoda
-        if (favorites.includes(productId)) {
-            favorites = favorites.filter(id => id !== productId);
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const index = favorites.indexOf(currentProduct.id);
+        
+        if (index === -1) {
+            favorites.push(currentProduct.id);
         } else {
-            favorites.push(productId);
+            favorites.splice(index, 1);
         }
-
+        
         localStorage.setItem('favorites', JSON.stringify(favorites));
         updateFavoriteStatus();
         updateFavoriteCount();
     }
 
-    // Event listeneri
-    if (addToCartButton) {
-        addToCartButton.addEventListener('click', function() {
-            const currentCount = parseInt(localStorage.getItem('cartCount')) || 0;
-            localStorage.setItem('cartCount', currentCount + 1);
-            updateCartCount();
-            showCartModal();
-        });
+    // Event listeneri za slider
+    if (prevButton) {
+        prevButton.addEventListener('click', showPrevImage);
     }
 
-    if (continueShopping) {
-        continueShopping.addEventListener('click', function() {
-            cartModal.style.display = 'none';
-        });
+    if (nextButton) {
+        nextButton.addEventListener('click', showNextImage);
     }
 
-    if (viewCart) {
-        viewCart.addEventListener('click', function() {
-            window.location.href = 'cart.html';
-        });
-    }
-
-    if (resetCartButton) {
-        resetCartButton.addEventListener('click', resetCart);
-    }
-
-    if (likeButton) {
-        likeButton.addEventListener('click', toggleFavorite);
-    }
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
-        });
-    }
-
-    // Touch događaji za slider
+    // Touch events za slider
     if (sliderContainer) {
         let touchStartX = 0;
+        
         sliderContainer.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
-            stopAutoRotate();
         });
 
         sliderContainer.addEventListener('touchend', (e) => {
             const touchEndX = e.changedTouches[0].clientX;
-            handleSwipe(touchStartX, touchEndX);
-            startAutoRotate();
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) showNextImage();
+                else showPrevImage();
+            }
         });
     }
 
-    // Resize handler
+    // Event listeneri za košaricu
+    if (addToCartButton) {
+        addToCartButton.addEventListener('click', addToCart);
+    }
+
+    if (closeModal) {
+        closeModal.addEventListener('click', hideCartModal);
+    }
+
+    if (continueShopping) {
+        continueShopping.addEventListener('click', hideCartModal);
+    }
+
+    if (viewCart) {
+        viewCart.addEventListener('click', () => {
+            window.location.href = '../kosarica.html';
+        });
+    }
+
+    if (checkout) {
+        checkout.addEventListener('click', () => {
+            window.location.href = '../checkout.html';
+        });
+    }
+
+    // Event listener za favorite
+    if (likeButton) {
+        likeButton.addEventListener('click', toggleFavorite);
+    }
+
+    // Event listener za mobilni meni
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', 
+                navLinks.classList.contains('active'));
+        });
+    }
+
+    // Event listeneri za dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showImage(index);
+        });
+    });
+
+    // Window resize handler
     window.addEventListener('resize', () => {
         showImage(currentIndex);
-        stopAutoRotate();
-        startAutoRotate();
     });
 
     // Inicijalizacija
-    if (totalImages > 0) {
-        showImage(currentIndex);
-        startAutoRotate();
-    }
+    showImage(0);
+    updateCartCount();
     updateFavoriteStatus();
     updateFavoriteCount();
-    updateCartCount();
-    
-    // Odkomentiraj sljedeću liniju ako želiš resetovati košaricu pri učitavanju
-    // resetCart();
 });
