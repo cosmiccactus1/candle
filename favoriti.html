@@ -3,13 +3,13 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Svijeće Craft-shop - Vaš Ceger</title>
+   <title>Svijeće Craft-shop - Vaši Favoriti</title>
    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;600&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
    <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/favoriti.css">
+   <link rel="stylesheet" href="css/blog.css">
    <link rel="stylesheet" href="css/cart.css">
-    <link rel="stylesheet" href="css/blog.css"> 
-   
 </head>
 <body>
     <div class="discount-banner">
@@ -40,20 +40,42 @@
                 <a href="index.html" class="logo">Svijeće Craft-shop</a>
             </div>
             <div class="nav-right">
-                <a href="favoriti.html" aria-label="Favoriti"><i class="fas fa-heart"></i></a>
-               <div class="footer">
-    <span class="favorite-count" style="display:none;"></span>
-</div>
+                <div class="icon-wrapper">
+                    <a href="favoriti.html" class="icon-link" aria-label="Favoriti">
+                        <i class="fas fa-heart"></i>
+                        <span class="count-badge" id="favorite-count">0</span>
+                    </a>
+                </div>
                 <a href="login.html" aria-label="Prijava"><i class="fas fa-user"></i></a>
-                <a href="ceger.html" class="cart-icon-wrapper" aria-label="Ceger">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count"></span>
-                </a>
+                <div class="icon-wrapper">
+                    <a href="ceger.html" class="icon-link" aria-label="Košarica">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="count-badge cart-count">0</span>
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
 
-   <footer>
+    <main class="favorites-page">
+        <div class="favorites-header">
+            <h1>Vaši favoriti</h1>
+            <p class="subtitle">Artikli koje ste označili kao omiljene</p>
+        </div>
+
+        <div class="favorites-container">
+            <!-- Ovdje će JavaScript ubaciti favorite -->
+        </div>
+
+        <div class="empty-favorites" style="display: none;">
+            <i class="fas fa-heart-broken"></i>
+            <h2>Nemate favorite</h2>
+            <p>Istražite našu kolekciju i dodajte proizvode u favorite</p>
+            <a href="kolekcija.html" class="browse-button">Pregledaj kolekciju</a>
+        </div>
+    </main>
+
+    <footer>
         <div class="footer-content">
             <div class="footer-left">
                 <div class="footer-section">
@@ -94,8 +116,6 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
-    <script src="js/cart.js"></script>
-   <script src="favoriti.js"></script>
+    <script src="js/favoriti.js"></script>
 </body>
 </html>
