@@ -77,7 +77,16 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoRotate();
     });
     
-
+    // Funkcionalnost za like dugme
+    if (likeButton) {
+        likeButton.addEventListener('click', function() {
+            this.classList.toggle('liked');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('far');
+            icon.classList.toggle('fas');
+        });
+    }
+    
     // Funkcionalnost za mobilni meni
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', function() {
