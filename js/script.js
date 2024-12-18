@@ -1,4 +1,8 @@
+console.log("Script je učitan!");
+
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM je učitan!");
+
     // DOM elementi
     const sliderContainer = document.querySelector('.slider-container');
     const prevButton = document.querySelector('.prev');
@@ -17,18 +21,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const favoriteCountElement = document.getElementById('favorite-count');
     const dots = document.querySelectorAll('.dot');
     
-    // Trenutni proizvod
+    // Trenutni proizvod - podaci o proizvodu koji se prikazuje
     const currentProduct = {
         id: 'brijuni-svijeca',
         name: 'Brijuni svijeća',
-        price: '35'
+        price: '35',
+        image: '../images/svijeća1.jpg',
+        description: 'Luksuzna aromatična svijeća',
+        scents: ['Ylang Ylang', 'Sandalwood', 'Bergamot']
     };
 
-    // Slider varijable
+    // Slider funkcije
     let currentIndex = 0;
     const totalImages = images?.length || 0;
 
-    // Funkcije za slider
     function updateDots() {
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentIndex);
@@ -64,7 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addToCart() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        cartItems.push(currentProduct);
+        cartItems.push({
+            ...currentProduct,
+            quantity: 1,
+            addedAt: new Date().toISOString()
+        });
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         updateCartCount();
         showCartModal();
@@ -89,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const heartIcon = likeButton.querySelector('i');
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         
-        if (favorites.includes(currentProduct.id)) {
+        if (favorites.find(item => item.id === currentProduct.id)) {
             heartIcon.classList.remove('far');
             heartIcon.classList.add('fas');
             likeButton.classList.add('liked');
@@ -110,12 +120,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function toggleFavorite() {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        const index = favorites.indexOf(currentProduct.id);
+        const favoriteProduct = {
+            ...currentProduct,
+            addedAt: new Date().toISOString(),
+            pageUrl: window.location.pathname
+        };
         
-        if (index === -1) {
-            favorites.push(currentProduct.id);
+        const existingIndex = favorites.findIndex(item => item.id === currentProduct.id);
+        
+        if (existingIndex === -1) {
+            favorites.push(favoriteProduct);
         } else {
-            favorites.splice(index, 1);
+            favorites.splice(existingIndex, 1);
         }
         
         localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -123,14 +139,10 @@ document.addEventListener('DOMContentLoaded', function() {
         updateFavoriteCount();
     }
 
-    // Event listeneri za slider
-    if (prevButton) {
-        prevButton.addEventListener('click', showPrevImage);
-    }
-
-    if (nextButton) {
-        nextButton.addEventListener('click', showNextImage);
-    }
+    // Event listeneri
+    // Slider kontrole
+    if (prevButton) prevButton.addEventListener('click', showPrevImage);
+    if (nextButton) nextButton.addEventListener('click', showNextImage);
 
     // Touch events za slider
     if (sliderContainer) {
@@ -151,37 +163,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listeneri za košaricu
-    if (addToCartButton) {
-        addToCartButton.addEventListener('click', addToCart);
-    }
-
-    if (closeModal) {
-        closeModal.addEventListener('click', hideCartModal);
-    }
-
-    if (continueShopping) {
-        continueShopping.addEventListener('click', hideCartModal);
-    }
-
+    // Košarica event listeneri
+    if (addToCartButton) addToCartButton.addEventListener('click', addToCart);
+    if (closeModal) closeModal.addEventListener('click', hideCartModal);
+    if (continueShopping) continueShopping.addEventListener('click', hideCartModal);
     if (viewCart) {
         viewCart.addEventListener('click', () => {
-            window.location.href = 'kosarica.html';
+            window.location.href = '../kosarica.html';
         });
     }
-
     if (checkout) {
         checkout.addEventListener('click', () => {
-            window.location.href = 'checkout.html';
+            window.location.href = '../checkout.html';
         });
     }
 
-    // Event listener za favorite
-    if (likeButton) {
-        likeButton.addEventListener('click', toggleFavorite);
-    }
+    // Favoriti event listener
+    if (likeButton) likeButton.addEventListener('click', toggleFavorite);
 
-    // Event listener za mobilni meni
+    // Mobilni meni
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
@@ -190,17 +190,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listeneri za dots
+    // Dots za slider
     dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            showImage(index);
-        });
+        dot.addEventListener('click', () => showImage(index));
     });
 
-    // Window resize handler
-    window.addEventListener('resize', () => {
-        showImage(currentIndex);
-    });
+    // Window resize
+    window.addEventListener('resize', () => showImage(currentIndex));
 
     // Inicijalizacija
     showImage(0);
