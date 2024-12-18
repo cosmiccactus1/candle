@@ -1,91 +1,134 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const sliderContainer = document.querySelector('.slider-container');
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
-    const images = document.querySelectorAll('.product-image');
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.querySelector('.nav-links');
+    // Like/Favorite Button Functionality
     const likeButton = document.querySelector('.like-button');
-    
-    let currentIndex = 0;
-    const totalImages = images.length;
-    let autoRotateInterval;
-    
-    function showImage(index) {
-        if (window.innerWidth < 768) {
-            sliderContainer.style.transform = `translateX(-${index * 100}%)`;
-        } else {
-            sliderContainer.style.transform = 'none';
-        }
-        currentIndex = index;
-    }
-    
-    function showNextImage() {
-        currentIndex = (currentIndex + 1) % totalImages;
-        showImage(currentIndex);
-    }
-    
-    function showPrevImage() {
-        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-        showImage(currentIndex);
-    }
-    
-    function handleSwipe(startX, endX) {
-        if (window.innerWidth < 768) {
-            if (startX - endX > 50) {
-                showNextImage();
-            }
-            if (endX - startX > 50) {
-                showPrevImage();
+    const heartIcon = likeButton?.querySelector('i');
+    const favoriteCountElement = document.getElementById('favorite-count');
+
+    // Cart Button Functionality
+    const addToCartButton = document.querySelector('.add-to-cart');
+    const cartCountElement = document.querySelector('.cart-count');
+    const cartModal = document.querySelector('.cart-modal');
+    const closeModalButton = document.querySelector('.close-modal');
+    const continueShoppingButton = document.querySelector('.continue-shopping');
+    const viewCartButton = document.querySelector('.view-cart');
+
+    // Product Details
+    const productId = 'brijuni-candle'; // Replace with actual product ID
+    const productName = 'Brijuni Luxury Candle';
+    const productPrice = 89.99;
+
+    // Favorites Functionality
+    function initializeFavorites() {
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        
+        function updateFavoriteStatus() {
+            const isFavorite = favorites.includes(productId);
+            
+            if (heartIcon) {
+                heartIcon.classList.toggle('far', !isFavorite);
+                heartIcon.classList.toggle('fas', isFavorite);
+                likeButton.classList.toggle('liked', isFavorite);
             }
         }
-    }
-    
-    function startAutoRotate() {
-        if (window.innerWidth < 768) {
-            autoRotateInterval = setInterval(showNextImage, 5000);
+
+        function updateFavoriteCount() {
+            if (favoriteCountElement) {
+                favoriteCountElement.textContent = favorites.length;
+                favoriteCountElement.style.display = favorites.length > 0 ? 'inline' : 'none';
+            }
+        }
+
+        function toggleFavorite() {
+            if (favorites.includes(productId)) {
+                favorites = favorites.filter(id => id !== productId);
+            } else {
+                favorites.push(productId);
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoriteStatus();
+            updateFavoriteCount();
+        }
+
+        // Initial setup
+        updateFavoriteStatus();
+        updateFavoriteCount();
+
+        // Add click event listener
+        if (likeButton) {
+            likeButton.addEventListener('click', toggleFavorite);
         }
     }
-    
-    function stopAutoRotate() {
-        clearInterval(autoRotateInterval);
+
+    // Cart Functionality
+    function initializeCart() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartCount() {
+            if (cartCountElement) {
+                cartCountElement.textContent = cart.length;
+                cartCountElement.style.display = cart.length > 0 ? 'inline' : 'none';
+            }
+        }
+
+        function addToCart() {
+            const existingProduct = cart.find(item => item.id === productId);
+            
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            openCartModal();
+        }
+
+        function openCartModal() {
+            if (cartModal) {
+                cartModal.style.display = 'flex';
+            }
+        }
+
+        function closeCartModal() {
+            if (cartModal) {
+                cartModal.style.display = 'none';
+            }
+        }
+
+        // Initial cart count setup
+        updateCartCount();
+
+        // Event Listeners
+        if (addToCartButton) {
+            addToCartButton.addEventListener('click', addToCart);
+        }
+
+        if (closeModalButton) {
+            closeModalButton.addEventListener('click', closeCartModal);
+        }
+
+        if (continueShoppingButton) {
+            continueShoppingButton.addEventListener('click', closeCartModal);
+        }
+
+        if (viewCartButton) {
+            viewCartButton.addEventListener('click', function() {
+                // Redirect to cart page or open cart view
+                window.location.href = '/cart'; // Replace with actual cart page URL
+            });
+        }
     }
-    
-    // Touch events za swipe na mobilnim uređajima
-    let touchStartX = 0;
-    sliderContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        stopAutoRotate();
-    });
-    
-    sliderContainer.addEventListener('touchend', (e) => {
-        const touchEndX = e.changedTouches[0].screenX;
-        handleSwipe(touchStartX, touchEndX);
-        startAutoRotate();
-    });
-    
-    // Event listeneri za dugmad
-    prevButton.addEventListener('click', () => {
-        showPrevImage();
-        stopAutoRotate();
-        startAutoRotate();
-    });
-    
-    nextButton.addEventListener('click', () => {
-        showNextImage();
-        stopAutoRotate();
-        startAutoRotate();
-    });
-    
-    // Funkcionalnost za like dugme
-    if (likeButton) {
-        likeButton.addEventListener('click', function() {
-            this.classList.toggle('liked');
-            const icon = this.querySelector('i');
-            icon.classList.toggle('far');
-            icon.classList.toggle('fas');
-        });
-    }
+
+    // Initialize both functionalities
+    initializeFavorites();
+    initializeCart();
+});
     
     // Funkcionalnost za mobilni meni
     if (menuToggle && navLinks) {
