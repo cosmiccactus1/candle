@@ -17,10 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const favoriteCountElement = document.getElementById('favorite-count');
     const dots = document.querySelectorAll('.dot');
     
-    // Resetuj brojače pri učitavanju
-    localStorage.setItem('cartItems', JSON.stringify([]));
-    localStorage.setItem('favorites', JSON.stringify([]));
-    
     // Trenutni proizvod
     const currentProduct = {
         id: 'brijuni-svijeca',
@@ -170,13 +166,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (viewCart) {
         viewCart.addEventListener('click', () => {
-            window.location.href = '../kosarica.html';
+            window.location.href = 'kosarica.html';
         });
     }
 
     if (checkout) {
         checkout.addEventListener('click', () => {
-            window.location.href = '../checkout.html';
+            window.location.href = 'checkout.html';
         });
     }
 
