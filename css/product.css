@@ -1,668 +1,4 @@
-/* Osnovni stilovi */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Raleway', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fff;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Discount banner */
-.discount-banner {
-    background-color: #FFA500;
-    color: white;
-    padding: 2px 0;
-    font-weight: 300;  /* promijenjeno na 300 za tanja slova */
-    font-size: 12px;
-    line-height: 1.2;
-}
-
-.banner-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    height: 30px; /* malo povećano */
-}
-
-.social-icons {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-}
-
-.social-icons a {
-    color: #666;
-    margin-right: 8px;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
-
-.discount-text {
-    flex-grow: 1;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 300;  /* dodano za tanja slova */
-}
-/* Header i navigacija */
-header {
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 5%;  /* još više povećan padding */
-    max-width: 1400px; /* povećana max širina */
-    margin: 0 auto;
-    width: 100%;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
-    min-width: 400px;  /* povećano */
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 18px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: #000;  /* promijenite ovo iz postojeće boje u #000 */
-}
-
-.nav-links {
-    display: flex;
-    justify-content: space-between; /* promijenjeno sa space-evenly */
-    min-width: 400px;  /* povećano */
-}
-
-.nav-links a {
-    margin: 0 20px;  /* povećan razmak */
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
-    font-weight: 300;
-}
-
-.nav-center {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin: 0 40px; /* dodano za više prostora oko loga */
-}
-
-.nav-right {
-    min-width: 400px;  /* povećano */
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 30px; /* dodano za jednaki razmak između ikona */
-}
-
-.nav-right a {
-    font-size: 18px; /* povećane ikone */
-}
-.cart-icon-wrapper {
-    position: relative;
-    display: inline-block;
-}
-
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background-color: #000;
-    color: white;
-    font-size: 11px;
-    font-weight: 400;
-    min-width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2px;
-    line-height: 1;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transform: scale(1);
-    transition: transform 0.2s ease;
-}
-
-.cart-count:not(:empty) {
-    transform: scale(1.1);
-}
-
-.cart-icon-wrapper:hover .cart-count {
-    transform: scale(1.2);
-}
-
-/* Product page */
-.product-page {
-    padding: 40px 0;
-    overflow-x: hidden;
-}
-
-.product-display {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.product-images {
-    width: 50%;
-    max-width: 100%;
-    margin: 0;
-    padding-right: 20px;
-}
-
-.image-slider {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-.slider-container {
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.5s ease;
-}
-
-.product-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    margin-bottom: 20px;
-}
-
-.slider-button {
-    display: none;
-}
-
-.product-info {
-    width: 50%;
-    padding-left: 20px;
-}
-
-.product-info h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    font-weight: 300;
-}
-
-.price {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.product-actions {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.add-to-cart {
-    background-color: #000;
-    color: white;
-    border: 1px solid #000;
-    padding: 12px 28px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 13px;
-    margin-right: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    min-width: 180px;
-}
-
-.add-to-cart:hover {
-    background-color: #333;
-    border-color: #333;
-    transform: translateY(-1px);
-}
-
-.add-to-cart:active {
-    transform: translateY(0);
-}
-
-/* Poboljšanje stila za like button da se bolje uklapa */
-.like-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: #000;
-    opacity: 0.5;
-    transition: all 0.3s ease;
-    padding: 8px;
-}
-
-.like-button:hover {
-    opacity: 0.8;
-}
-
-.like-button.liked {
-    color: #000;
-    opacity: 1;
-}
-
-/* Poboljšanje container stila za bolje poravnanje */
-.product-actions {
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-}
-.like-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: #ccc;
-    transition: color 0.3s;
-}
-
-.like-button:hover,
-.like-button.liked {
-    color: #ff6b6b;
-}
-
-.like-button.liked i {
-    font-weight: 900;
-}
-
-/* Footer */
-footer {
-    background-color: #f8f8f8;
-    padding: 40px 20px;
-    margin-top: 40px;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-left {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-.footer-section h3 {
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 8px;
-}
-
-.payment-icons i,
-.footer-right .social-icons a {
-    font-size: 24px;
-    margin-right: 10px;
-    color: #666;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .nav-links.active {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .nav-links a {
-        padding: 10px 20px;
-        text-align: left;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-left {
-        order: -1;
-    }
-
-    .nav-center {
-        flex-grow: 1;
-        text-align: center;
-    }
-
-    .nav-right {
-        order: 1;
-    }
-
-    .product-page {
-        padding: 40px 20px;
-    }
-
-    .product-display {
-        flex-direction: column;
-    }
-
-    .product-images {
-        width: 100vw;
-        margin-left: -20px;
-        margin-right: -20px;
-        padding-right: 0;
-    }
-
-    .slider-container {
-        flex-direction: row;
-    }
-
-    .product-image {
-        flex: 0 0 100%;
-        margin-bottom: 0;
-    }
-
-    .slider-button {
-        display: block;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        z-index: 10;
-    }
-
-    .prev {
-        left: 10px;
-    }
-
-    .next {
-        right: 10px;
-    }
-
-    .product-info {
-        width: 100%;
-        padding-left: 0;
-        margin-top: 20px;
-    }
-
-    .footer-content {
-        flex-direction: column;
-    }
-
-    .footer-left {
-        margin-bottom: 20px;
-    }
-
-    .footer-right {
-        text-align: center;
-    }
-}
-/* Modal styles */
-.cart-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 1001;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(3px);
-}
-
-.modal-content {
-    background-color: white;
-    padding: 40px;
-    border-radius: 2px;
-    max-width: 400px;
-    width: 90%;
-    position: relative;
-    text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.modal-header {
-    text-align: right;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #000;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-}
-
-.close-modal:hover {
-    opacity: 1;
-}
-
-.modal-body {
-    padding: 20px 0;
-}
-
-.success-icon {
-    color: #000;
-    font-size: 32px;
-    margin-bottom: 25px;
-    opacity: 0.8;
-}
-
-.modal-body h2 {
-    font-size: 18px;
-    margin-bottom: 30px;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-    color: #000;
-}
-
-.modal-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.modal-btn {
-    padding: 12px 20px;
-    border: 1px solid #000;
-    background: none;
-    cursor: pointer;
-    font-size: 13px;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    font-weight: 400;
-}
-
-.continue-shopping {
-    background: none;
-    color: #000;
-}
-
-.continue-shopping:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.view-cart {
-    background: none;
-    color: #000;
-}
-
-.view-cart:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.checkout {
-    background-color: #000;
-    color: white;
-    border: 1px solid #000;
-}
-
-.checkout:hover {
-    background-color: #333;
-    border-color: #333;
-}
-
-.modal-btn:hover {
-    transform: translateY(-1px);
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .nav-links.active {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .nav-links a {
-        padding: 10px 20px;
-        text-align: left;
-    }
-
-    .menu-toggle {
-    display: block;
-    font-size: 18px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    color: #000;
-}
-
-    .nav-left {
-        order: -1;
-        min-width: auto;
-    }
-
-    .nav-center {
-        flex: 1;
-        text-align: center;
-    }
-
-    .nav-right {
-        order: 1;
-        min-width: auto;
-        gap: 15px;
-    }
-
-    .nav-right a {
-        font-size: 16px;
-        margin-left: 0;
-    }
-}
-/* Reset i osnovni stilovi - zadržati postojeće */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Raleway', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fff;
-}
-
-/* Header i navigacija - zadržati postojeće */
-header {
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-}
-
-/* Postojeći nav stilovi ostaju isti */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 5%;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-/* ... ostali postojeći nav stilovi ... */
-
-/* NOVI PRODUCT PAGE STILOVI */
+/* Product page styles */
 .product-page {
     padding: 40px 20px;
     max-width: 1400px;
@@ -720,6 +56,27 @@ nav {
     object-fit: cover;
 }
 
+.slider-button {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
 .image-dots {
     position: absolute;
     bottom: 20px;
@@ -743,8 +100,8 @@ nav {
 }
 
 /* Product Info */
-.product-header {
-    margin-bottom: 40px;
+.product-info {
+    width: 100%;
 }
 
 .product-header h1 {
@@ -764,9 +121,10 @@ nav {
 .price {
     font-size: 24px;
     font-weight: 400;
+    margin-top: 20px;
 }
 
-/* Essence Bar */
+/* Product Essence */
 .product-essence {
     margin: 30px 0;
     padding: 20px 0;
@@ -794,11 +152,14 @@ nav {
 }
 
 /* Product Description */
+.product-description {
+    margin: 30px 0;
+}
+
 .main-desc {
     font-size: 15px;
     line-height: 1.8;
     color: #444;
-    margin: 30px 0;
 }
 
 /* Product Attributes */
@@ -832,158 +193,49 @@ nav {
     color: #666;
 }
 
-/* Tabs */
-.product-details-tabs {
-    margin: 60px 0;
-}
-
-.tabs {
+/* Product Actions */
+.product-actions {
     display: flex;
-    gap: 2px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #eee;
+    align-items: center;
+    margin-top: 25px;
+    gap: 15px;
 }
 
-.tab {
-    padding: 15px 30px;
+.add-to-cart {
+    background-color: #000;
+    color: white;
+    border: 1px solid #000;
+    padding: 12px 28px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    min-width: 180px;
+}
+
+.add-to-cart:hover {
+    background-color: #333;
+    border-color: #333;
+}
+
+.like-button {
     background: none;
     border: none;
-    font-size: 14px;
     cursor: pointer;
-    position: relative;
-    color: #666;
-    transition: color 0.3s ease;
-}
-
-.tab.active {
-    color: #000;
-}
-
-.tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #000;
-}
-
-.tab-content {
-    display: none;
-    padding: 30px 0;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-.content-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Instructions Grid */
-.instruction-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.instruction-item {
-    text-align: center;
-    padding: 20px;
-    background-color: #f8f8f8;
-}
-
-.instruction-item i {
     font-size: 24px;
-    margin-bottom: 15px;
-    color: #000;
-    opacity: 0.8;
+    color: #ccc;
+    transition: color 0.3s;
+    padding: 8px;
 }
 
-.instruction-item h4 {
-    font-size: 16px;
-    margin-bottom: 10px;
+.like-button:hover,
+.like-button.liked {
+    color: #ff6b6b;
 }
 
-.instruction-item p {
-    font-size: 14px;
-    color: #666;
-}
-
-/* Related Content */
-.related-content {
-    margin-top: 80px;
-    padding-top: 60px;
-    border-top: 1px solid #eee;
-}
-
-.content-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
-    margin-top: 40px;
-}
-
-.video-feature {
-    position: relative;
-}
-
-.video-container {
-    position: relative;
-    cursor: pointer;
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
-
-.play-button i {
-    color: white;
-    font-size: 24px;
-}
-
-.video-info {
-    margin-top: 20px;
-}
-
-.content-tag {
-    display: inline-block;
-    padding: 4px 12px;
-    background-color: #f0f0f0;
-    font-size: 12px;
-    margin-bottom: 10px;
-}
-
-.watch-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 15px;
-    font-size: 14px;
-    color: #000;
-    transition: opacity 0.3s ease;
-}
-
-.watch-link:hover {
-    opacity: 0.7;
-}
-
-/* Cart Modal - postojeći stilovi ostaju isti */
+/* Cart Modal */
 .cart-modal {
     display: none;
     position: fixed;
@@ -998,328 +250,89 @@ nav {
     backdrop-filter: blur(3px);
 }
 
-/* ... ostatak postojećih modal stilova ... */
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .product-display {
-        gap: 40px;
-    }
-    
-    .content-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .product-display {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .product-attributes {
-        grid-template-columns: 1fr;
-    }
-
-    .instruction-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tabs {
-        flex-wrap: wrap;
-    }
-
-    .tab {
-        flex: 1;
-        min-width: 120px;
-        padding: 12px 15px;
-        text-align: center;
-    }
-}
-/* Luxury Scent Profile Styles */
-.scent-profile {
-    padding: 60px 40px;
-    background-color: #fff;
-    border: 1px solid #eee;
-    margin: 60px 0;
-}
-
-/* Header Styles */
-.scent-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.scent-header h2 {
-    font-size: 32px;
-    font-weight: 300;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-    color: #1a1a1a;
-}
-
-.scent-subtitle {
-    font-size: 14px;
-    color: #666;
-    font-weight: 300;
-    letter-spacing: 1px;
-}
-
-/* Journey Styles */
-.scent-journey {
+.modal-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 2px;
+    max-width: 400px;
+    width: 90%;
     position: relative;
-    padding: 40px 0;
-    margin-bottom: 80px;
+    text-align: center;
 }
 
-.journey-line {
+.modal-header {
+    text-align: right;
     position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #ddd, transparent);
+    top: 20px;
+    right: 20px;
 }
 
-.journey-steps {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.journey-step {
-    text-align: center;
-    position: relative;
-    flex: 1;
-}
-
-.step-time {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.step-dot {
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    border: 2px solid #000;
-    border-radius: 50%;
-    margin: 0 auto 15px;
-    position: relative;
-    z-index: 2;
-}
-
-.step-icon {
-    width: 50px;
-    height: 50px;
-    background: #f8f8f8;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 15px;
-    transition: transform 0.3s ease;
-}
-
-.step-icon i {
-    font-size: 24px;
-    color: #1a1a1a;
-}
-
-.step-content h3 {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-
-.step-content p {
-    font-size: 13px;
-    color: #666;
-}
-
-/* Scent Cards */
-.scent-details {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-bottom: 80px;
-}
-
-.scent-card {
-    background: #fff;
-    border: 1px solid #eee;
-    padding: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.scent-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.card-header {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.card-icon {
-    width: 60px;
-    height: 60px;
-    background: #f8f8f8;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 15px;
-}
-
-.card-icon i {
-    font-size: 28px;
-    color: #1a1a1a;
-}
-
-.note-type {
-    display: inline-block;
-    padding: 4px 12px;
-    background: #f8f8f8;
-    border-radius: 12px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #666;
-    margin-top: 10px;
-}
-
-.note-characteristics {
-    margin-top: 25px;
-    padding-top: 25px;
-    border-top: 1px solid #eee;
-}
-
-.characteristic {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.characteristic .label {
-    font-size: 12px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.intensity-dots {
-    display: flex;
-    gap: 4px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #eee;
-}
-
-.dot.active {
-    background: #1a1a1a;
-}
-
-/* Experience Timeline */
-.scent-experience {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.experience-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.experience-header h3 {
+.close-modal {
+    background: none;
+    border: none;
     font-size: 20px;
-    font-weight: 400;
-    margin-bottom: 10px;
+    cursor: pointer;
+    color: #000;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
 }
 
-.experience-header p {
-    font-size: 14px;
-    color: #666;
+.close-modal:hover {
+    opacity: 1;
 }
 
-.experience-timeline {
-    padding: 40px 0;
+.modal-body {
+    padding: 20px 0;
 }
 
-.timeline-track {
+.success-icon {
+    color: #000;
+    font-size: 32px;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+.modal-body h2 {
+    font-size: 18px;
     margin-bottom: 30px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
-.track-line {
-    height: 2px;
-    background: #eee;
-    position: relative;
-}
-
-.track-markers {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.track-markers span {
-    font-size: 12px;
-    color: #666;
-}
-
-.scent-layers {
+.modal-buttons {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
 }
 
-.layer {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.layer-label {
-    width: 100px;
+.modal-btn {
+    padding: 12px 20px;
+    border: 1px solid #000;
+    background: none;
+    cursor: pointer;
     font-size: 13px;
-    text-align: right;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 400;
 }
 
-.layer-intensity {
-    flex: 1;
-    height: 6px;
-    background: #f8f8f8;
-    border-radius: 3px;
-    position: relative;
-    overflow: hidden;
+.continue-shopping {
+    color: #000;
 }
 
-.layer-intensity::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: #1a1a1a;
-    opacity: 0.1;
+.continue-shopping:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
-.bergamot .layer-intensity::after {
-    width: 90%;
-    animation: fadeWidth 1s ease-out;
+.view-cart {
+    color: #000;
 }
 
-.ylang .layer-intensity::after {
-    width: 75%;
-    animation: fadeWidth
+.view-cart:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.checkout {
+    background-color: #000;
+    color
