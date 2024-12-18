@@ -38,13 +38,19 @@
                 <a href="../index.html" class="logo">Svijeće Craft-shop</a>
             </div>
             <div class="nav-right">
-                <a href="../favoriti.html" aria-label="Favoriti"><i class="fas fa-heart"></i></a>
-               <span id="favorite-count">0</span> 
+                <div class="icon-wrapper">
+                    <a href="../favoriti.html" class="icon-link" aria-label="Favoriti">
+                        <i class="fas fa-heart"></i>
+                        <span class="count-badge" id="favorite-count">0</span>
+                    </a>
+                </div>
                 <a href="../login.html" aria-label="Prijava"><i class="fas fa-user"></i></a>
-                <a href="../kosarica.html" class="cart-icon-wrapper" aria-label="Košarica">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count">0</span>
-                </a>
+                <div class="icon-wrapper">
+                    <a href="../kosarica.html" class="icon-link" aria-label="Košarica">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="count-badge cart-count">0</span>
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
@@ -137,44 +143,45 @@
             </div>
         </div>
 
-    <div class="related-content">
-        <h2>Otkrijte više</h2>
-        <div class="content-grid">
-            <div class="video-feature">
-                <div class="video-container">
-                    <img src="/api/placeholder/800/450" alt="Video thumbnail" class="video-thumbnail">
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
+        <div class="related-content">
+            <h2>Otkrijte više</h2>
+            <div class="content-grid">
+                <div class="video-feature">
+                    <div class="video-container">
+                        <img src="/api/placeholder/800/450" alt="Video thumbnail" class="video-thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <span class="content-tag">Video</span>
+                        <h3>Proces izrade Brijuni svijeće</h3>
+                        <p>Pogledajte umjetnost izrade naših ručno rađenih svijeća</p>
+                        <a href="../blog/brijuni-proces.html" class="watch-link">
+                            Pogledaj video
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="video-info">
-                    <span class="content-tag">Video</span>
-                    <h3>Proces izrade Brijuni svijeće</h3>
-                    <p>Pogledajte umjetnost izrade naših ručno rađenih svijeća</p>
-                    <a href="../blog/brijuni-proces.html" class="watch-link">
-                        Pogledaj video
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="complementary-products">
-                <h3>Upotpunite doživljaj</h3>
-                <div class="product-suggestions">
-                    <div class="suggestion-card">
-                        <img src="/api/placeholder/200/200" alt="Drveno postolje" />
-                        <h4>Drveno postolje</h4>
-                        <p>25 BAM</p>
-                    </div>
-                    <div class="suggestion-card">
-                        <img src="/api/placeholder/200/200" alt="Mermerno postolje" />
-                        <h4>Mermerno postolje</h4>
-                        <p>35 BAM</p>
+                
+                <div class="complementary-products">
+                    <h3>Upotpunite doživljaj</h3>
+                    <div class="product-suggestions">
+                        <div class="suggestion-card">
+                            <img src="/api/placeholder/200/200" alt="Drveno postolje" />
+                            <h4>Drveno postolje</h4>
+                            <p>25 BAM</p>
+                        </div>
+                        <div class="suggestion-card">
+                            <img src="/api/placeholder/200/200" alt="Mermerno postolje" />
+                            <h4>Mermerno postolje</h4>
+                            <p>35 BAM</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <div class="cart-modal" id="cartModal">
         <div class="modal-content">
@@ -192,7 +199,7 @@
             </div>
         </div>
     </div>
-</main>
+
     <footer>
         <div class="footer-content">
             <div class="footer-left">
@@ -231,8 +238,7 @@
             <p>&copy; 2024 Svijeća Craft-shop. Sva prava pridržana.</p>
         </div>
     </footer>
-   <script src="/js/script.js"></script>
-    
+
+    <script src="/js/script.js"></script>
 </body>
 </html>
-</html>               
