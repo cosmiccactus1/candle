@@ -21,12 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const favoriteCountElement = document.getElementById('favorite-count');
     const dots = document.querySelectorAll('.dot');
     
+    // Provjera trenutne stranice za ispravne putanje
+    const isProductPage = window.location.pathname.includes('products/');
+    const imagePath = isProductPage ? '../images/' : 'images/';
+    const redirectPath = isProductPage ? '../' : '';
+
     // Trenutni proizvod - podaci o proizvodu koji se prikazuje
     const currentProduct = {
         id: 'brijuni-svijeca',
         name: 'Brijuni svijeća',
         price: '35',
-        image: '../images/svijeća1.jpg',
+        image: `${imagePath}svijeća1.jpg`,
         description: 'Luksuzna aromatična svijeća',
         scents: ['Ylang Ylang', 'Sandalwood', 'Bergamot']
     };
@@ -112,26 +117,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateFavoriteCount() {
         if (!favoriteCountElement) return;
+        console.log("Updating favorite count");
         
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        console.log("Number of favorites:", favorites.length);
+        
         favoriteCountElement.textContent = favorites.length;
         favoriteCountElement.style.display = favorites.length > 0 ? 'flex' : 'none';
     }
 
     function toggleFavorite() {
+        console.log("Toggle favorite called");
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const favoriteProduct = {
             ...currentProduct,
             addedAt: new Date().toISOString(),
-            pageUrl: window.location.pathname
+            pageUrl: `${redirectPath}products/product1.html`
         };
         
         const existingIndex = favorites.findIndex(item => item.id === currentProduct.id);
         
         if (existingIndex === -1) {
             favorites.push(favoriteProduct);
+            console.log("Added to favorites");
         } else {
             favorites.splice(existingIndex, 1);
+            console.log("Removed from favorites");
         }
         
         localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -169,17 +180,20 @@ document.addEventListener('DOMContentLoaded', function() {
     if (continueShopping) continueShopping.addEventListener('click', hideCartModal);
     if (viewCart) {
         viewCart.addEventListener('click', () => {
-            window.location.href = '../kosarica.html';
+            window.location.href = `${redirectPath}kosarica.html`;
         });
     }
     if (checkout) {
         checkout.addEventListener('click', () => {
-            window.location.href = '../checkout.html';
+            window.location.href = `${redirectPath}checkout.html`;
         });
     }
 
     // Favoriti event listener
-    if (likeButton) likeButton.addEventListener('click', toggleFavorite);
+    if (likeButton) {
+        likeButton.addEventListener('click', toggleFavorite);
+        console.log("Like button event listener added");
+    }
 
     // Mobilni meni
     if (menuToggle && navLinks) {
