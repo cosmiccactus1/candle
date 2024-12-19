@@ -37,14 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
             favoritesContainer.style.display = 'grid';
             favoritesContainer.innerHTML = favorites.map(product => `
                 <div class="favorite-item" data-id="${product.id}">
-                    <img src="${product.image}" alt="${product.name}">
+                    <img src="${product.image.startsWith('http') ? product.image : `../${product.image}`}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p class="price">${product.price} BAM</p>
                     <div class="favorite-actions">
                         <button class="remove-favorite" onclick="removeFavorite('${product.id}')">
                             <i class="fas fa-trash"></i>
                         </button>
-                        <a href="${product.pageUrl}" class="view-product">
+                        <a href="../${product.pageUrl}" class="view-product">
                             Pogledaj proizvod
                         </a>
                     </div>
