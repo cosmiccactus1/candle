@@ -21,18 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Provjera lokacije
     const isProductPage = window.location.pathname.includes('products/');
-    const isCollectionPage = window.location.pathname.includes('kolekcija.html');
-    const isFavoritesPage = window.location.pathname.includes('favoriti.html');
-
+    
     // Helper funkcija za putanje
-    function getImagePath(filename) {
-        if (isProductPage) return `../images/${filename}`;
-        return `images/${filename}`;
-    }
-
     function getPagePath(filename) {
-        if (isProductPage) return `../${filename}`;
-        return filename;
+        return isProductPage ? `../${filename}` : filename;
     }
 
     // Definicija proizvoda
@@ -41,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'brijuni-svijeca',
             name: 'Brijuni svijeća',
             price: '35',
-            baseImage: 'svijeća1.jpg',
+            image: 'images/svijeća1.jpg',
             description: 'Luksuzna aromatična svijeća',
             pageUrl: 'products/product1.html'
         },
@@ -49,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'nedjeljni-sabah',
             name: 'Nedjeljni Sabah',
             price: '45',
-            baseImage: 'svijeca2.jpg',
+            image: 'images/svijeca2.jpg',
             description: 'Aromatična svijeća',
             pageUrl: 'products/product2.html'
         },
@@ -57,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'planinska-kuca',
             name: 'Planinska Kuća',
             price: '50',
-            baseImage: 'svijeca3.jpg',
+            image: 'images/svijeca3.jpg',
             description: 'Aromatična svijeća',
             pageUrl: 'products/product3.html'
         },
@@ -65,20 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'zumbul',
             name: 'Zumbul',
             price: '55',
-            baseImage: 'svijeca4.jpg',
+            image: 'images/svijeca4.jpg',
             description: 'Aromatična svijeća',
             pageUrl: 'products/product4.html'
         }
     };
-
-    // Funkcija za dohvat punih putanja proizvoda
-    function getProductWithPaths(product) {
-        return {
-            ...product,
-            image: getImagePath(product.baseImage),
-            pageUrl: getPagePath(product.pageUrl)
-        };
-    }
 
     // Slider funkcije
     let currentIndex = 0;
@@ -131,12 +114,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addToCart() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const currentProduct = getProductWithPaths(products['brijuni-svijeca']);
+        const productId = 'brijuni-svijeca';
+        const product = products[productId];
+        
         cartItems.push({
-            ...currentProduct,
+            ...product,
             quantity: 1,
             addedAt: new Date().toISOString()
         });
+        
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         updateCartCount();
         showCartModal();
@@ -172,6 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function toggleFavorite(productId) {
+        console.log('Toggling favorite for:', productId);
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const product = products[productId];
         
@@ -183,7 +170,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const existingIndex = favorites.findIndex(item => item.id === productId);
         
         if (existingIndex === -1) {
-            favorites.push(getProductWithPaths(product));
+            const productToAdd = {
+                ...product,
+                addedAt: new Date().toISOString()
+            };
+            favorites.push(productToAdd);
             console.log('Added to favorites');
         } else {
             favorites.splice(existingIndex, 1);
@@ -231,12 +222,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Slider kontrole i ostale inicijalizacije
+    // Slider kontrole
     if (prevButton) prevButton.addEventListener('click', showPrevImage);
     if (nextButton) nextButton.addEventListener('click', showNextImage);
 
+    // Touch events za slider
     if (sliderContainer) {
         let touchStartX = 0;
+        
         sliderContainer.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
         });
@@ -244,6 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sliderContainer.addEventListener('touchend', (e) => {
             const touchEndX = e.changedTouches[0].clientX;
             const diff = touchStartX - touchEndX;
+
             if (Math.abs(diff) > 50) {
                 if (diff > 0) showNextImage();
                 else showPrevImage();
@@ -251,17 +245,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Mobilni meni
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+            menuToggle.setAttribute('aria-expanded', 
+                navLinks.classList.contains('active'));
         });
     }
 
+    // Dots za slider
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => showImage(index));
     });
 
+    // Window resize
     window.addEventListener('resize', () => showImage(currentIndex));
 
     // Inicijalizacija
