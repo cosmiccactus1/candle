@@ -21,11 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Provjera trenutne stranice
     const isProductPage = window.location.pathname.includes('products/');
+    const isCollectionPage = window.location.pathname.includes('kolekcija.html');
     const imagePath = isProductPage ? '../images/' : 'images/';
     const redirectPath = isProductPage ? '../' : '';
 
     // Definicija proizvoda
-   const products = {
+    const products = {
         'brijuni-svijeca': {
             id: 'brijuni-svijeca',
             name: 'Brijuni svijeća',
@@ -161,13 +162,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const existingIndex = favorites.findIndex(item => item.id === productId);
         
+        // Dinamično određivanje putanje slike
+        const dynamicImagePath = isProductPage 
+            ? '../images/svijeća1.jpg' 
+            : isCollectionPage 
+                ? 'images/svijeća1.jpg' 
+                : 'images/svijeća1.jpg';
+
         if (existingIndex === -1) {
             favorites.push({
                 ...product,
                 addedAt: new Date().toISOString(),
-                pageUrl: isProductPage ? 
-                    `../products/product1.html` : 
-                    `products/product1.html`
+                pageUrl: isProductPage 
+                    ? '../products/product1.html' 
+                    : 'products/product1.html',
+                image: dynamicImagePath  // Dodajte dinamičku putanju slike
             });
             console.log('Added to favorites');
         } else {
