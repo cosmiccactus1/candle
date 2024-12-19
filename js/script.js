@@ -25,12 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const redirectPath = isProductPage ? '../' : '';
 
     // Definicija proizvoda
-    const products = {
+   const products = {
         'brijuni-svijeca': {
             id: 'brijuni-svijeca',
             name: 'Brijuni svijeća',
             price: '35',
-            image: `${imagePath}svijeća1.jpg`,
+            image: isProductPage ? '../images/svijeća1.jpg' : 
+                   isCollectionPage ? 'images/svijeća1.jpg' : 
+                   'images/svijeća1.jpg',
             description: 'Luksuzna aromatična svijeća'
         },
         'nedjeljni-sabah': {
