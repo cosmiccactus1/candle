@@ -56,6 +56,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Slider funkcije
+    let currentIndex = 0;
+    const totalImages = images?.length || 0;
+
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function showImage(index) {
+        if (sliderContainer && window.innerWidth < 768) {
+            sliderContainer.style.transform = `translateX(-${index * 100}%)`;
+            currentIndex = index;
+            updateDots();
+        }
+    }
+
+    function showNextImage() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        showImage(currentIndex);
+    }
+
+    function showPrevImage() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        showImage(currentIndex);
+    }
+
     // Funkcije za košaricu
     function updateCartCount() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -79,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addToCart() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const currentProduct = products['brijuni-svijeca'];
+        const currentProduct = isProductPage ? products['brijuni-svijeca'] : products['brijuni-svijeca'];
         cartItems.push({
             ...currentProduct,
             quantity: 1,
@@ -93,8 +121,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Funkcije za favorite
     function updateFavoriteStatus() {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        likeButtons.forEach(button => {
+        
+        document.querySelectorAll('.like-button').forEach(button => {
             const productId = button.dataset.productId;
+            if (!productId) return;
+            
             const heartIcon = button.querySelector('i');
             if (favorites.find(item => item.id === productId)) {
                 heartIcon.classList.remove('far');
@@ -117,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function toggleFavorite(productId) {
+        console.log('Toggling favorite for:', productId);
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const product = products[productId];
         
@@ -131,10 +163,14 @@ document.addEventListener('DOMContentLoaded', function() {
             favorites.push({
                 ...product,
                 addedAt: new Date().toISOString(),
-                pageUrl: isProductPage ? `product${productId}.html` : `products/product${productId}.html`
+                pageUrl: isProductPage ? 
+                    `../products/product1.html` : 
+                    `products/product1.html`
             });
+            console.log('Added to favorites');
         } else {
             favorites.splice(existingIndex, 1);
+            console.log('Removed from favorites');
         }
         
         localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -167,15 +203,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listener za favorite
-    likeButtons.forEach(button => {
+    // Event listeneri za sve like buttone
+    document.querySelectorAll('.like-button').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             const productId = button.dataset.productId;
+            console.log('Like button clicked for:', productId);
             toggleFavorite(productId);
         });
     });
+
+    // Slider kontrole
+    if (prevButton) prevButton.addEventListener('click', showPrevImage);
+    if (nextButton) nextButton.addEventListener('click', showNextImage);
+
+    // Touch events za slider
+    if (sliderContainer) {
+        let touchStartX = 0;
+        
+        sliderContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        sliderContainer.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) showNextImage();
+                else showPrevImage();
+            }
+        });
+    }
 
     // Mobilni meni
     if (menuToggle && navLinks) {
@@ -185,7 +245,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Dots za slider
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showImage(index));
+    });
+
+    // Window resize
+    window.addEventListener('resize', () => showImage(currentIndex));
+
     // Inicijalizacija
+    showImage(0);
     updateCartCount();
     updateFavoriteStatus();
     updateFavoriteCount();
