@@ -1,1 +1,99 @@
+/* Kolekcija grid */
+.kolekcija-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
+.kolekcija-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.kolekcija-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.kolekcija-item:hover img {
+    transform: scale(1.05);
+}
+
+.svijeca-naziv {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.svijeca-cijena {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Overlay za favorite */
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 15px;
+}
+
+.kolekcija-item:hover .product-overlay {
+    opacity: 1;
+}
+
+.like-button {
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.like-button:hover {
+    transform: scale(1.1);
+}
+
+.like-button.liked {
+    background: #ff6b6b;
+    color: white;
+}
+
+.like-button i {
+    font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .kolekcija-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .kolekcija-item img {
+        height: 250px;
+    }
+}
