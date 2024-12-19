@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Favoriti JS učitan");
+    // Dodaj ovo odmah nakon console.log("DOM je učitan!");
+function resetCounts() {
+    if (window.location.pathname.includes('products/')) {
+        localStorage.removeItem('favorites');
+        localStorage.removeItem('cartItems');
+        updateFavoriteCount();
+        updateCartCount();
+    }
+}
+
+resetCounts();
     const favoritesContainer = document.querySelector('.favorites-container');
     const emptyFavorites = document.querySelector('.empty-favorites');
     const favoriteCountElement = document.getElementById('favorite-count');
