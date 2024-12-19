@@ -4,6 +4,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const emptyFavorites = document.querySelector('.empty-favorites');
     const favoriteCountElement = document.getElementById('favorite-count');
 
+    // Definiramo proizvod
+    const productData = {
+        id: 'brijuni-svijeca',
+        name: 'Brijuni svijeća',
+        price: '35',
+        image: 'images/svijeća1.jpg',
+        pageUrl: 'products/product1.html'
+    };
+
     function updateFavoriteCount() {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         if (favoriteCountElement) {
@@ -14,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayFavorites() {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        console.log("Učitani favoriti:", favorites); // Za debugiranje
         
         if (favorites.length === 0) {
             if (favoritesContainer) favoritesContainer.style.display = 'none';
@@ -24,15 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (favoritesContainer) {
             favoritesContainer.style.display = 'grid';
             favoritesContainer.innerHTML = favorites.map(product => `
-                <div class="favorite-item" data-id="${product.id}">
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p class="price">${product.price} BAM</p>
+                <div class="favorite-item" data-id="${product.id || 'undefined'}">
+                    <img src="${product.image || 'images/svijeća1.jpg'}" alt="${product.name || 'Svijeća'}">
+                    <h3>${product.name || 'Brijuni svijeća'}</h3>
+                    <p class="price">${product.price || '35'} BAM</p>
                     <div class="favorite-actions">
                         <button class="remove-favorite" onclick="removeFavorite('${product.id}')">
                             <i class="fas fa-trash"></i>
                         </button>
-                        <a href="${product.pageUrl}" class="view-product">
+                        <a href="${product.pageUrl || 'products/product1.html'}" class="view-product">
                             Pogledaj proizvod
                         </a>
                     </div>
