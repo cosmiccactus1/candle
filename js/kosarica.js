@@ -1,9 +1,28 @@
-// kosarica.js
 document.addEventListener('DOMContentLoaded', function() {
+    const sliderContainer = document.querySelector('.slider-container');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const images = document.querySelectorAll('.product-image');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.querySelector('.nav-links');
+    const likeButtons = document.querySelectorAll('.like-button');
+    const cartCount = document.querySelector('.cart-count');
     const cartContainer = document.querySelector('.cart-container');
-    const checkoutBtn = document.querySelector('.checkout-btn');
+    const addToCartButton = document.querySelector('.add-to-cart');
+    const cartModal = document.querySelector('.cart-modal');
+    const closeModal = document.querySelector('.close-modal');
+    const continueShopping = document.querySelector('.continue-shopping');
+    const viewCart = document.querySelector('.view-cart');
+    const favoriteCountElement = document.getElementById('favorite-count');
+    const dots = document.querySelectorAll('.dot');
 
+    // Provjera lokacije
+    const isProductPage = window.location.pathname.includes('products/');
+
+    // Funkcije za košaricu
     function renderCart() {
+        if (!cartContainer) return;
+
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         let cartHTML = '';
         let total = 0;
@@ -11,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (cartItems.length === 0) {
             cartHTML = '<div class="empty-cart"><p>Vaš ceger je prazan</p></div>';
         } else {
+            cartHTML += '<div class="cart-items">';
             cartItems.forEach(item => {
                 const itemTotal = item.price * (item.quantity || 1);
                 total += itemTotal;
@@ -34,26 +54,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
             });
+            cartHTML += '</div>';
+            cartHTML += `
+                <div class="checkout-section">
+                    <div class="total">
+                        <span>Ukupno:</span>
+                        <span class="total-price">${total} BAM</span>
+                    </div>
+                    <button class="checkout-btn">Nastavite na plaćanje</button>
+                </div>
+            `;
         }
 
-        cartContainer.innerHTML = `
-            <div class="cart-items">
-                ${cartHTML}
-            </div>
-            <div class="checkout-section">
-                <div class="total">
-                    <span>Ukupno:</span>
-                    <span class="total-price">${total} BAM</span>
-                </div>
-                <button class="checkout-btn" ${cartItems.length === 0 ? 'disabled' : ''}>
-                    Nastavi na plaćanje
-                </button>
-            </div>
-        `;
-
-        // Dodaj event listenere za količinu i brisanje
-        addQuantityListeners();
-        addRemoveListeners();
+        cartContainer.innerHTML = cartHTML;
+        addEventListeners();
     }
 
     function updateQuantity(productId, newQuantity) {
@@ -76,46 +90,89 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCartCount();
     }
 
-    function addQuantityListeners() {
+    function addToCart() {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const productId = 'brijuni-svijeca';
+        const product = products[productId];
+        
+        if (product) {
+            cartItems.push({
+                ...product,
+                quantity: 1,
+                addedAt: new Date().toISOString()
+            });
+            
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCount();
+            showCartModal();
+        }
+    }
+
+    function updateCartCount() {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        if (cartCount) {
+            cartCount.textContent = cartItems.length;
+            cartCount.style.display = cartItems.length > 0 ? 'flex' : 'none';
+        }
+    }
+
+    // Funkcije za favorite
+    function updateFavoriteCount() {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        if (favoriteCountElement) {
+            favoriteCountElement.textContent = favorites.length;
+            favoriteCountElement.style.display = favorites.length > 0 ? 'flex' : 'none';
+        }
+    }
+
+    function toggleFavorite(productId) {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const product = products[productId];
+        
+        if (!product) return;
+
+        const existingIndex = favorites.findIndex(item => item.id === productId);
+        
+        if (existingIndex === -1) {
+            favorites.push({
+                ...product,
+                addedAt: new Date().toISOString()
+            });
+        } else {
+            favorites.splice(existingIndex, 1);
+        }
+        
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        updateFavoriteStatus();
+        updateFavoriteCount();
+    }
+
+    function updateFavoriteStatus() {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        
+        document.querySelectorAll('.like-button').forEach(button => {
+            const productId = button.dataset.productId;
+            if (!productId) return;
+            
+            const heartIcon = button.querySelector('i');
+            if (favorites.find(item => item.id === productId)) {
+                heartIcon.classList.remove('far');
+                heartIcon.classList.add('fas');
+                button.classList.add('liked');
+            } else {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+                button.classList.remove('liked');
+            }
+        });
+    }
+
+    // Event listeneri
+    function addEventListeners() {
+        // Quantity buttons
         document.querySelectorAll('.quantity-selector').forEach(selector => {
             const product = selector.closest('.selected-product');
             const productId = product.dataset.id;
             const input = selector.querySelector('input');
             const minusBtn = selector.querySelector('.minus');
-            const plusBtn = selector.querySelector('.plus');
-
-            input.addEventListener('change', () => {
-                updateQuantity(productId, parseInt(input.value));
-            });
-
-            minusBtn.addEventListener('click', () => {
-                updateQuantity(productId, parseInt(input.value) - 1);
-            });
-
-            plusBtn.addEventListener('click', () => {
-                updateQuantity(productId, parseInt(input.value) + 1);
-            });
-        });
-    }
-
-    function addRemoveListeners() {
-        document.querySelectorAll('.remove-item').forEach(button => {
-            const product = button.closest('.selected-product');
-            const productId = product.dataset.id;
-            
-            button.addEventListener('click', () => {
-                removeItem(productId);
-            });
-        });
-    }
-
-    // Inicijalno renderiranje košarice
-    renderCart();
-
-    // Event listener za checkout button
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            window.location.href = 'checkout.html';
-        });
-    }
-});
+            const
