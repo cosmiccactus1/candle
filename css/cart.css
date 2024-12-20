@@ -36,11 +36,42 @@
 }
 
 .selected-product {
+    position: relative;
     display: flex;
     align-items: center;
     padding: 20px;
     border-bottom: 1px solid #f5f5f5;
     margin-bottom: 30px;
+}
+
+.remove-item {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+    background: rgba(0,0,0,0.1);
+}
+
+.remove-item i {
+    font-size: 12px;
+    color: #666;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 40px;
+    color: #666;
 }
 
 .selected-product img {
@@ -154,6 +185,11 @@
 .checkout-btn:hover {
     background: #444;
     transform: translateY(-2px);
+}
+
+.checkout-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* Dodatne sekcije */
