@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="total-price">${total} BAM</span>
                 </div>
                 <button class="checkout-btn" ${cartItems.length === 0 ? 'disabled' : ''}>
-                    Nastavi na plaćanje
+                    Nastavi na narudžbu
                 </button>
             </div>
         `;
@@ -70,52 +70,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function removeItem(productId) {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const updatedCart = cartItems.filter(item => item.id !== productId);
-        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-        renderCart();
-        updateCartCount();
-    }
-
-    function addQuantityListeners() {
-        document.querySelectorAll('.quantity-selector').forEach(selector => {
-            const product = selector.closest('.selected-product');
-            const productId = product.dataset.id;
-            const input = selector.querySelector('input');
-            const minusBtn = selector.querySelector('.minus');
-            const plusBtn = selector.querySelector('.plus');
-
-            input.addEventListener('change', () => {
-                updateQuantity(productId, parseInt(input.value));
-            });
-
-            minusBtn.addEventListener('click', () => {
-                updateQuantity(productId, parseInt(input.value) - 1);
-            });
-
-            plusBtn.addEventListener('click', () => {
-                updateQuantity(productId, parseInt(input.value) + 1);
-            });
-        });
-    }
-
-    function addRemoveListeners() {
-        document.querySelectorAll('.remove-item').forEach(button => {
-            const product = button.closest('.selected-product');
-            const productId = product.dataset.id;
-            
-            button.addEventListener('click', () => {
-                removeItem(productId);
-            });
-        });
-    }
-
-    // Inicijalno renderiranje košarice
-    renderCart();
-
-    // Event listener za checkout button
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            window.location.href = 'checkout.html';
-        });
-    }
-});
+        const update
