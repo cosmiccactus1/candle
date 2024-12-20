@@ -1,5 +1,7 @@
+// kosarica.js
 document.addEventListener('DOMContentLoaded', function() {
     const cartContainer = document.querySelector('.cart-container');
+    const checkoutBtn = document.querySelector('.checkout-btn');
 
     function renderCart() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -7,51 +9,51 @@ document.addEventListener('DOMContentLoaded', function() {
         let total = 0;
 
         if (cartItems.length === 0) {
-            cartHTML = `
-                <div class="empty-cart">
-                    <p>Vaš ceger je prazan</p>
-                    <a href="kolekcija.html" class="continue-shopping">Pogledajte našu kolekciju</a>
-                </div>`;
-            cartContainer.innerHTML = cartHTML;
-            return;
+            cartHTML = '<div class="empty-cart"><p>Vaš ceger je prazan</p></div>';
+        } else {
+            cartItems.forEach(item => {
+                const itemTotal = item.price * (item.quantity || 1);
+                total += itemTotal;
+                cartHTML += `
+                    <div class="selected-product" data-id="${item.id}">
+                        <div class="remove-item">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="product-details">
+                            <div>
+                                <h2>${item.name}</h2>
+                                <p class="price">${item.price} BAM</p>
+                            </div>
+                            <div class="quantity-selector">
+                                <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                                <input type="number" value="${item.quantity || 1}" min="1">
+                                <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
         }
 
-        // Ako ima proizvoda u košarici
-        cartHTML += '<div class="cart-items">';
-        cartItems.forEach(item => {
-            const itemTotal = item.price * (item.quantity || 1);
-            total += itemTotal;
-            cartHTML += `
-                <div class="selected-product" data-id="${item.id}">
-                    <div class="remove-item">
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="product-details">
-                        <div>
-                            <h2>${item.name}</h2>
-                            <p class="price">${item.price} BAM</p>
-                        </div>
-                        <div class="quantity-selector">
-                            <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
-                            <input type="number" value="${item.quantity || 1}" min="1">
-                            <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-        cartHTML += `</div>
+        cartContainer.innerHTML = `
+            <div class="cart-items">
+                ${cartHTML}
+            </div>
             <div class="checkout-section">
                 <div class="total">
                     <span>Ukupno:</span>
                     <span class="total-price">${total} BAM</span>
                 </div>
-                <button class="checkout-btn">Nastavi na narudžbu</button>
-            </div>`;
+                <button class="checkout-btn" ${cartItems.length === 0 ? 'disabled' : ''}>
+                    Nastavi na plaćanje
+                </button>
+            </div>
+        `;
 
-        cartContainer.innerHTML = cartHTML;
-        addEventListeners();
+        // Dodaj event listenere za količinu i brisanje
+        addQuantityListeners();
+        addRemoveListeners();
     }
 
     function updateQuantity(productId, newQuantity) {
@@ -74,17 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCartCount();
     }
 
-    function updateCartCount() {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const cartCount = document.querySelector('.cart-count');
-        if (cartCount) {
-            cartCount.textContent = cartItems.length;
-            cartCount.style.display = cartItems.length > 0 ? 'flex' : 'none';
-        }
-    }
-
-    function addEventListeners() {
-        // Quantity buttons
+    function addQuantityListeners() {
         document.querySelectorAll('.quantity-selector').forEach(selector => {
             const product = selector.closest('.selected-product');
             const productId = product.dataset.id;
@@ -99,3 +91,31 @@ document.addEventListener('DOMContentLoaded', function() {
             minusBtn.addEventListener('click', () => {
                 updateQuantity(productId, parseInt(input.value) - 1);
             });
+
+            plusBtn.addEventListener('click', () => {
+                updateQuantity(productId, parseInt(input.value) + 1);
+            });
+        });
+    }
+
+    function addRemoveListeners() {
+        document.querySelectorAll('.remove-item').forEach(button => {
+            const product = button.closest('.selected-product');
+            const productId = product.dataset.id;
+            
+            button.addEventListener('click', () => {
+                removeItem(productId);
+            });
+        });
+    }
+
+    // Inicijalno renderiranje košarice
+    renderCart();
+
+    // Event listener za checkout button
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            window.location.href = 'checkout.html';
+        });
+    }
+});
