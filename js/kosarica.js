@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="total-price">${total} BAM</span>
                 </div>
                 <button class="checkout-btn" ${cartItems.length === 0 ? 'disabled' : ''}>
-                    Nastavi na plaćanje
+                    Nastavi na narudžbu
                 </button>
             </div>
         `;
@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Dodaj event listenere za količinu i brisanje
         addQuantityListeners();
         addRemoveListeners();
+        addCheckoutListener();
     }
 
     function updateQuantity(productId, newQuantity) {
@@ -74,6 +75,16 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('cartItems', JSON.stringify(updatedCart));
         renderCart();
         updateCartCount();
+    }
+
+    function updateCartCount() {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            const totalItems = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
     }
 
     function addQuantityListeners() {
@@ -109,13 +120,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function addCheckoutListener() {
+        const checkoutBtn = document.querySelector('.checkout-btn');
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', () => {
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                if (cartItems.length > 0) {
+                    window.location.href = 'narudzba.html';
+                } else {
+                    alert('Vaš ceger je prazan!');
+                }
+            });
+        }
+    }
+
     // Inicijalno renderiranje košarice
     renderCart();
-
-    // Event listener za checkout button
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            window.location.href = 'checkout.html';
-        });
-    }
+    updateCartCount();
 });
