@@ -114,15 +114,6 @@ nav {
     font-weight: 300;
 }
 
-.nav-center {
-    flex: 0 1 auto;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin: 0 40px;
-    padding: 0 20px;
-}
-
 .nav-right {
     max-width: 400px;
     flex: 1;
@@ -135,7 +126,22 @@ nav {
 .nav-right a {
     font-size: 18px;
 }
+.nav-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+.nav-logo {
+    height: 30px;
+    width: auto;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
 /* Icon wrapper styles */
 .icon-wrapper {
     position: relative;
