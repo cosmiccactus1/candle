@@ -7,10 +7,10 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-$host = 'localhost';
-$dbname = 'craftanakorisnici';
-$username = 'root';
-$password = '';
+$host = 'sql205.infinityfree.com';
+$dbname = 'if0_37972731_crafthana';
+$username = 'if0_37972731';
+$password = '(tvoj vPanel Password)';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
