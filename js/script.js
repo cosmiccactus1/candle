@@ -45,13 +45,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'Aromatična svijeća',
             pageUrl: 'products/product2.html'
         },
-        'planinska-kuca': {
-            id: 'planinska-kuca',
-            name: 'Planinska Kuća',
-            price: '50',
-            image: 'images/svijeca3.jpg',
-            description: 'Aromatična svijeća',
-            pageUrl: 'products/product3.html'
+        'planinska-koliba': {
+            id: 'planinska-koliba',
+            name: 'Planinska Koliba',
+            price: '16,99',
+            image: 'images/planinskakoliba.jpg',
+            description: 'Mirisna svijeća',
+            pageUrl: 'products/planinskakoliba.html'
         },
         'zumbul': {
             id: 'zumbul',
