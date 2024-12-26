@@ -1,3 +1,4 @@
+// Newsletter form handling
 document.getElementById('newsletterForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -17,9 +18,11 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
         if (data.success) {
             const modal = document.getElementById('newsletter-modal');
             const discountCode = modal.querySelector('.discount-code');
-            discountCode.textContent = data.message.split(': ')[1]; // Uzima samo kod
+            discountCode.textContent = data.message.split(': ')[1]; 
             modal.style.display = 'block';
             document.getElementById('newsletterEmail').value = '';
+        } else {
+            alert(data.message); // Prikazuje grešku ako email već postoji
         }
     })
     .catch(error => {
@@ -28,12 +31,11 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
     });
 });
 
-// Zatvori modal na X
+// Modal close handlers
 document.querySelector('.close').addEventListener('click', function() {
     document.getElementById('newsletter-modal').style.display = 'none';
 });
 
-// Zatvori modal klikom van modala
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('newsletter-modal');
     if (event.target == modal) {
