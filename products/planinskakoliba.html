@@ -1,1 +1,241 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planinska Koliba Svijeća - Svijeća Craft-shop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="discount-banner">
+        <div class="banner-content">
+            <div class="social-icons">
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <a href="../popusti.html" class="discount-text">Kasni jesenji popusti na svijeće - Uštedite do 30%!</a>
+        </div>
+    </div>
 
+    <header>
+        <nav>
+            <div class="nav-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Otvori menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../kolekcija.html">Kolekcija</a>
+                    <a href="../o-nama.html">O nama</a>
+                    <a href="../blog.html">Blog</a>
+                </div>
+            </div>
+            <div class="nav-center">
+                <a href="../index.html" class="logo">Svijeće Craft-shop</a>
+            </div>
+            <div class="nav-right">
+                <div class="icon-wrapper">
+                    <a href="../favoriti.html" class="icon-link" aria-label="Favoriti">
+                        <i class="fas fa-heart"></i>
+                        <span class="count-badge" id="favorite-count">0</span>
+                    </a>
+                </div>
+                <a href="../login.html" aria-label="Prijava"><i class="fas fa-user"></i></a>
+                <div class="icon-wrapper">
+                    <a href="../kosarica.html" class="icon-link" aria-label="Košarica">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="count-badge cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="product-page">
+        <div class="product-breadcrumb">
+            <a href="../index.html">Početna</a>
+            <span>/</span>
+            <a href="../kolekcija.html">Kolekcija</a>
+            <span>/</span>
+            <span>Planinska Koliba</span>
+        </div>
+
+        <div class="product-display">
+            <div class="product-images">
+                <div class="slider-container">
+                    <img src="../images/svijeća1.jpg" alt="Planinska Koliba Svijeća - Pogled sprijeda" class="product-image">
+                    <img src="../images/svijeća1.jpg" alt="Planinska Koliba Svijeća - Ambijentalni prikaz" class="product-image">
+                    <img src="../images/svijeća1.jpg" alt="Planinska Koliba Svijeća - Detalji" class="product-image">
+                </div>
+                <button class="slider-button prev" aria-label="Prethodna slika">&lt;</button>
+                <button class="slider-button next" aria-label="Sljedeća slika">&gt;</button>
+                <div class="image-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="product-header">
+                    <h1>P L A N I N S K A  K O L I B A</h1>
+                    <p class="subtitle">Luksuzna aromatična svijeća</p>
+                    <p class="price">35 BAM</p>
+                </div>
+
+                <div class="product-essence">
+                    <div class="essence-bar">
+                        <div class="essence-item">
+                            <span class="dot"></span>
+                            <span>Myrrh</span>
+                        </div>
+                        <div class="essence-item">
+                            <span class="dot"></span>
+                            <span>Frankincense</span>
+                        </div>
+                        <div class="essence-item">
+                            <span class="dot"></span>
+                            <span>Cedar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-description">
+                    <p class="main-desc">Ručno izrađena luksuzna svijeća koja kombinira drevnu Myrrh smolu, plemeniti Frankincense i topli Cedar. Sa drvenim fitiljem koji nježno pucketa, stvarajući jedinstvenu atmosferu planinske kolibe i luksuza.</p>
+                </div>
+
+                <div class="product-attributes">
+                    <div class="attribute">
+                        <i class="fas fa-leaf"></i>
+                        <div class="attribute-text">
+                            <h3>Prirodni sastojci</h3>
+                            <p>100% čisti sojin vosak</p>
+                        </div>
+                    </div>
+                    <div class="attribute">
+                        <i class="fas fa-clock"></i>
+                        <div class="attribute-text">
+                            <h3>Vrijeme gorenja</h3>
+                            <p>40+ sati</p>
+                        </div>
+                    </div>
+                    <div class="attribute">
+                        <i class="fas fa-fire"></i>
+                        <div class="attribute-text">
+                            <h3>Poseban doživljaj</h3>
+                            <p>Drveni fitilj koji pucketa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-actions">
+                    <button class="add-to-cart">Dodaj u ceger</button>
+                    <button class="like-button" data-product-id="planinska-koliba-svijeca" aria-label="Dodaj u favorite">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="related-content">
+            <h2>Otkrijte više</h2>
+            <div class="content-grid">
+                <div class="video-feature">
+                    <div class="video-container">
+                        <img src="/api/placeholder/800/450" alt="Video thumbnail" class="video-thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <span class="content-tag">Video</span>
+                        <h3>Proces izrade Planinska Koliba svijeće</h3>
+                        <p>Pogledajte umjetnost izrade naših ručno rađenih svijeća</p>
+                        <a href="../blog/planinska-koliba-proces.html" class="watch-link">
+                            Pogledaj video
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="complementary-products">
+                    <h3>Upotpunite doživljaj</h3>
+                    <div class="product-suggestions">
+                        <div class="suggestion-card">
+                            <img src="/api/placeholder/200/200" alt="Drveno postolje" />
+                            <h4>Drveno postolje</h4>
+                            <p>25 BAM</p>
+                        </div>
+                        <div class="suggestion-card">
+                            <img src="/api/placeholder/200/200" alt="Mermerno postolje" />
+                            <h4>Mermerno postolje</h4>
+                            <p>35 BAM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h2>Vaš artikal je dodan u ceger</h2>
+                <div class="modal-buttons">
+                    <button class="modal-btn continue-shopping">Nastavi kupovinu</button>
+                    <button class="modal-btn view-cart">Pogledaj ceger</button>
+                    <button class="modal-btn checkout">Idi na naplatu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p>Email: info@svijece-craft-shop.com</p>
+                    <p>Telefon: +387 33 123 456</p>
+                    <p>Adresa: Glavna ulica 123, Sarajevo</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Brze poveznice</h3>
+                    <ul>
+                        <li><a href="../o-nama.html">O nama</a></li>
+                        <li><a href="../uvjeti-koristenja.html">Uvjeti korištenja</a></li>
+                        <li><a href="../politika-privatnosti.html">Politika privatnosti</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Načini plaćanja</h3>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Svijeća Craft-shop. Sva prava pridržana.</p>
+        </div>
+    </footer>
+<script src="../js/script.js"></script>
+</body>
+</html>
