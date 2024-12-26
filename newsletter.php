@@ -10,7 +10,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 $host = 'sql205.infinityfree.com';
 $dbname = 'if0_37972731_crafthana';
 $username = 'if0_37972731';
-$password = '(tvoj vPanel Password)';
+$password = 'ZxBowTtyKZA';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
