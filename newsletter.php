@@ -8,7 +8,7 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 $host = 'sql205.infinityfree.com';
-$dbname = 'if0_37972731_crafthana';
+$dbname = 'if0_37972731_crathana';  // primijeti ispravku u imenu
 $username = 'if0_37972731';
 $password = 'ZxBowTtyKZA';
 
