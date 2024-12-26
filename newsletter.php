@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        $kod_popusta = 'CRAFTANA' . rand(1000, 9999);
+       $kod_popusta = 'CRAFTHANA' . rand(1000, 9999);
         
         $stmt = $pdo->prepare("INSERT INTO korisnici (email, kod_popusta) VALUES (?, ?)");
         $stmt->execute([$email, $kod_popusta]);
