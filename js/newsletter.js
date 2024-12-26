@@ -14,12 +14,29 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
     })
     .then(response => response.json())
     .then(data => {
-        alert(data.message);
         if (data.success) {
+            const modal = document.getElementById('newsletter-modal');
+            const discountCode = modal.querySelector('.discount-code');
+            discountCode.textContent = data.message.split(': ')[1]; // Uzima samo kod
+            modal.style.display = 'block';
             document.getElementById('newsletterEmail').value = '';
         }
     })
     .catch(error => {
+        console.error('Error:', error);
         alert('Došlo je do greške pri prijavi na newsletter');
     });
+});
+
+// Zatvori modal na X
+document.querySelector('.close').addEventListener('click', function() {
+    document.getElementById('newsletter-modal').style.display = 'none';
+});
+
+// Zatvori modal klikom van modala
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('newsletter-modal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
 });
