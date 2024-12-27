@@ -6,13 +6,15 @@ const productsData = {
             name: "Planinska Koliba",
             price: "16.99 BAM",
             images: {
-                main: "images/planinskakoliba.jpg",  // maknuli smo ../
-                hover: "images/planinskakoliba-hover.jpg"
+                main: "../images/planinskakoliba.jpg",    // dodali smo ../
+                hover: "../images/planinskakoliba-hover.jpg"  // dodali smo ../
             },
             dateAdded: "2024-03-26",
             essences: ["Myrrh", "Frankincense", "Cedar"]
-        },
-        {
+        }
+    ],
+    // ...
+};
             id: "brijuni",
             name: "Brijuni",
             price: "35.00 BAM",
