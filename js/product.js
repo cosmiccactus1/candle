@@ -4,7 +4,7 @@ const productsData = {
         {
             id: "planinska-koliba",
             name: "Planinska Koliba",
-            price: "35 BAM",
+            price: "16.99 BAM",
             images: {
                 main: "../images/planinskakoliba.jpg",
                 hover: "images/planinskakoliba-hover.jpg" // alternativna slika
