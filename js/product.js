@@ -4,7 +4,7 @@ const productsData = {
             id: "planinska-koliba",
             name: "Planinska Koliba",
             price: "16.99 BAM",
-            image: "planinskakoliba.jpg",
+            image: "../images/planinskakoliba.jpg",
             dateAdded: "2024-03-26"
         }
     ],
