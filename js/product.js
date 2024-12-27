@@ -6,20 +6,35 @@ const productsData = {
             name: "Planinska Koliba",
             price: "16.99 BAM",
             images: {
-                main: "../images/planinskakoliba.jpg",
-                hover: "images/planinskakoliba-hover.jpg" // alternativna slika
+                main: "images/planinskakoliba.jpg",  // maknuli smo ../
+                hover: "images/planinskakoliba-hover.jpg"
             },
             dateAdded: "2024-03-26",
             essences: ["Myrrh", "Frankincense", "Cedar"]
         },
-        // Dodajte ostale proizvode
+        {
+            id: "brijuni",
+            name: "Brijuni",
+            price: "35.00 BAM",
+            images: {
+                main: "images/brijuni.jpg",
+                hover: "images/brijuni-hover.jpg"
+            },
+            dateAdded: "2024-03-25",
+            essences: ["Ylang Ylang", "Sandalwood", "Bergamot"]
+        }
     ],
-
     renderMosaic() {
         const container = document.querySelector('.mosaic-grid');
-        if (!container) return;
+        console.log("Container found:", container); // debugging
+        
+        if (!container) {
+            console.log("Container not found!");
+            return;
+        }
 
-        const featuredProducts = this.items.slice(0, 6); // Prikazujemo prvih 6 proizvoda
+        const featuredProducts = this.items.slice(0, 6);
+        console.log("Products to render:", featuredProducts); // debugging
         
         container.innerHTML = featuredProducts.map(product => `
             <div class="mosaic-item">
@@ -34,41 +49,27 @@ const productsData = {
             </div>
         `).join('');
 
-        // Dodajemo hover efekt za promjenu slika
+        // Hover effects
         document.querySelectorAll('.mosaic-image').forEach(img => {
-            const hoverImage = new Image();
-            hoverImage.src = img.getAttribute('data-hover');
-            
             img.addEventListener('mouseenter', function() {
-                if (this.getAttribute('data-hover')) {
-                    this.style.opacity = '0';
-                    setTimeout(() => {
-                        this.src = this.getAttribute('data-hover');
-                        this.style.opacity = '1';
-                    }, 200);
+                const hoverSrc = this.getAttribute('data-hover');
+                if (hoverSrc) {
+                    this.src = hoverSrc;
                 }
             });
 
             img.addEventListener('mouseleave', function() {
-                if (this.getAttribute('data-hover')) {
-                    this.style.opacity = '0';
-                    setTimeout(() => {
-                        this.src = this.getAttribute('data-original') || product.images.main;
-                        this.style.opacity = '1';
-                    }, 200);
-                }
+                const mainSrc = this.src.replace('-hover', '');
+                this.src = mainSrc;
             });
         });
-    },
-
-    // Funkcija za dodavanje novog proizvoda
-    addProduct(product) {
-        this.items.unshift(product); // Dodaje na početak niza
-        this.renderMosaic(); // Ponovno renderuje mozaik
     }
 };
 
-// Inicijalizacija nakon učitavanja stranice
+// Odmah izvršavamo renderovanje
+productsData.renderMosaic();
+
+// Također dodajemo i event listener za DOM
 document.addEventListener('DOMContentLoaded', () => {
     productsData.renderMosaic();
 });
