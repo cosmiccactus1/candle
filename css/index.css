@@ -238,6 +238,7 @@
 }
 
 /* Blog Section */
+/* Blog Section */
 .blog-section {
    padding: 120px 0;
    background: linear-gradient(to bottom, #f9f7f5, #fff);
@@ -258,12 +259,12 @@
 .blog-card {
    display: flex;
    align-items: center;
-   gap: 80px;
+   gap: 100px; /* PROMJENA: povećan razmak sa 80px na 100px */
    background: #fff;
    border-radius: 30px;
-   padding: 70px;
+   padding: 90px; /* PROMJENA: povećan padding sa 70px na 90px */
    box-shadow: 0 30px 60px rgba(0,0,0,0.04);
-   max-width: 1200px;
+   max-width: 1400px; /* PROMJENA: povećano sa 1200px na 1400px */
    margin: 0 auto;
    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
    position: relative;
@@ -289,8 +290,8 @@
 
 .video-wrapper {
    position: relative;
-   width: 55%;
-   padding-top: 34%;
+   width: 65%; /* PROMJENA: povećano sa 55% na 65% */
+   padding-top: 40%; /* PROMJENA: promijenjeno sa 34% na 40% */
    border-radius: 20px;
    overflow: hidden;
    box-shadow: 0 25px 50px rgba(0,0,0,0.06);
@@ -327,32 +328,27 @@
 }
 
 .blog-content {
-   width: 45%;
+   width: 35%; /* PROMJENA: smanjeno sa 45% na 35% */
    padding: 20px 0;
 }
 
 .blog-content h3 {
-   font-size: 2.8rem;
-   font-weight: 200;
+   font-size: 2.4rem; /* PROMJENA: smanjeno sa 2.8rem */
+   font-weight: 100; /* PROMJENA: promijenjeno sa 200 na 100 */
    color: #1a1a1a;
-   margin-bottom: 35px;
-   letter-spacing: 2px;
-   line-height: 1.3;
-   transition: all 0.3s ease;
-}
-
-.blog-card:hover .blog-content h3 {
-   color: #2D4F2D;
+   margin-bottom: 30px; /* PROMJENA: smanjeno sa 35px na 30px */
+   letter-spacing: 2.5px;
+   line-height: 1.4;
 }
 
 .blog-content p {
-   font-size: 1.15rem;
+   font-size: 1rem; /* PROMJENA: smanjeno sa 1.15rem */
    color: #444;
-   margin-bottom: 40px;
-   line-height: 1.9;
-   font-weight: 300;
-   letter-spacing: 0.5px;
-   opacity: 0.9;
+   margin-bottom: 35px;
+   line-height: 2; /* PROMJENA: povećano sa 1.9 */
+   font-weight: 200; /* PROMJENA: nije mijenjano ali naglašavam da je 200 */
+   letter-spacing: 0.8px; /* PROMJENA: povećano sa 0.5px */
+   opacity: 0.85; /* PROMJENA: smanjeno sa 0.9 */
 }
 
 .read-more {
@@ -382,6 +378,37 @@
 
 .read-more:hover::after {
    transform: translateX(5px);
+}
+
+/* Responsive Design - blog sekcija */
+@media (max-width: 1024px) {
+   .blog-card {
+       flex-direction: column;
+       gap: 50px;
+       padding: 50px; /* PROMJENA: povećano sa 40px */
+       max-width: 90%; /* PROMJENA: dodano */
+       margin: 0 auto; /* PROMJENA: promijenjeno sa margin: 0 20px */
+   }
+
+   .video-wrapper {
+       width: 100%;
+       padding-top: 56.25%;
+   }
+
+   .blog-content {
+       width: 100%;
+       padding: 0;
+       text-align: center;
+   }
+
+   .blog-content h3 {
+       font-size: 2rem; /* PROMJENA: smanjeno sa 2.4rem */
+       margin-bottom: 25px;
+   }
+
+   .read-more {
+       justify-content: center;
+   }
 }
 
 /* Newsletter Section */
