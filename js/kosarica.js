@@ -1,4 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.getElementById('newsletterForm');
+    const discountMessage = document.querySelector('.discount-message');
+
+    newsletterForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const code = document.getElementById('discountCode').value;
+        
+        try {
+            const response = await fetch('newsletter.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ code: code })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                discountMessage.textContent = 'Kod je uspješno primijenjen!';
+                discountMessage.style.color = '#27ae60';
+                localStorage.setItem('newsletterDiscount', data.discount);
+                renderCart();
+            } else {
+                discountMessage.textContent = 'Nevažeći kod za popust.';
+                discountMessage.style.color = '#e74c3c';
+            }
+        } catch (error) {
+            discountMessage.textContent = 'Došlo je do greške. Pokušajte ponovo.';
+            discountMessage.style.color = '#e74c3c';
+        }
+    });
     const cartContainer = document.querySelector('.cart-container');
     const checkoutBtn = document.querySelector('.checkout-btn');
 
