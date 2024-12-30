@@ -2,9 +2,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartContainer = document.querySelector('.cart-container');
     const checkoutBtn = document.querySelector('.checkout-btn');
 
-    function renderCart() {
+    async function checkNewsletterDiscount() {
+        try {
+            const email = localStorage.getItem('userEmail');
+            if (!email) return null;
+
+            const response = await fetch('newsletter.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email })
+            });
+
+            const data = await response.json();
+            if (data.discount) {
+                localStorage.setItem('newsletterDiscount', data.discount);
+                return data.discount;
+            }
+            return null;
+        } catch (error) {
+            console.error('Error checking newsletter discount:', error);
+            return null;
+        }
+    }
+
+    async function renderCart() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const discountCode = localStorage.getItem('newsletterDiscount'); 
+        const discountCode = await checkNewsletterDiscount();
         let cartHTML = '';
         let subtotal = 0;
         let discount = 0;
@@ -38,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (discountCode) {
-            discount = subtotal * 0.1; // 10% popusta
+            discount = subtotal * 0.1; // 10% popust
         }
 
         const total = subtotal - discount;
@@ -54,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 ${discountCode ? `
                 <div class="discount">
-                    <span>Popust (10%):</span>
+                    <span>Newsletter popust (10%):</span>
                     <span class="discount-amount">-${discount.toFixed(2)} BAM</span>
                 </div>
                 ` : ''}
@@ -68,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
 
-        // Dodaj event listenere za količinu i brisanje
         addQuantityListeners();
         addRemoveListeners();
         addCheckoutListener();
@@ -129,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function addRemoveListeners() {
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', (e) => {
-                e.stopPropagation(); // Sprječavamo event bubbling
+                e.stopPropagation();
                 const product = button.closest('.selected-product');
                 const productId = product.dataset.id;
                 removeItem(productId);
