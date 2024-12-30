@@ -210,6 +210,54 @@
     transform: none;
 }
 
+.discount-code-section {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.newsletter-form button {
+    padding: 12px 25px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background: #444;
+}
+
+.discount-message {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #27ae60;
+}
+
 /* Responzivni dizajn */
 @media (max-width: 900px) {
     .selected-product {
@@ -252,4 +300,3 @@
     .checkout-section {
         padding: 20px 15px;
     }
-}
