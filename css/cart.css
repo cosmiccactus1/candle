@@ -276,6 +276,37 @@
         font-size: 28px;
     }
 
+
+
+
+
+    .subtotal, .discount {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.discount-amount {
+    color: #e74c3c;
+}
+
+.remove-item {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.remove-item:hover {
+    color: #e74c3c;
+}
     .page-title .subtitle {
         font-size: 16px;
     }
