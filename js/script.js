@@ -112,21 +112,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function addToCart() {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const productId = 'brijuni-svijeca';
-        const product = products[productId];
-        
-        cartItems.push({
-            ...product,
-            quantity: 1,
-            addedAt: new Date().toISOString()
-        });
-        
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        updateCartCount();
-        showCartModal();
-    }
+   function addToCart() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const productId = document.querySelector('.like-button').dataset.productId;
+    const product = products[productId];
+    
+    if (!product) return;
+    
+    cartItems.push({
+        ...product,
+        quantity: 1,
+        addedAt: new Date().toISOString()
+    });
+    
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCartCount();
+    showCartModal();
+}
 
     // Funkcije za favorite
     function updateFavoriteStatus() {
