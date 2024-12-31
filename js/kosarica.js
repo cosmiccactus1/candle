@@ -1,37 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
     const newsletterForm = document.getElementById('newsletterForm');
     const discountMessage = document.querySelector('.discount-message');
-
-    newsletterForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const code = document.getElementById('discountCode').value;
-        
-        try {
-            const response = await fetch('newsletter.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ code: code })
-            });
-
-            const data = await response.json();
-            if (data.success) {
-                discountMessage.textContent = 'Kod je uspješno primijenjen!';
-                discountMessage.style.color = '#27ae60';
-                localStorage.setItem('newsletterDiscount', data.discount);
-                renderCart();
-            } else {
-                discountMessage.textContent = 'Nevažeći kod za popust.';
-                discountMessage.style.color = '#e74c3c';
-            }
-        } catch (error) {
-            discountMessage.textContent = 'Došlo je do greške. Pokušajte ponovo.';
-            discountMessage.style.color = '#e74c3c';
-        }
-    });
     const cartContainer = document.querySelector('.cart-container');
     const checkoutBtn = document.querySelector('.checkout-btn');
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const code = document.getElementById('discountCode').value;
+            
+            try {
+                const response = await fetch('newsletter.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ code: code })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    discountMessage.textContent = 'Kod je uspješno primijenjen!';
+                    discountMessage.style.color = '#27ae60';
+                    localStorage.setItem('newsletterDiscount', data.discount);
+                    renderCart();
+                } else {
+                    discountMessage.textContent = 'Nevažeći kod za popust.';
+                    discountMessage.style.color = '#e74c3c';
+                }
+            } catch (error) {
+                discountMessage.textContent = 'Došlo je do greške. Pokušajte ponovo.';
+                discountMessage.style.color = '#e74c3c';
+            }
+        });
+    }
 
     async function checkNewsletterDiscount() {
         try {
@@ -69,8 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
             cartHTML = '<div class="empty-cart"><p>Vaš ceger je prazan</p></div>';
         } else {
             cartItems.forEach(item => {
-                const itemTotal = item.price * (item.quantity || 1);
+                // Pretvaramo cijenu iz stringa u broj
+                const price = parseFloat(item.price.replace(',', '.'));
+                const quantity = item.quantity || 1;
+                const itemTotal = price * quantity;
                 subtotal += itemTotal;
+                
                 cartHTML += `
                     <div class="selected-product" data-id="${item.id}">
                         <button class="remove-item" aria-label="Ukloni proizvod">
@@ -84,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <div class="quantity-selector">
                                 <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
-                                <input type="number" value="${item.quantity || 1}" min="1">
+                                <input type="number" value="${quantity}" min="1">
                                 <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
@@ -207,6 +213,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Inicijalno renderiranje košarice
-    renderCart();
-    updateCartCount();
+    if (cartContainer) {
+        renderCart();
+        updateCartCount();
+    }
 });
