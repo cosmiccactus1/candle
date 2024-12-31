@@ -57,8 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateCartCount() {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         if (cartCount) {
-            cartCount.textContent = cartItems.length;
-            cartCount.style.display = cartItems.length > 0 ? 'flex' : 'none';
+            // Zbroji sve količine proizvoda
+            const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalQuantity;
+            cartCount.style.display = totalQuantity > 0 ? 'flex' : 'none';
         }
     }
 
@@ -83,16 +85,27 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Proizvod nije pronađen:', productId);
             return;
         }
+
+        // Provjeri postoji li proizvod već u košarici
+        const existingItemIndex = cartItems.findIndex(item => item.id === productId);
         
-        cartItems.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            description: product.description,
-            quantity: 1,
-            addedAt: new Date().toISOString()
-        });
+        if (existingItemIndex !== -1) {
+            // Ako proizvod već postoji, povećaj količinu
+            cartItems[existingItemIndex].quantity += 1;
+            console.log('Povećana količina za proizvod:', productId);
+        } else {
+            // Ako proizvod ne postoji, dodaj ga s količinom 1
+            cartItems.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                description: product.description,
+                quantity: 1,
+                addedAt: new Date().toISOString()
+            });
+            console.log('Dodan novi proizvod:', productId);
+        }
         
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         updateCartCount();
