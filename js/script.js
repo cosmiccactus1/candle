@@ -33,15 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'brijuni-svijeca',
             name: 'Brijuni svijeća',
             price: '35',
-            image: 'images/svijeća1.jpg',
+            image: 'images/brijuni.jpg',
             description: 'Luksuzna aromatična svijeća',
             pageUrl: 'products/product1.html'
         },
         'nedjeljni-sabah': {
             id: 'nedjeljni-sabah',
             name: 'Nedjeljni Sabah',
-            price: '45',
-            image: 'images/svijeca2.jpg',
+            price: '24,99',
+            image: 'images/nedjeljnisabah.jpg',
             description: 'Aromatična svijeća',
             pageUrl: 'products/product2.html'
         },
@@ -56,11 +56,20 @@ document.addEventListener('DOMContentLoaded', function() {
         'zumbul': {
             id: 'zumbul',
             name: 'Zumbul',
-            price: '55',
+            price: '24,99',
             image: 'images/svijeca4.jpg',
             description: 'Aromatična svijeća',
             pageUrl: 'products/product4.html'
         }
+        
+    'VOLIM TE': {
+        id: 'volim-te',
+        name: 'VOLIM TE',
+        price: '16,99',
+        image: 'images/volimte.jpg',
+        description: 'LTD VALENTINES EDITION',
+        pageUrl: 'products/volimte.html'
+    }
     };
 
     // Slider funkcije
