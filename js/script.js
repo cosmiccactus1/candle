@@ -1,24 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM je učitan!");
-
     // DOM elementi
-    const sliderContainer = document.querySelector('.slider-container');
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
-    const images = document.querySelectorAll('.product-image');
+    const cartCount = document.querySelector('.cart-count');
+    const cartModal = document.querySelector('.cart-modal');
+    const favoriteCountElement = document.getElementById('favorite-count');
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.querySelector('.nav-links');
-    const likeButtons = document.querySelectorAll('.like-button');
-    const cartCount = document.querySelector('.cart-count');
-    const addToCartButton = document.querySelector('.add-to-cart');
-    const cartModal = document.querySelector('.cart-modal');
-    const closeModal = document.querySelector('.close-modal');
-    const continueShopping = document.querySelector('.continue-shopping');
-    const viewCart = document.querySelector('.view-cart');
-    const checkout = document.querySelector('.checkout');
-    const favoriteCountElement = document.getElementById('favorite-count');
-    const dots = document.querySelectorAll('.dot');
-    
+
     // Definicija proizvoda - usklađena s HTML-om
     const products = {
         'brijuni-svijeca': {
@@ -84,7 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Dodaj u košaricu
     function addToCart(productId) {
+        console.log('Dodavanje proizvoda u košaricu:', productId);
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const product = products[productId];
         
@@ -92,14 +81,19 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Proizvod nije pronađen:', productId);
             return;
         }
-        
+
         cartItems.push({
-            ...product,
+            id: product.id,            // Dodano
+            name: product.name,        // Dodano
+            price: product.price,      // Dodano
+            image: product.image,      // Dodano
+            description: product.description, // Dodano
             quantity: 1,
             addedAt: new Date().toISOString()
         });
         
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        console.log('Stanje košarice nakon dodavanja:', cartItems); // Za debugiranje
         updateCartCount();
         showCartModal();
     }
@@ -134,12 +128,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function toggleFavorite(productId) {
-        console.log('Toggling favorite for:', productId);
+        console.log('Toggle favorite za proizvod:', productId);
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const product = products[productId];
         
         if (!product) {
-            console.error('Product not found:', productId);
+            console.error('Proizvod nije pronađen:', productId);
             return;
         }
 
@@ -147,14 +141,18 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (existingIndex === -1) {
             const productToAdd = {
-                ...product,
+                id: product.id,            // Dodano
+                name: product.name,        // Dodano
+                price: product.price,      // Dodano
+                image: product.image,      // Dodano
+                description: product.description, // Dodano
                 addedAt: new Date().toISOString()
             };
             favorites.push(productToAdd);
-            console.log('Added to favorites');
+            console.log('Dodan u favorite');
         } else {
             favorites.splice(existingIndex, 1);
-            console.log('Removed from favorites');
+            console.log('Uklonjen iz favorita');
         }
         
         localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -162,40 +160,34 @@ document.addEventListener('DOMContentLoaded', function() {
         updateFavoriteCount();
     }
 
-    // Event listeneri
-    if (addToCartButton) {
-        const productId = addToCartButton.dataset.productId;
-        addToCartButton.addEventListener('click', () => addToCart(productId));
-    }
+    // Dodaj dugmad za košaricu
+    document.querySelectorAll('.kolekcija-item').forEach(item => {
+        const likeButton = item.querySelector('.like-button');
+        const productId = likeButton?.dataset.productId;
 
-    if (closeModal) {
-        closeModal.addEventListener('click', hideCartModal);
-    }
+        if (productId) {
+            const cartButton = document.createElement('button');
+            cartButton.className = 'cart-button';
+            cartButton.innerHTML = 'Dodaj u korpu';
+            item.appendChild(cartButton);
 
-    if (continueShopping) {
-        continueShopping.addEventListener('click', hideCartModal);
-    }
+            cartButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                addToCart(productId);
+            });
+        }
+    });
 
-    if (viewCart) {
-        viewCart.addEventListener('click', () => {
-            window.location.href = 'kosarica.html';
-        });
-    }
-
-    if (checkout) {
-        checkout.addEventListener('click', () => {
-            window.location.href = 'checkout.html';
-        });
-    }
-
-    // Event listeneri za sve like buttone
+    // Event listeneri za like buttons
     document.querySelectorAll('.like-button').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             const productId = button.dataset.productId;
-            console.log('Like button clicked for:', productId);
-            toggleFavorite(productId);
+            if (productId) {
+                toggleFavorite(productId);
+            }
         });
     });
 
