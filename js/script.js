@@ -5,9 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const favoriteCountElement = document.getElementById('favorite-count');
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.querySelector('.nav-links');
-    
-    // Provjera smo li na stranici proizvoda ili kolekciji
-    const isProductPage = window.location.pathname.includes('/products/');
 
     // Definicija proizvoda
     const products = {
@@ -15,48 +12,46 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'brijuni-svijeca',
             name: 'B R I J U N I',
             price: '24,99',
-            image: isProductPage ? '../images/brijuni.jpg' : 'images/brijuni.jpg',
+            image: 'images/brijuni.jpg',
             description: 'Luksuzna aromatična svijeća'
         },
         'nedjeljni-sabah': {
             id: 'nedjeljni-sabah',
             name: 'NEDJELJNI SABAH',
             price: '24,99',
-            image: isProductPage ? '../images/nedjeljnisabah.jpg' : 'images/nedjeljnisabah.jpg',
+            image: 'images/nedjeljnisabah.jpg',
             description: 'Aromatična svijeća'
         },
         'planinska-koliba': {
             id: 'planinska-koliba',
             name: 'PLANINSKA KOLIBA',
             price: '16,99',
-            image: isProductPage ? '../images/planinskakoliba.jpg' : 'images/planinskakoliba.jpg',
+            image: 'images/planinskakoliba.jpg',
             description: 'Mirisna svijeća'
         },
         'zumbul': {
             id: 'zumbul',
             name: 'Z U M B U L',
             price: '55',
-            image: isProductPage ? '../images/zumbul.jpg' : 'images/zumbul.jpg',
+            image: 'images/zumbul.jpg',
             description: 'Aromatična svijeća'
         },
         'volim-te': {
             id: 'volim-te',
             name: 'VOLIM TE',
             price: '16,99',
-            image: isProductPage ? '../images/volimte.jpg' : 'images/volimte.jpg',
+            image: 'images/volimte.jpg',
             description: 'LTD VALENTINES EDITION'
         }
     };
 
     // Dodaj dugme za ceger u kolekciji
-    if (!isProductPage) {
-        document.querySelectorAll('.kolekcija-item').forEach(item => {
-            const cartButton = document.createElement('button');
-            cartButton.className = 'cart-button';
-            cartButton.innerHTML = 'Dodaj u ceger';
-            item.appendChild(cartButton);
-        });
-    }
+    document.querySelectorAll('.kolekcija-item').forEach(item => {
+        const cartButton = document.createElement('button');
+        cartButton.className = 'cart-button';
+        cartButton.innerHTML = 'Dodaj u ceger';
+        item.appendChild(cartButton);
+    });
 
     // Funkcije za ceger
     function updateCartCount() {
@@ -79,10 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function addToCart(event, productId) {
-        event.preventDefault();
-        event.stopPropagation();
-        
+    function addToCart(productId) {
         console.log('Dodavanje u ceger:', productId);
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const product = products[productId];
@@ -107,23 +99,32 @@ document.addEventListener('DOMContentLoaded', function() {
         showCartModal();
     }
 
-    // Event listeneri za ceger dugmad
-    if (!isProductPage) {
-        document.querySelectorAll('.cart-button').forEach(button => {
-            const productItem = button.closest('.kolekcija-item');
-            const likeButton = productItem.querySelector('.like-button');
-            const productId = likeButton.dataset.productId;
-            
-            button.addEventListener('click', (e) => addToCart(e, productId));
+    // Event listeneri za ceger dugmad u kolekciji
+    document.querySelectorAll('.cart-button').forEach(button => {
+        const productItem = button.closest('.kolekcija-item');
+        const likeButton = productItem.querySelector('.like-button');
+        const productId = likeButton?.dataset.productId;
+        
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCart(productId);
         });
-    } else {
-        // Ako smo na stranici proizvoda
+    });
+
+    // Event listener za "Dodaj u ceger" na stranici proizvoda
+    if (document.querySelector('.add-to-cart')) {
         const addToCartButton = document.querySelector('.add-to-cart');
-        if (addToCartButton) {
-            const productId = addToCartButton.dataset.productId;
-            addToCartButton.textContent = 'Dodaj u ceger';
-            addToCartButton.addEventListener('click', (e) => addToCart(e, productId));
-        }
+        const likeButton = document.querySelector('.like-button');
+        const productId = likeButton?.dataset.productId;
+
+        addToCartButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (productId) {
+                addToCart(productId);
+            }
+        });
     }
 
     // Funkcije za favorite
@@ -228,4 +229,12 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
     updateFavoriteStatus();
     updateFavoriteCount();
+
+    // Event listeneri za modal
+    if (document.querySelector('.close-modal')) {
+        document.querySelector('.close-modal').addEventListener('click', hideCartModal);
+    }
+    if (document.querySelector('.continue-shopping')) {
+        document.querySelector('.continue-shopping').addEventListener('click', hideCartModal);
+    }
 });
