@@ -19,35 +19,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const favoriteCountElement = document.getElementById('favorite-count');
     const dots = document.querySelectorAll('.dot');
     
-    // Provjera lokacije
-    const isProductPage = window.location.pathname.includes('products/');
-    
-    // Helper funkcija za putanje
-    function getPagePath(filename) {
-        return isProductPage ? `../${filename}` : filename;
-    }
-
-    // Definicija proizvoda
+    // Definicija proizvoda - usklađena s HTML-om
     const products = {
         'brijuni-svijeca': {
             id: 'brijuni-svijeca',
-            name: 'Brijuni svijeća',
+            name: 'B R I J U N I',
             price: '24,99',
-            image: 'images/svijeća1.jpg',
+            image: 'images/brijuni.jpg',
             description: 'Luksuzna aromatična svijeća',
             pageUrl: 'products/product1.html'
         },
         'nedjeljni-sabah': {
             id: 'nedjeljni-sabah',
-            name: 'Nedjeljni Sabah',
+            name: 'NEDJELJNI SABAH',
             price: '24,99',
-            image: 'images/svijeca2.jpg',
+            image: 'images/nedjeljnisabah.jpg',
             description: 'Aromatična svijeća',
             pageUrl: 'products/product2.html'
         },
         'planinska-koliba': {
             id: 'planinska-koliba',
-            name: 'Planinska Koliba',
+            name: 'PLANINSKA KOLIBA',
             price: '16,99',
             image: 'images/planinskakoliba.jpg',
             description: 'Mirisna svijeća',
@@ -55,41 +47,21 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         'zumbul': {
             id: 'zumbul',
-            name: 'Zumbul',
+            name: 'Z U M B U L',
             price: '55',
-            image: 'images/svijeca4.jpg',
+            image: 'images/zumbul.jpg',
             description: 'Aromatična svijeća',
             pageUrl: 'products/product4.html'
+        },
+        'volim-te': {
+            id: 'volim-te',
+            name: 'VOLIM TE',
+            price: '16,99',
+            image: 'images/volimte.jpg',
+            description: 'LTD VALENTINES EDITION',
+            pageUrl: 'products/volimte.html'
         }
     };
-
-    // Slider funkcije
-    let currentIndex = 0;
-    const totalImages = images?.length || 0;
-
-    function updateDots() {
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
-    }
-
-    function showImage(index) {
-        if (sliderContainer && window.innerWidth < 768) {
-            sliderContainer.style.transform = `translateX(-${index * 100}%)`;
-            currentIndex = index;
-            updateDots();
-        }
-    }
-
-    function showNextImage() {
-        currentIndex = (currentIndex + 1) % totalImages;
-        showImage(currentIndex);
-    }
-
-    function showPrevImage() {
-        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-        showImage(currentIndex);
-    }
 
     // Funkcije za košaricu
     function updateCartCount() {
@@ -112,10 +84,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function addToCart() {
+    function addToCart(productId) {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const productId = 'brijuni-svijeca';
         const product = products[productId];
+        
+        if (!product) {
+            console.error('Proizvod nije pronađen:', productId);
+            return;
+        }
         
         cartItems.push({
             ...product,
@@ -188,7 +164,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listeneri
     if (addToCartButton) {
-        addToCartButton.addEventListener('click', addToCart);
+        const productId = addToCartButton.dataset.productId;
+        addToCartButton.addEventListener('click', () => addToCart(productId));
     }
 
     if (closeModal) {
@@ -201,13 +178,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (viewCart) {
         viewCart.addEventListener('click', () => {
-            window.location.href = getPagePath('kosarica.html');
+            window.location.href = 'kosarica.html';
         });
     }
 
     if (checkout) {
         checkout.addEventListener('click', () => {
-            window.location.href = getPagePath('checkout.html');
+            window.location.href = 'checkout.html';
         });
     }
 
@@ -222,29 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Slider kontrole
-    if (prevButton) prevButton.addEventListener('click', showPrevImage);
-    if (nextButton) nextButton.addEventListener('click', showNextImage);
-
-    // Touch events za slider
-    if (sliderContainer) {
-        let touchStartX = 0;
-        
-        sliderContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-        });
-
-        sliderContainer.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].clientX;
-            const diff = touchStartX - touchEndX;
-
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) showNextImage();
-                else showPrevImage();
-            }
-        });
-    }
-
     // Mobilni meni
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
@@ -254,16 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Dots za slider
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => showImage(index));
-    });
-
-    // Window resize
-    window.addEventListener('resize', () => showImage(currentIndex));
-
     // Inicijalizacija
-    showImage(0);
     updateCartCount();
     updateFavoriteStatus();
     updateFavoriteCount();
