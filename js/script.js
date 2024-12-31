@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'brijuni-svijeca': {
             id: 'brijuni-svijeca',
             name: 'Brijuni svijeća',
-            price: '35',
-            image: 'images/brijuni.jpg',
+            price: '24,99',
+            image: 'images/svijeća1.jpg',
             description: 'Luksuzna aromatična svijeća',
             pageUrl: 'products/product1.html'
         },
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'nedjeljni-sabah',
             name: 'Nedjeljni Sabah',
             price: '24,99',
-            image: 'images/nedjeljnisabah.jpg',
+            image: 'images/svijeca2.jpg',
             description: 'Aromatična svijeća',
             pageUrl: 'products/product2.html'
         },
@@ -56,20 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
         'zumbul': {
             id: 'zumbul',
             name: 'Zumbul',
-            price: '24,99',
+            price: '55',
             image: 'images/svijeca4.jpg',
             description: 'Aromatična svijeća',
             pageUrl: 'products/product4.html'
         }
-        
-    'VOLIM TE': {
-        id: 'volim-te',
-        name: 'VOLIM TE',
-        price: '16,99',
-        image: 'images/volimte.jpg',
-        description: 'LTD VALENTINES EDITION',
-        pageUrl: 'products/volimte.html'
-    }
     };
 
     // Slider funkcije
@@ -121,23 +112,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-   function addToCart() {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const productId = document.querySelector('.like-button').dataset.productId;
-    const product = products[productId];
-    
-    if (!product) return;
-    
-    cartItems.push({
-        ...product,
-        quantity: 1,
-        addedAt: new Date().toISOString()
-    });
-    
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    updateCartCount();
-    showCartModal();
-}
+    function addToCart() {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const productId = 'brijuni-svijeca';
+        const product = products[productId];
+        
+        cartItems.push({
+            ...product,
+            quantity: 1,
+            addedAt: new Date().toISOString()
+        });
+        
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartCount();
+        showCartModal();
+    }
 
     // Funkcije za favorite
     function updateFavoriteStatus() {
