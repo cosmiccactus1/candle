@@ -42,8 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             price: '16,99',
             image: 'images/volimte.jpg',
             description: 'LTD VALENTINES EDITION'
-        }
-     },
+        },
     'bona-beast': {
         id: 'bona-beast',
         name: 'B O N A & B E A S T',
