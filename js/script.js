@@ -44,15 +44,14 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'LTD VALENTINES EDITION'
         }
     };
-    'bona-beast': {
+ 'bona-beast': {
 id: 'bona-beast',
 name: 'B O N A & B E A S T',
 price: '19,99',
 image: 'images/bonaibeast.jpg',
 description: 'Luksuzna aromatična svijeća'
 }
-    };
-
+};
     // Dodaj dugme za ceger u kolekciji
     document.querySelectorAll('.kolekcija-item').forEach(item => {
         const cartButton = document.createElement('button');
