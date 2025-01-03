@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         cartItems.forEach(item => {
-            // Osiguravamo da su vrijednosti brojevi
-            const cijena = parseFloat(item.cijena.replace(',', '.'));
-            const kolicina = parseInt(item.kolicina) || 1;
-            const itemTotal = cijena * kolicina;
+            // Koristimo iste nazive polja kao u košarici
+            const price = parseFloat(item.price.replace(',', '.'));
+            const quantity = parseInt(item.quantity) || 1;
+            const itemTotal = price * quantity;
             
             if (!isNaN(itemTotal)) {
                 subtotal += itemTotal;
@@ -24,17 +24,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const itemElement = document.createElement('div');
             itemElement.className = 'cart-item';
             itemElement.innerHTML = `
-                <img src="images/${item.image}" alt="${item.naziv}" class="cart-item-image">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
                 <div class="cart-item-details">
-                    <h3>${item.naziv}</h3>
-                    <p>Količina: ${kolicina}</p>
+                    <h3>${item.name}</h3>
+                    <p>Količina: ${quantity}</p>
                 </div>
                 <div class="cart-item-price">${itemTotal.toFixed(2)} BAM</div>
             `;
             cartItemsContainer.appendChild(itemElement);
         });
 
-        // Provjera za popust
         const hasDiscount = localStorage.getItem('newsletterDiscount') === 'true';
         const discountAmount = hasDiscount ? subtotal * 0.1 : 0;
         const shipping = subtotal > 100 ? 0 : 5;
@@ -105,8 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             if (this.checkValidity()) {
-                const subtotal = parseFloat(document.getElementById('subtotal').textContent);
-                const total = parseFloat(document.getElementById('total').textContent);
+                const total = document.querySelector('.summary-row.total .total-price')?.textContent || '0.00 BAM';
                 
                 const orderData = {
                     customerInfo: {
@@ -119,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         postalCode: this.postalCode.value
                     },
                     items: cartItems,
-                    subtotal: subtotal,
                     total: total
                 };
 
