@@ -1,35 +1,59 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Košarica
-    const cartData = JSON.parse(localStorage.getItem('cartData')) || { items: [], total: 0 };
+    // Dohvat košarice iz localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartItemsContainer = document.getElementById('cartItems');
-    let subtotal = 0;
     
-    cartData.items.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
-        itemElement.innerHTML = `
-            <img src="images/${item.image}" alt="${item.naziv}" class="cart-item-image">
-            <div class="cart-item-details">
-                <h3>${item.naziv}</h3>
-                <p>Količina: ${item.kolicina}</p>
+    function renderOrderSummary() {
+        let subtotal = 0;
+        let discount = localStorage.getItem('newsletterDiscount') ? 0.1 : 0; // 10% ako postoji popust
+        
+        cartItems.forEach(item => {
+            const price = parseFloat(item.price.replace(',', '.'));
+            const quantity = item.quantity || 1;
+            const itemTotal = price * quantity;
+            subtotal += itemTotal;
+            
+            const itemElement = document.createElement('div');
+            itemElement.className = 'cart-item';
+            itemElement.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h3>${item.name}</h3>
+                    <p>Količina: ${quantity}</p>
+                </div>
+                <div class="cart-item-price">${itemTotal.toFixed(2)} BAM</div>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+        });
+        
+        const discountAmount = subtotal * discount;
+        const shipping = subtotal > 100 ? 0 : 5;
+        const total = subtotal - discountAmount + shipping;
+
+        document.querySelector('.summary-details').innerHTML = `
+            <div class="summary-row">
+                <span>Međuzbroj:</span>
+                <span id="subtotal">${subtotal.toFixed(2)} BAM</span>
             </div>
-            <div class="cart-item-price">${(item.cijena * item.kolicina).toFixed(2)} BAM</div>
+            ${discount ? `
+            <div class="summary-row">
+                <span>Newsletter popust (10%):</span>
+                <span class="discount-amount">-${discountAmount.toFixed(2)} BAM</span>
+            </div>` : ''}
+            <div class="summary-row">
+                <span>Dostava:</span>
+                <span id="shipping">${shipping === 0 ? 'Besplatno' : shipping.toFixed(2) + ' BAM'}</span>
+            </div>
+            <div class="summary-row total">
+                <span>Ukupno:</span>
+                <span id="total">${total.toFixed(2)} BAM</span>
+            </div>
         `;
-        cartItemsContainer.appendChild(itemElement);
-        subtotal += item.cijena * item.kolicina;
-    });
-    
-    const shipping = subtotal > 100 ? 0 : 5;
-    const total = subtotal + shipping;
-    
-    document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} BAM`;
-    document.getElementById('shipping').textContent = shipping === 0 ? 'Besplatno' : `${shipping.toFixed(2)} BAM`;
-    document.getElementById('total').textContent = `${total.toFixed(2)} BAM`;
-    
+    }
+
     // Newsletter
     document.getElementById('newsletterForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        
         const email = document.getElementById('newsletterEmail').value;
         
         fetch('newsletter.php', {
@@ -49,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 discountCode.textContent = data.message.split(': ')[1];
                 modal.style.display = 'block';
                 document.getElementById('newsletterEmail').value = '';
+                localStorage.setItem('newsletterDiscount', true);
+                renderOrderSummary();
             } else {
                 alert(data.message);
             }
@@ -59,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Modal
+    // Modal kontrole
     document.querySelector('.close').addEventListener('click', function() {
         document.getElementById('newsletter-modal').style.display = 'none';
     });
@@ -71,48 +97,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Narudžba
-    const orderForm = document.getElementById('orderForm');
-    
-    orderForm.addEventListener('submit', function(e) {
+    // Order form
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const required = orderForm.querySelectorAll('[required]');
-        let isValid = true;
-        
-        required.forEach(field => {
-            if (!field.value.trim()) {
-                isValid = false;
-                field.classList.add('error');
-            } else {
-                field.classList.remove('error');
-            }
-        });
-        
-        if (!isValid) {
+        if (this.checkValidity()) {
+            const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+            const shipping = document.getElementById('shipping').textContent === 'Besplatno' ? 0 : 5;
+            const total = parseFloat(document.getElementById('total').textContent);
+
+            const orderData = {
+                customerInfo: {
+                    firstName: this.firstName.value,
+                    lastName: this.lastName.value,
+                    email: this.email.value,
+                    phone: this.phone.value,
+                    address: this.address.value,
+                    city: this.city.value,
+                    postalCode: this.postalCode.value
+                },
+                items: cartItems,
+                subtotal: subtotal,
+                shipping: shipping,
+                discount: localStorage.getItem('newsletterDiscount') ? 0.1 : 0,
+                total: total
+            };
+
+            console.log('Narudžba:', orderData);
+            localStorage.removeItem('cartItems');
+            alert('Vaša narudžba je uspješno zaprimljena!');
+            window.location.href = 'index.html';
+        } else {
             alert('Molimo popunite sva obavezna polja.');
-            return;
         }
-        
-        const order = {
-            customerInfo: {
-                firstName: orderForm.firstName.value,
-                lastName: orderForm.lastName.value,
-                email: orderForm.email.value,
-                phone: orderForm.phone.value,
-                address: orderForm.address.value,
-                city: orderForm.city.value,
-                postalCode: orderForm.postalCode.value
-            },
-            items: cartData.items,
-            subtotal: subtotal,
-            shipping: shipping,
-            total: total,
-            orderDate: new Date().toISOString()
-        };
-        
-        console.log('Narudžba poslana:', order);
-        localStorage.removeItem('cart');
-        alert('Vaša narudžba je uspješno zaprimljena!');
     });
+
+    // Inicijalno renderiranje
+    renderOrderSummary();
 });
