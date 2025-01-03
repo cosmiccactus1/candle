@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Svijeće Craft-shop - Narudžba</title>
+    <title>Crafthana - Narudžba</title>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -17,7 +17,7 @@
                 <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
-            <a href="popusti.html" class="discount-text">Prijavite se na naš newsletter i ostvarite 10% popusta na svoju prvu kupovinu!</a>
+            <a href="popusti.html" class="discount-text">Kasni jesenji popusti na svijeće - Uštedite do 30%!</a>
         </div>
     </div>
 
@@ -54,102 +54,84 @@
             </div>
         </nav>
     </header>
-     <main class="checkout-page">
-    <div class="page-title">
-        <h1>Narudžba</h1>
-        <p class="subtitle">Unesite podatke za dostavu</p>
-    </div>
 
-    <div class="checkout-container">
-        <div class="checkout-form">
-            <form id="orderForm">
-                <div class="form-section">
-                    <div class="section-title">Podaci za dostavu</div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">Ime</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Prezime</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email adresa</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Broj telefona</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address">Adresa</label>
-                        <input type="text" id="address" name="address" required>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="city">Grad</label>
-                            <input type="text" id="city" name="city" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="postalCode">Poštanski broj</label>
-                            <input type="text" id="postalCode" name="postalCode" required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-section newsletter-section">
-                    <div class="section-title">Newsletter</div>
-                    <form id="newsletterForm" class="newsletter-form">
-                        <input type="email" id="newsletterEmail" placeholder="Vaš email" required>
-                        <button type="submit">Pretplati se</button>
-                    </form>
-                </div>
-
-                <div class="form-section">
-                    <div class="section-title">Način plaćanja</div>
-                    <p><i class="fas fa-money-bill-wave"></i> Plaćanje pouzećem prilikom dostave</p>
-                </div>
-
-                <button type="submit" class="submit-btn">Potvrdi narudžbu</button>
-            </form>
+    <main class="checkout-page">
+        <div class="page-title">
+            <h1>Narudžba</h1>
+            <p class="subtitle">Unesite podatke za dostavu</p>
         </div>
 
-        <div class="order-summary">
-            <div class="section-title">Vaša košarica</div>
-            <div id="cartItems">
-                <!-- Items will be dynamically added here -->
+        <div class="checkout-container">
+            <div class="checkout-form">
+                <form id="orderForm">
+                    <div class="form-section">
+                        <div class="section-title">Podaci za dostavu</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Ime</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Prezime</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email adresa</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Broj telefona</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Adresa</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">Grad</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="postalCode">Poštanski broj</label>
+                                <input type="text" id="postalCode" name="postalCode" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="section-title">Način plaćanja</div>
+                        <p><i class="fas fa-money-bill-wave"></i> Plaćanje pouzećem prilikom dostave</p>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Potvrdi narudžbu</button>
+                </form>
             </div>
-            <div class="summary-details">
-                <div class="summary-row">
-                    <span>Međuzbroj:</span>
-                    <span id="subtotal">0.00 BAM</span>
+
+            <div class="order-summary">
+                <div class="section-title">Vaša košarica</div>
+                <div id="cartItems">
+                    <!-- Items will be added here -->
                 </div>
-                <div class="summary-row">
-                    <span>Dostava:</span>
-                    <span id="shipping">5.00 BAM</span>
-                </div>
-                <div class="summary-row total">
-                    <span>Ukupno:</span>
-                    <span id="total">0.00 BAM</span>
+                <div class="summary-details">
+                    <!-- Summary will be added here -->
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
-     <footer>
+    <footer>
         <div class="footer-content">
             <div class="footer-left">
                 <div class="footer-section">
                     <h3>Kontakt</h3>
                     <p>Email: info@crafthana.xyz</p>
-                   <p>Online narudžbe 24/7</p>
+                    <p>Online narudžbe 24/7</p>
                     <p>Crafted with love in Bosnia and Herzegovina</p>
                 </div>
                 <div class="footer-section">
@@ -164,9 +146,7 @@
                 <div class="footer-section">
                     <h3>Načini plaćanja</h3>
                     <div class="payment-icons">
-                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
-                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
-                        <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                        <i class="fas fa-money-bill-wave" aria-label="Pouzeće"></i>
                     </div>
                 </div>
             </div>
@@ -182,7 +162,6 @@
             <p>&copy; 2025 CRAFTHANA. Sva prava pridržana.</p>
         </div>
     </footer>
-
 
     <script src="js/script.js"></script>
     <script src="js/narudzba.js"></script>
