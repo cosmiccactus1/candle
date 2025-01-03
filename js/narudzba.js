@@ -1,22 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Košarica
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartData = JSON.parse(localStorage.getItem('cartData')) || { items: [], total: 0 };
     const cartItemsContainer = document.getElementById('cartItems');
     let subtotal = 0;
     
-    cart.forEach(item => {
+    cartData.items.forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.className = 'cart-item';
         itemElement.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+            <img src="images/${item.image}" alt="${item.naziv}" class="cart-item-image">
             <div class="cart-item-details">
-                <h3>${item.name}</h3>
-                <p>Količina: ${item.quantity}</p>
+                <h3>${item.naziv}</h3>
+                <p>Količina: ${item.kolicina}</p>
             </div>
-            <div class="cart-item-price">${(item.price * item.quantity).toFixed(2)} BAM</div>
+            <div class="cart-item-price">${(item.cijena * item.kolicina).toFixed(2)} BAM</div>
         `;
         cartItemsContainer.appendChild(itemElement);
-        subtotal += item.price * item.quantity;
+        subtotal += item.cijena * item.kolicina;
     });
     
     const shipping = subtotal > 100 ? 0 : 5;
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 city: orderForm.city.value,
                 postalCode: orderForm.postalCode.value
             },
-            items: cart,
+            items: cartData.items,
             subtotal: subtotal,
             shipping: shipping,
             total: total,
