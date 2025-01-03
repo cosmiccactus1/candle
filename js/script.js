@@ -51,6 +51,7 @@ price: '19,99',
 image: 'images/bonaibeast.jpg',
 description: 'Luksuzna aromatična svijeća'
 }
+    };
 
     // Dodaj dugme za ceger u kolekciji
     document.querySelectorAll('.kolekcija-item').forEach(item => {
