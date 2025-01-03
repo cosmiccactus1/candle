@@ -55,22 +55,7 @@
         </nav>
     </header>
 
-    <main class="checkout-page">
-        <div class="promo-banner">
-            <div class="banner-content">
-                <i class="fas fa-gift"></i>
-                <div class="banner-text">
-                    <h3>Postanite član i ostvarite 10% popusta na prvu kupovinu!</h3>
-                    <p>Plus, ekskluzivni pristup sezonskim popustima i posebnim ponudama</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="page-title">
-            <h1>Narudžba</h1>
-            <p class="subtitle">Unesite podatke za dostavu</p>
-        </div>
-
+     <main class="checkout-page">
         <div class="checkout-container">
             <div class="checkout-form">
                 <form id="orderForm">
@@ -114,44 +99,16 @@
                         </div>
                     </div>
 
-                    <div class="form-section membership-section">
-                        <div class="section-title">Kreirajte račun i ostvarite popuste</div>
-                        
-                        <div class="membership-benefits">
-                            <div class="benefit-item">
-                                <i class="fas fa-percent"></i>
-                                <span>10% popusta na prvu kupovinu</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-star"></i>
-                                <span>Pristup ekskluzivnim ponudama</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-truck"></i>
-                                <span>Besplatna dostava za narudžbe iznad 100 BAM</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="checkbox-group">
-                                <input type="checkbox" id="createAccount" name="createAccount" checked>
-                                <label for="createAccount">Da, želim kreirati račun</label>
-                            </div>
-                        </div>
-
-                        <div class="account-fields">
-                            <div class="form-group">
-                                <label for="password">Lozinka</label>
-                                <input type="password" id="password" name="password" placeholder="Minimalno 8 karaktera">
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Potvrdite lozinku</label>
-                                <input type="password" id="confirmPassword" name="confirmPassword">
-                            </div>
-                        </div>
+                    <div class="form-section">
+                        <div class="section-title">Newsletter</div>
+                        <form id="newsletterForm" class="newsletter-form">
+                            <input type="email" id="newsletterEmail" placeholder="Vaš email" required>
+                            <button type="submit">Pretplati se</button>
+                        </form>
                     </div>
 
-                    <div class="payment-info">
+                    <div class="form-section">
+                        <div class="section-title">Način plaćanja</div>
                         <p><i class="fas fa-money-bill-wave"></i> Plaćanje pouzećem prilikom dostave</p>
                     </div>
 
@@ -160,7 +117,31 @@
             </div>
 
             <div class="order-summary">
-                <!-- Order summary će biti dinamički popunjen putem JavaScripta -->
+                <div class="section-title">Vaša košarica</div>
+                <div id="cartItems"></div>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Međuzbroj:</span>
+                        <span id="subtotal">0.00 BAM</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Dostava:</span>
+                        <span id="shipping">5.00 BAM</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Ukupno:</span>
+                        <span id="total">0.00 BAM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="newsletter-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Hvala na pretplati!</h2>
+                <p>Vaš kod za popust je:</p>
+                <div class="discount-code"></div>
             </div>
         </div>
     </main>
